@@ -3,19 +3,14 @@ import './App.css';
 import axios from "axios";
 import { useEffect } from 'react';
 
-
-//https://velog.io/@autumndr3ams/210802-React-Node.jsexpress-%EC%97%B0%EA%B2%B0%ED%95%98%EA%B8%B0
-
 function App() {
     const callApi = async () => {
-        axios.get("http://localhost:8080").then((res) => { console.log(res) });
-        axios.get("/api").then((res) => { console.log(res) });
+        axios.get("/api").then((res) => { console.log(res.data.test) });
     };
 
     useEffect(() => {
         callApi();
     }, []);
-
   return (
     <div className="App">
       <header className="App-header">
