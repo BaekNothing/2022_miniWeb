@@ -1,0 +1,18 @@
+{
+    "scripts": {
+        "server": "cd server && nodemon server",
+        "client": "cd client && npm start",
+        "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.7"
+    },
+    "dependencies": {
+        "axios": "^0.27.2",
+        "concurrently": "^7.2.1",
+        "create-react-app": "^5.0.1",
+        "express": "^4.18.1",
+        "http-proxy-middleware": "^2.0.6",
+        "nodemon": "^2.0.16"
+    }
+}
