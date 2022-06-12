@@ -4,13 +4,11 @@ import axios from "axios";
 import { useEffect } from 'react';
 
 function App() {
-    const callApi = async () => {
-        axios.get("/api").then((res) => { console.log(res.data.test) });
-    };
-
     useEffect(() => {
-        callApi();
-    }, []);
+        axios.get('http://localhost:8080')
+            .then(function (response) { console.log(response.data.test); })
+            .catch(function (error) { console.log(error); })
+    }, [])
   return (
     <div className="App">
       <header className="App-header">
