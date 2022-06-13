@@ -45,7 +45,7 @@ function StringState() {
           setString(response.data.test);
         })
         .catch(function (error) { console.log(error); })
-  }, [])
+  }, [setString])
 
   return (
     <div>
