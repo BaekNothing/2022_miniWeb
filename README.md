@@ -6,7 +6,6 @@ npm : 8.7.0
 react : ^18.1.0
 
 ## Official Repo : port 8080
---- 
 ### How to use  
 0. install nodesjs [install nodeJS here](https://nodejs.org/ko/download/)
 1. Open Terminal (easy with VSCode)
