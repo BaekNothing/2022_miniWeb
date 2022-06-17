@@ -3,11 +3,30 @@ import './App.css';
 import axios from "axios";
 import React, { useEffect, useState } from 'react';
 import create from 'zustand';
+import PageRender from './PageManager'
 
 const Counter = create((set) => ({
   number : 0,
   setNumber : (number) => set({number})
 }))
+
+
+function App() {
+  return (
+    <div className="App">
+      <header className="App-header">
+        {/* <img src={logo} className="App-logo" alt="logo" /> */}
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <NumberCount></NumberCount>
+        <SyncCount></SyncCount>
+        <StringState></StringState>
+        <PageRender></PageRender>
+      </header>
+    </div>
+  );
+}
 
 function NumberCount() {
   const {number, setNumber} = Counter();
@@ -54,31 +73,6 @@ function StringState() {
       {/* <input type="text" value={string} onChange={(e) => setString(e.target.value)} /> */}
     </div>
   )
-}
-
-function App() {
-
-  return (
-    <div className="App">
-      <header className="App-header">
-        {/* <img src={logo} className="App-logo" alt="logo" /> */}
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <NumberCount></NumberCount>
-        <SyncCount></SyncCount>
-        <StringState></StringState>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
 }
 
 export default App;
