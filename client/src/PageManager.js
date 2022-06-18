@@ -1,16 +1,11 @@
 import './App.css';
 import axios from "axios";
 import create from 'zustand';
-import React, { UseEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const pageData = create((set)=>({
     dataAry : ['name', 'image', 'qusetion', 'answer1', 'answer2', 'answer3', 'answer4'],
-    setAry : (dataAry, data, index) => set(() => {
-        var tempAry = [...dataAry];
-        tempAry[index] = data;
-        dataAry = tempAry;
-        return {dataAry} ;
-    })}
+    setAry : (dataAry) => set(() => { return {dataAry}})}
 ))
 
 const pageIndex = create((set)=>({
@@ -22,46 +17,79 @@ const pageIndex = create((set)=>({
 
 function PageRender (){
     const {index, setIndex} = pageIndex();
-    const pageDataAry = GetPageData();
+    const { dataAry} = pageData();
 
     return (
         <div>
-            <p> {pageDataAry[0]} </p>
-            <p> {pageDataAry[1]} </p>
-            <p> {pageDataAry[2]} </p>
-            <p> {pageDataAry[3]} </p>
-            <p> {pageDataAry[4]} </p>
-            <p> {pageDataAry[5]} </p>
-            <p> {pageDataAry[6]} </p>
-            
-            <button onClick={()=>{setIndex(index + 1)}}>replace</button>
+            <p> {index} </p>
+            <button onClick={()=>{setIndex(index + 1);}}>replace</button>
+            {GetPageData(index)}
+            {RenderPage(index)}
         </div>
     )
 }
 
-function GetPageData(){
-    const {dataAry, setAry} = pageData();
-    const {index} = pageIndex();
-    if(dataAry === '')
-    {
-        UseEffect(() => {
-            axios.get('http://localhost:8080')
-                .then(function async (response) {
-                    console.log(response);
-                    setAry(dataAry, response.data[index]?.name?? "noName", 0);
-                    setAry(dataAry, response.data[index]?.image?? "noImage", 1);
-                    setAry(dataAry, response.data[index]?.question?? "noQuestion", 2);
-                    setAry(dataAry, response.data[index]?.answer1?? "noAnswer1", 3);
-                    setAry(dataAry, response.data[index]?.answer2?? "noAnswer2", 4);
-                    setAry(dataAry, response.data[index]?.answer3?? "noAnswer3", 5);
-                    setAry(dataAry, response.data[index]?.answer4?? "noAnswer4", 6);
-                    return dataAry;
-                })
-                .catch(function (error) { console.log(error); })
-        }, [setAry])
-    }
-    else 
-        return dataAry;
+var pageData_from_server = undefined;
+
+function GetPageData() {
+    const { dataAry, setAry } = pageData();
+    const { index } = pageIndex();
+    
+    useEffect(() => {
+        axios.get('http://localhost:8080')
+            .then(function async (response) {
+                pageData_from_server = response;
+                var tempAry = [...dataAry];
+                tempAry[0] = response.data[index ?? 0]?.name?? String(index ?? 0) + " noData";
+                tempAry[1] = response.data[index ?? 0]?.image??"noData";
+                tempAry[2] = response.data[index ?? 0]?.q??"noData";
+                tempAry[3] = response.data[index ?? 0]?.a1??"noData";
+                tempAry[4] = response.data[index ?? 0]?.a2??"noData";
+                tempAry[5] = response.data[index ?? 0]?.a3??"noData";
+                tempAry[6] = response.data[index ?? 0]?.a4??"noData";
+                setAry(tempAry);
+                console.log(tempAry);
+            })
+            .catch(function (error) { console.log(error); })
+    }, [])
+
+    return (<div> </div>)
+}
+
+var nowIndex = -1;
+function RenderPage(){
+    const { dataAry, setAry } = pageData();
+    const { index } = pageIndex();
+    
+    useEffect(() => {
+        const tempAry = [...dataAry];
+        if (pageData_from_server === undefined || tempAry === undefined || index === undefined) 
+            console.log("undefined");
+        else if (nowIndex !== index)
+        {
+            nowIndex = index;
+            tempAry[0] = pageData_from_server.data[index]?.name ?? String(index) + "noData";
+            tempAry[1] = pageData_from_server.data[index]?.image ?? "noData";
+            tempAry[2] = pageData_from_server.data[index]?.q ?? "noData";
+            tempAry[3] = pageData_from_server.data[index]?.a1 ?? "noData";
+            tempAry[4] = pageData_from_server.data[index]?.a2 ?? "noData";
+            tempAry[5] = pageData_from_server.data[index]?.a3 ?? "noData";
+            tempAry[6] = pageData_from_server.data[index]?.a4 ?? "noData";
+            console.log(pageData_from_server[index]);
+            setAry(tempAry);
+        }
+    }, [setAry, index])
+
+    return (
+        <div>
+            <p> {dataAry[0]}, </p>
+            <p> {dataAry[1]}, </p>
+            <p> {dataAry[2]}, </p>
+            <p> {dataAry[3]}, </p>
+            <p> {dataAry[4]}, </p>
+            <p> {dataAry[5]}, </p>
+            <p> {dataAry[6]}, </p>
+        </div>)
 }
 
 export default PageRender;
