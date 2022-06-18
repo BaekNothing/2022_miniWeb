@@ -60,8 +60,6 @@ function StringState() {
   useEffect(() => {
     axios.get('http://localhost:8080')
         .then(function (response) {
-          console.log(response);
-          console.log(response.data[0].name);
           setString(response.data[0]?.name??"noData");
         })
         .catch(function (error) { console.log(error); })
