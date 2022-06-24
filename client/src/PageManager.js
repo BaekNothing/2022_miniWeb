@@ -62,7 +62,7 @@ function PageRender (){
             <p> page : {index} </p>
             <p> {dataAry[1]} </p>
             <p> {dataAry[2]} </p>
-            <button onClick={() => { setIndex((index > 1 ? index - 1 : 0)); SetUserSelectDataFlag(true, refreshUserSelectData_data) }}>movePrev</button>
+            <button onClick={() => { setIndex((index > 1 ? index - 1 : 0)); SetUserSelectDataFlag(false, refreshUserSelectData_data) }}>movePrev</button>
             <input type="radio" name="radio" value={dataAry[3]} onChange={() => { SetUserSelectDataFlag(true, 1); }}/>
             <input type="radio" name="radio" value={dataAry[4]} onChange={() => { SetUserSelectDataFlag(true, 2); }}/>
             <input type="radio" name="radio" value={dataAry[5]} onChange={() => { SetUserSelectDataFlag(true, 3); }}/>
