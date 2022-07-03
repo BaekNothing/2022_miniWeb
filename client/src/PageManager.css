@@ -1,0 +1,28 @@
+.notDisplay{
+    display: none;
+}
+
+.main-body{
+    width : 480px;
+    overflow-x: hidden;
+
+}
+
+.main-selectedHud{
+    width: 480px;
+
+    text-align: center;
+}
+
+.box_Choosed{
+    display: inline-block;
+    width: 40px;
+
+    color: #000;
+    background-color: #f5f5f5;
+    
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+    box-shadow: 0 0 10px #000;
+}

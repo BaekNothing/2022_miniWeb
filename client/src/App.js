@@ -6,13 +6,9 @@ import PageRender from './PageManager'
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        {/* <img src={logo} className="App-logo" alt="logo" /> */}
-        {/* <NumberCount></NumberCount>
-        <SyncCount></SyncCount>
-        <StringState></StringState> */}
-        <PageRender></PageRender>
-      </header>
+          <header className="App-header">
+              <PageRender></PageRender>
+        </header>
     </div>
   );
 }
