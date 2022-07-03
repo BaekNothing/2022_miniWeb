@@ -40,9 +40,7 @@ function PageRender() {
     return (
         <div className="main-body" key="setUserSelectData">
             <Page_MainImage image={dataAry[1]} />
-
             <Page_MainQuestionBox question={dataAry[2]} index={index} />
-
             {SetUserSelectData(userSelect, setUserSelect, index, _refreshUserSelectData_data)}
             <div className='main-SelectedHud'>
                 {GetPageData(index)}
@@ -68,14 +66,20 @@ function Page_MainQuestionBox(prop)
         <div>
             
             <p> {index} 번 질문 : {question} </p>
-            <button onClick={() => { setIndex((index > 1 ? index - 1 : 0)); SetUserSelectDataFlag(flags.notRefresh, _refreshUserSelectData_data) }}>movePrev</button>
+            <button onClick={() => { 
+                setIndex((index > 1 ? index - 1 : 0)); 
+                SetUserSelectDataFlag(flags.notRefresh, _refreshUserSelectData_data) 
+                }}>movePrev</button>
 
             <Page_MainRadioInput index={1} />
             <Page_MainRadioInput index={2} />
             <Page_MainRadioInput index={3} />
             <Page_MainRadioInput index={4} />
 
-            <button onClick={() => { setIndex(index + 1); SetUserSelectDataFlag(flags.refresh, _refreshUserSelectData_data) }}>moveNext</button>            
+            <button onClick={() => { 
+                setIndex(index + 1); 
+                SetUserSelectDataFlag(flags.refresh, _refreshUserSelectData_data)
+                }}>moveNext</button>            
         </div>
     )
 }
@@ -83,7 +87,8 @@ function Page_MainQuestionBox(prop)
 function Page_MainRadioInput(prop)
 {
     const { dataAry } = pageData();
-    var index = prop.index;
+    const { index, setIndex } = pageIndex();
+    var liIndex = prop.index;
 
     return (
         <div>
@@ -92,9 +97,8 @@ function Page_MainRadioInput(prop)
                     <input 
                         type="radio" 
                         name="radioInput" 
-                        value={dataAry[index + 2]} 
-                        onChange={() => { SetUserSelectDataFlag(flags.notRefresh, index); }} />
-                        {dataAry[index + 2]} <br />
+                        onChange={() => { setIndex(index + 1); SetUserSelectDataFlag(flags.refresh, liIndex); }} />
+                        {dataAry[liIndex + 2]} <br />
                 </label>
             </li>
         </div>
@@ -129,14 +133,14 @@ function SetUserSelectData(userSelect, setUserSelect, index, data) {
     const result = [];
     // for (let i = 1; i < userSelect.length; i++) {
     for (let i = 1; i < _indexMax; i++) {
-        if (i < userSelect.length)
+        if (i <= userSelect.length)
         {
-            if (i !== index)
+            if (i !== index + 1)
                 result.push(<button className='box_Choosed'
-                    onClick={() => { setIndex(i); SetUserSelectDataFlag(flags.notRefresh, userSelectData[i]) }} key={i}>
-                    {userSelect[i]}</button>);
+                    onClick={() => { setIndex(i - 1); SetUserSelectDataFlag(flags.notRefresh, userSelectData[i]) }} key={i}>
+                    {userSelect[i]??0}</button>);
             else
-                result.push(<button className='box_Choosed' style={{ color: "red" }} key={i}>{userSelect[i]}</button>);
+                result.push(<button className='box_Choosed' style={{ color: "red" }} key={i}>{userSelect[i]??0}</button>);
         }
         else
             result.push(<button className='box_Choosed' style={{ opacity: "0.3" }} key={i}>0</button>);
