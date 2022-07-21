@@ -27,6 +27,14 @@ const userSelectData = create((set) => ({
 }
 ))
 
+var _refreshUserSelectDataFlag = true;
+var _userChosenData = 0;
+function SetUserSelectDataFlag(flag, data) {
+    _refreshUserSelectDataFlag = flag;
+    _userChosenData = data;
+}
+
+
 // *************** PAGE ***************
 
 const flags = {
@@ -36,7 +44,7 @@ const flags = {
 
 function PageRender() {
     const { pageIndex, setPageIndex, dataAry } = pageData();
-    const { userSelect, setUserSelect } = userSelectData();
+    const { setUserSelect } = userSelectData();
     const { sceneIndex, setSceneIndex } = sceneData(); 
 
     useEffect(() => {
@@ -59,22 +67,17 @@ function PageRender() {
     {
         return (
             <div className="main-body" key="setUserSelectData">
-                <PageMainImage image={dataAry[1]} />
-                <PageMainQuestionBox question={dataAry[2]} pageIndex={pageIndex} />
-                <SetUserSelectData 
-                    userSelect={userSelect} 
-                    setUserSelect={setUserSelect} 
-                    pageIndex={pageIndex} 
-                    setSceneIndex={setSceneIndex}
-                    data={_refreshUserSelectData_data} />
-                <PageUserSelectBox 
-                    pageIndex={pageIndex}
-                    setPageIndex={setPageIndex}
-                    userSelect={userSelect}
-                    userSelectData={_refreshUserSelectData_data}
-                />
-                <div className='main-SelectedHud'>
+                <div className='Action'>
+                    <SetUserSelectData 
+                        //ChosenIndex is global variable
+                        setUserSelect={setUserSelect} 
+                        setSceneIndex={setSceneIndex} />
                     <GetPageData pageIndex={pageIndex}/>
+                </div>
+                <PageMainImage image={dataAry[1]} />
+                <PageMainQuestionBox question={dataAry[2]} />
+                <div className='main-SelectedHud'>
+                    <PageMainUserSelectBox setPageIndex={setPageIndex}/>    
                 </div>
             </div>
         )
@@ -93,43 +96,39 @@ function PageRender() {
     }
 }
 
-function clearAlldata(setPageIndex, setUserSelect) {
-    setPageIndex(0);
-    setUserSelect([]);
-}
-
-
 function PageMainImage(prop){
+    const image = prop.image;
+
     return (
         <div>
-            <img src={'./images/' + prop.image + '.png'} style={{ width:'480px' }} alt='' />
+            <img src={'./images/' + image + '.png'} style={{ width:'480px' }} alt='' />
         </div>
     )
 }
 
 function PageMainQuestionBox(prop)
 {
-    const { setPageIndex } = pageData();
+    const { pageIndex, setPageIndex } = pageData();
     const question = prop.question;
-    const pageIndex = prop.pageIndex;
+    //const pageIndex = prop.pageIndex;
     return (
         <div>
             
             <p> {pageIndex} 번 질문 : {question} </p>
             <button onClick={() => { 
                 setPageIndex((pageIndex > 1 ? pageIndex - 1 : 0)); 
-                SetUserSelectDataFlag(flags.notRefresh, _refreshUserSelectData_data) 
+                SetUserSelectDataFlag(flags.notRefresh, _userChosenData) 
                 }}>movePrev</button>
 
-            <PageMainRadioInput pageIndex={1} />
-            <PageMainRadioInput pageIndex={2} />
-            <PageMainRadioInput pageIndex={3} />
-            <PageMainRadioInput pageIndex={4} />
-            <PageMainRadioInput pageIndex={5} />
+            <PageMainRadioInput liIndex={1} />
+            <PageMainRadioInput liIndex={2} />
+            <PageMainRadioInput liIndex={3} />
+            <PageMainRadioInput liIndex={4} />
+            <PageMainRadioInput liIndex={5} />
 
             <button onClick={() => { 
                 setPageIndex(pageIndex + 1); 
-                SetUserSelectDataFlag(flags.refresh, _refreshUserSelectData_data)
+                SetUserSelectDataFlag(flags.refresh, _userChosenData)
                 }}>moveNext</button>            
         </div>
     )
@@ -138,7 +137,7 @@ function PageMainQuestionBox(prop)
 function PageMainRadioInput(prop)
 {
     const { pageIndex, setPageIndex, dataAry } = pageData();
-    var liIndex = prop.pageIndex;
+    var liIndex = prop.liIndex;
 
     return (
         <div>
@@ -157,59 +156,62 @@ function PageMainRadioInput(prop)
     )
 }
 
-// *************** ACTION ***************
-
-var _refreshUserSelectData_flag = true;
-var _refreshUserSelectData_data = 0;
-function SetUserSelectDataFlag(flag, data) {
-    _refreshUserSelectData_data = data;
-    _refreshUserSelectData_flag = flag;
-}
-
-function PageUserSelectBox(prop) {
+function PageMainUserSelectBox(prop) {
+    const { pageIndex } = pageData();
+    const { userSelect } = userSelectData();
     
-    const pageIndex = prop.pageIndex;
-    const setPageIndex = prop.setPageIndex;
-    const userSelect = prop.userSelect;
-    const userSelectData = prop.userSelectData;
     const result = [];
 
     for (let i = 1; i < _pageIndexMax; i++) {
         if (i <= userSelect.length)
-        {
             if (i !== pageIndex + 1)
-                result.push(<button className='box_Choosed'
-                    onClick={() => { setPageIndex(i - 1); SetUserSelectDataFlag(flags.notRefresh, userSelectData[i]) }} key={i}>
-                    {userSelect[i]??0}</button>);
+                result.push(<button className='box_Choosed' key={i}>{userSelect[i]??0}</button>);
             else
                 result.push(<button className='box_Choosed' style={{ color: "red" }} key={i}>{userSelect[i]??0}</button>);
-        }
         else
             result.push(<button className='box_Choosed' style={{ opacity: "0.3" }} key={i}>0</button>);
     }
     return <div> {result} </div>
 }
 
-// prop.userSelectData[0] is alawys "0"
-function SetUserSelectData(prop) {
-    useEffect(() => {
-        if (_refreshUserSelectData_flag) {
-            var tempAry = [...prop.userSelect];
-            while (tempAry.length <= prop.pageIndex)
-                tempAry.push(0);
-            tempAry[prop.pageIndex] = _refreshUserSelectData_data;
-            console.log(tempAry);
-            prop.setUserSelect(tempAry);
-            _refreshUserSelectData_flag = false;
-            if(prop.pageIndex >= _pageIndexMax - 1)
-                prop.setSceneIndex(prop.sceneIndex + 1);
-        }
-    }, [prop, prop.userSelect, prop.setUserSelect, prop.pageIndex, prop.data])
+// *************** ACTION ***************
 
+function SetUserSelectData(prop) {
+    const { pageIndex } = pageData();
+    const { userSelect } = userSelectData();
+    const { sceneIndex } = sceneData();
+    
+    const setUserSelect = prop.setUserSelect;
+    const setSceneIndex = prop.setSceneIndex;
+    const chosenIndex = _userChosenData;
+
+    useEffect(() => {
+        if (_refreshUserSelectDataFlag) {
+            //push SelectedNumber to userSelect
+            var tempAry = [...userSelect];
+            while (tempAry.length <= pageIndex)
+                tempAry.push(0);
+            tempAry[pageIndex] = chosenIndex;
+            console.log(tempAry);
+            setUserSelect(tempAry);
+            
+            //move to next Scene
+            if(pageIndex >= _pageIndexMax - 1)
+                setSceneIndex(sceneIndex + 1);
+
+            _refreshUserSelectDataFlag = false;
+        }
+    }, [userSelect, pageIndex, setUserSelect, sceneIndex, setSceneIndex, chosenIndex])
     return <div className='invisible'> </div>;
 }
 
+function clearAlldata(setPageIndex, setUserSelect) {
+    setPageIndex(0);
+    setUserSelect([]);
+}
+
 // *************** DATA ***************
+
 var _pageIndexMax = 10;
 var prevPageIndex = -1;
 function GetPageData(prop) {
