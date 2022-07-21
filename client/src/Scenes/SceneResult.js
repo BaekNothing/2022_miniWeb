@@ -1,6 +1,7 @@
 import '../App.css';
 import React, { useEffect } from 'react';
 import { sceneData, pageData, userSelectData } from '../Data/AppVars';
+import RenderLineChart from '../Data/ChartDrawer';
 
 function RenderResultPage(prop) {
     const { setPageIndex} = pageData();
@@ -18,6 +19,10 @@ function RenderResultPage(prop) {
                 setSceneIndex(0);
                 clearAlldata(setPageIndex, setUserSelect);
             }}> press to GoHome</button>
+            <RenderLineChart />
+            <RenderLineChart />
+            <RenderLineChart />
+            <RenderLineChart />
         </div>
     )
 }
