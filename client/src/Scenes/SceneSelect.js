@@ -159,7 +159,7 @@ function GetSelectPageData(prop) {
 
     useEffect(() => {
         if (prevPageIndex !== pageIndex) {
-            axios.get('http://localhost:8080')
+            axios.get('http://localhost:8080/selectData')
                 .then(function async(response) {
                     //pageData_from_server = response;
                     var tempAry = [...dataAry];
