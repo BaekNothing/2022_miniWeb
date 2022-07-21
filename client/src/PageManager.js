@@ -3,17 +3,19 @@ import axios from "axios";
 import create from 'zustand';
 import React, { useEffect } from 'react';
 
+
+const sceneData = create(set => ({
+    sceneIndex: 0,
+    setSceneIndex: (sceneIndex) => set(() => {return {sceneIndex}}),
+}));
+
 const pageData = create((set) => ({
+    pageIndex: 0,
+    setPageIndex: (pageIndex) => set(() => {
+        return { pageIndex };
+    }),
     dataAry: ['name', 'image', 'qusetion', 'answer1', 'answer2', 'answer3', 'answer4'],
     setAry: (dataAry) => set(() => { return { dataAry } })
-}
-))
-
-const pageIndex = create((set) => ({
-    index: 0,
-    setIndex: (index) => set(() => {
-        return { index };
-    })
 }
 ))
 
@@ -33,62 +35,110 @@ const flags = {
 }
 
 function PageRender() {
-    const { dataAry } = pageData();
-    const { index, setIndex } = pageIndex();
+    const { pageIndex, setPageIndex, dataAry } = pageData();
     const { userSelect, setUserSelect } = userSelectData();
+    const { sceneIndex, setSceneIndex } = sceneData(); 
 
-    return (
-        <div className="main-body" key="setUserSelectData">
-            <Page_MainImage image={dataAry[1]} />
-            <Page_MainQuestionBox question={dataAry[2]} index={index} />
-            {SetUserSelectData(userSelect, setUserSelect, index, _refreshUserSelectData_data)}
-            <div className='main-SelectedHud'>
-                {GetPageData(index)}
+    useEffect(() => {
+        
+    }, [])
+
+    if (sceneIndex === 0)
+    {
+        return (
+            <div className="main-body" key="introPage">
+                <p>this_Is_Intro_Page</p>
+                <button onClick={()=>{
+                    setSceneIndex(sceneIndex + 1); 
+                    clearAlldata(setPageIndex, setUserSelect);
+                    console.log(sceneIndex);}}> press_to_Continue</button>
             </div>
-        </div>
-    )
+        )
+    }
+    else if (sceneIndex === 1)
+    {
+        return (
+            <div className="main-body" key="setUserSelectData">
+                <PageMainImage image={dataAry[1]} />
+                <PageMainQuestionBox question={dataAry[2]} pageIndex={pageIndex} />
+                <SetUserSelectData 
+                    userSelect={userSelect} 
+                    setUserSelect={setUserSelect} 
+                    pageIndex={pageIndex} 
+                    setSceneIndex={setSceneIndex}
+                    data={_refreshUserSelectData_data} />
+                <PageUserSelectBox 
+                    pageIndex={pageIndex}
+                    setPageIndex={setPageIndex}
+                    userSelect={userSelect}
+                    userSelectData={_refreshUserSelectData_data}
+                />
+                <div className='main-SelectedHud'>
+                    <GetPageData pageIndex={pageIndex}/>
+                </div>
+            </div>
+        )
+    }
+    else 
+    {
+        return (
+            <div className="main-body" key="introPage">
+                <p>this_Is_result_Page</p>
+                <button onClick={()=>{
+                    setSceneIndex(0);
+                    clearAlldata(setPageIndex, setUserSelect);
+                    }}> press to GoHome</button>
+            </div>
+        )
+    }
 }
 
-function Page_MainImage(prop){
+function clearAlldata(setPageIndex, setUserSelect) {
+    setPageIndex(0);
+    setUserSelect([]);
+}
+
+
+function PageMainImage(prop){
     return (
         <div>
-            <img src={'./images/' + prop.image + '.png'} style={{ width:'480px' }} />
+            <img src={'./images/' + prop.image + '.png'} style={{ width:'480px' }} alt='' />
         </div>
     )
 }
 
-function Page_MainQuestionBox(prop)
+function PageMainQuestionBox(prop)
 {
-    const { setIndex } = pageIndex();
+    const { setPageIndex } = pageData();
     const question = prop.question;
-    const index = prop.index;
+    const pageIndex = prop.pageIndex;
     return (
         <div>
             
-            <p> {index} 번 질문 : {question} </p>
+            <p> {pageIndex} 번 질문 : {question} </p>
             <button onClick={() => { 
-                setIndex((index > 1 ? index - 1 : 0)); 
+                setPageIndex((pageIndex > 1 ? pageIndex - 1 : 0)); 
                 SetUserSelectDataFlag(flags.notRefresh, _refreshUserSelectData_data) 
                 }}>movePrev</button>
 
-            <Page_MainRadioInput index={1} />
-            <Page_MainRadioInput index={2} />
-            <Page_MainRadioInput index={3} />
-            <Page_MainRadioInput index={4} />
+            <PageMainRadioInput pageIndex={1} />
+            <PageMainRadioInput pageIndex={2} />
+            <PageMainRadioInput pageIndex={3} />
+            <PageMainRadioInput pageIndex={4} />
+            <PageMainRadioInput pageIndex={5} />
 
             <button onClick={() => { 
-                setIndex(index + 1); 
+                setPageIndex(pageIndex + 1); 
                 SetUserSelectDataFlag(flags.refresh, _refreshUserSelectData_data)
                 }}>moveNext</button>            
         </div>
     )
 }
 
-function Page_MainRadioInput(prop)
+function PageMainRadioInput(prop)
 {
-    const { dataAry } = pageData();
-    const { index, setIndex } = pageIndex();
-    var liIndex = prop.index;
+    const { pageIndex, setPageIndex, dataAry } = pageData();
+    var liIndex = prop.pageIndex;
 
     return (
         <div>
@@ -97,7 +147,9 @@ function Page_MainRadioInput(prop)
                     <input 
                         type="radio" 
                         name="radioInput" 
-                        onChange={() => { setIndex(index + 1); SetUserSelectDataFlag(flags.refresh, liIndex); }} />
+                        onChange={() => { 
+                            setPageIndex(pageIndex + 1); 
+                            SetUserSelectDataFlag(flags.refresh, liIndex); }} />
                         {dataAry[liIndex + 2]} <br />
                 </label>
             </li>
@@ -114,30 +166,20 @@ function SetUserSelectDataFlag(flag, data) {
     _refreshUserSelectData_flag = flag;
 }
 
-// userSelectData[0] is alawys "0"
-function SetUserSelectData(userSelect, setUserSelect, index, data) {
-    const{setIndex} = pageIndex();
-
-    useEffect(() => {
-        if (_refreshUserSelectData_flag) {
-            var tempAry = [...userSelect];
-            while (tempAry.length <= index)
-                tempAry.push(0);
-            tempAry[index] = _refreshUserSelectData_data;
-            console.log(tempAry);
-            setUserSelect(tempAry);
-            _refreshUserSelectData_flag = false;
-        }
-    }, [userSelect, setUserSelect, index, data])
-
+function PageUserSelectBox(prop) {
+    
+    const pageIndex = prop.pageIndex;
+    const setPageIndex = prop.setPageIndex;
+    const userSelect = prop.userSelect;
+    const userSelectData = prop.userSelectData;
     const result = [];
-    // for (let i = 1; i < userSelect.length; i++) {
-    for (let i = 1; i < _indexMax; i++) {
+
+    for (let i = 1; i < _pageIndexMax; i++) {
         if (i <= userSelect.length)
         {
-            if (i !== index + 1)
+            if (i !== pageIndex + 1)
                 result.push(<button className='box_Choosed'
-                    onClick={() => { setIndex(i - 1); SetUserSelectDataFlag(flags.notRefresh, userSelectData[i]) }} key={i}>
+                    onClick={() => { setPageIndex(i - 1); SetUserSelectDataFlag(flags.notRefresh, userSelectData[i]) }} key={i}>
                     {userSelect[i]??0}</button>);
             else
                 result.push(<button className='box_Choosed' style={{ color: "red" }} key={i}>{userSelect[i]??0}</button>);
@@ -145,36 +187,54 @@ function SetUserSelectData(userSelect, setUserSelect, index, data) {
         else
             result.push(<button className='box_Choosed' style={{ opacity: "0.3" }} key={i}>0</button>);
     }
-    return result;
+    return <div> {result} </div>
+}
+
+// prop.userSelectData[0] is alawys "0"
+function SetUserSelectData(prop) {
+    useEffect(() => {
+        if (_refreshUserSelectData_flag) {
+            var tempAry = [...prop.userSelect];
+            while (tempAry.length <= prop.pageIndex)
+                tempAry.push(0);
+            tempAry[prop.pageIndex] = _refreshUserSelectData_data;
+            console.log(tempAry);
+            prop.setUserSelect(tempAry);
+            _refreshUserSelectData_flag = false;
+            if(prop.pageIndex >= _pageIndexMax - 1)
+                prop.setSceneIndex(prop.sceneIndex + 1);
+        }
+    }, [prop, prop.userSelect, prop.setUserSelect, prop.pageIndex, prop.data])
+
+    return <div className='invisible'> </div>;
 }
 
 // *************** DATA ***************
-var _indexMax = 10;
-var Previndex = -1;
-function GetPageData() {
-    const { dataAry, setAry } = pageData();
-    const { index } = pageIndex();
+var _pageIndexMax = 10;
+var prevPageIndex = -1;
+function GetPageData(prop) {
+    const { pageIndex, dataAry, setAry } = pageData();
 
     useEffect(() => {
-        if (Previndex !== index) {
+        if (prevPageIndex !== pageIndex) {
             axios.get('http://localhost:8080')
                 .then(function async(response) {
                     //pageData_from_server = response;
                     var tempAry = [...dataAry];
-                    tempAry[0] = response.data[index ?? 0]?.name ?? String(index ?? 0) + " noData";
-                    tempAry[1] = response.data[index ?? 0]?.image ?? "noData";
-                    tempAry[2] = response.data[index ?? 0]?.q ?? "noData";
-                    tempAry[3] = response.data[index ?? 0]?.a1 ?? "noData";
-                    tempAry[4] = response.data[index ?? 0]?.a2 ?? "noData";
-                    tempAry[5] = response.data[index ?? 0]?.a3 ?? "noData";
-                    tempAry[6] = response.data[index ?? 0]?.a4 ?? "noData";
+                    tempAry[0] = response.data[pageIndex ?? 0]?.name ?? String(pageIndex ?? 0) + " noData";
+                    tempAry[1] = response.data[pageIndex ?? 0]?.image ?? "noData";
+                    tempAry[2] = response.data[pageIndex ?? 0]?.q ?? "noData";
+                    tempAry[3] = response.data[pageIndex ?? 0]?.a1 ?? "noData";
+                    tempAry[4] = response.data[pageIndex ?? 0]?.a2 ?? "noData";
+                    tempAry[5] = response.data[pageIndex ?? 0]?.a3 ?? "noData";
+                    tempAry[6] = response.data[pageIndex ?? 0]?.a4 ?? "noData";
                     setAry(tempAry);
                     console.log(tempAry);
                 })
                 .catch(function (error) { console.log(error); })
-            Previndex = index;
+            prevPageIndex = pageIndex;
         }
-    }, [dataAry, index, setAry])
+    }, [dataAry, pageIndex, setAry])
 
     return (<div className="notDisplay"> </div>)
 }
@@ -182,25 +242,25 @@ function GetPageData() {
 // var nowIndex = -1;
 // function Debug_RenderPage() {
 //     const { dataAry, setAry } = pageData();
-//     const { index } = pageIndex();
+//     const { pageIndex } = pageData();
 // var pageData_from_server = undefined;
 
 //     useEffect(() => {
 //         const tempAry = [...dataAry];
-//         if (pageData_from_server === undefined || tempAry === undefined || index === undefined)
+//         if (pageData_from_server === undefined || tempAry === undefined || pageIndex === undefined)
 //             console.log("undefined");
-//         else if (nowIndex !== index) {
-//             nowIndex = index;
-//             tempAry[0] = pageData_from_server.data[index]?.name ?? String(index) + "noData";
-//             tempAry[1] = pageData_from_server.data[index]?.image ?? "noData";
-//             tempAry[2] = pageData_from_server.data[index]?.q ?? "noData";
-//             tempAry[3] = pageData_from_server.data[index]?.a1 ?? "noData";
-//             tempAry[4] = pageData_from_server.data[index]?.a2 ?? "noData";
-//             tempAry[5] = pageData_from_server.data[index]?.a3 ?? "noData";
-//             tempAry[6] = pageData_from_server.data[index]?.a4 ?? "noData";
+//         else if (nowIndex !== pageIndex) {
+//             nowIndex = pageIndex;
+//             tempAry[0] = pageData_from_server.data[pageIndex]?.name ?? String(pageIndex) + "noData";
+//             tempAry[1] = pageData_from_server.data[pageIndex]?.image ?? "noData";
+//             tempAry[2] = pageData_from_server.data[pageIndex]?.q ?? "noData";
+//             tempAry[3] = pageData_from_server.data[pageIndex]?.a1 ?? "noData";
+//             tempAry[4] = pageData_from_server.data[pageIndex]?.a2 ?? "noData";
+//             tempAry[5] = pageData_from_server.data[pageIndex]?.a3 ?? "noData";
+//             tempAry[6] = pageData_from_server.data[pageIndex]?.a4 ?? "noData";
 //             setAry(tempAry);
 //         }
-//     }, [setAry, index])
+//     }, [setAry, pageIndex])
 
 //     return (<div className="notDisplay">{Debug_returnArrayToP(dataAry)} </div>)
 // }
