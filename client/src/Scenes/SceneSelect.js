@@ -47,6 +47,7 @@ function PageMainImage(prop) {
 
     return (
         <div>
+            <img src={'./images/char/charBody.png' } alt = 'charBody'/>
             <img src={'./images/' + image + '.png'} style={{ width: '480px' }} alt='' />
         </div>
     )
@@ -59,7 +60,7 @@ function PageMainQuestionBox(prop) {
     return (
         <div>
 
-            <p> {pageIndex}번 질문 : {question} </p>
+            <p> {pageIndex}�? 질문 : {question} </p>
             <button onClick={() => {
                 setPageIndex((pageIndex > 1 ? pageIndex - 1 : 0));
                 SetUserSelectDataFlag(flags.notRefresh, _userChosenData)
