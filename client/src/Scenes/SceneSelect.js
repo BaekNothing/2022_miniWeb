@@ -1,4 +1,5 @@
 import '../App.css';
+import './SceneSelect.css';
 import axios from "axios";
 import React, { useEffect } from 'react';
 import { sceneData, pageData, userSelectData } from '../Data/AppVars';
@@ -43,26 +44,39 @@ function RenderSelectPage(prop) {
 // *************** PAGE COMPONENTS ***************
 
 function PageMainImage(prop) {
-    const image = prop.image;
+    // const image = prop.image;
+
+    var randomNumber = Math.floor(Math.random() * 4);
 
     return (
         <div>
-            <img src={'./images/char/charBody.png' } alt = 'charBody'/>
-            <img src={'./images/' + image + '.png'} style={{ width: '480px' }} alt='' />
+            <div className='main-image'>
+                <img className='char' id='char_acc' src={'./images/char/charACC_0' + randomNumber + '.png'} alt='charBody' />
+                <img className='char' id='char_hair' src={'./images/char/charHair_0' + randomNumber + '.png'} alt='charBody' />
+                <img className='char' id='char_body' src={'./images/char/charBody.png'} alt='charBody' />
+            </div>
+            {/* <img src={'./images/' + image + '.png'} style={{ width: '480px' }} alt='' /> */}
         </div>
     )
 }
 
 function PageMainQuestionBox(prop) {
     const { pageIndex, setPageIndex } = pageData();
+    const { sceneIndex, setSceneIndex} = sceneData();
     const question = prop.question;
     //const pageIndex = prop.pageIndex;
     return (
         <div>
 
-            <p> {pageIndex}�? 질문 : {question} </p>
+            <p> {pageIndex}question : {question} </p>
             <button onClick={() => {
-                setPageIndex((pageIndex > 1 ? pageIndex - 1 : 0));
+                var moveIndex = pageIndex - 1;
+                if (moveIndex < 0)
+                {
+                    setSceneIndex(sceneIndex - 1);
+                    moveIndex = 0;
+                }
+                setPageIndex(moveIndex);
                 SetUserSelectDataFlag(flags.notRefresh, _userChosenData)
             }}>movePrev</button>
 
