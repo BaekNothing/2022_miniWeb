@@ -1,0 +1,22 @@
+.char {
+    height : 200px;
+    width : auto;
+    position: absolute;
+    transform: translate(-50%, 0);
+}
+
+#char_hair{
+    z-index: 10;
+}
+
+#char_body {
+    z-index: 0;
+}
+
+#char_acc {
+    z-index: 20;
+}
+
+.main-image{
+    height: 200px;
+}
