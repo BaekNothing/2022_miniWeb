@@ -17,7 +17,7 @@ function RenderResultPage(prop) {
         <div className="main-body" key="introPage">
             <p>this_Is_result_Page</p>
             <button onClick={() => {
-                sendData(userSelect)
+                //sendData(userSelect)
                 setSceneIndex(0);
                 clearAlldata(setPageIndex, setUserSelect);
             }}> press to GoHome</button>
