@@ -25,6 +25,10 @@ function RenderSelectPage(prop) {
 
     return (
         <div className="main-body" key="setUserSelectData">
+            <div className='main-SelectedHud'>
+                <PageMainUserSelectBox setPageIndex={setPageIndex} />
+            </div>
+
             <div className='Action'>
                 <SetUserSelectData
                     //ChosenIndex is global variable
@@ -33,10 +37,9 @@ function RenderSelectPage(prop) {
                 <GetSelectPageData pageIndex={pageIndex} />
             </div>
             <PageMainImage image={dataAry[1]} />
+
             <PageMainQuestionBox question={dataAry[2]} />
-            <div className='main-SelectedHud'>
-                <PageMainUserSelectBox setPageIndex={setPageIndex} />
-            </div>
+
         </div>
     )
 }
@@ -69,52 +72,79 @@ function PageMainQuestionBox(prop) {
         <div>
 
             <p> {pageIndex}question : {question} </p>
-            <button onClick={() => {
-                var moveIndex = pageIndex - 1;
-                if (moveIndex < 0)
-                {
-                    setSceneIndex(sceneIndex - 1);
-                    moveIndex = 0;
-                }
-                setPageIndex(moveIndex);
-                SetUserSelectDataFlag(flags.notRefresh, _userChosenData)
-            }}>movePrev</button>
 
-            <PageMainRadioInput liIndex={1} />
-            <PageMainRadioInput liIndex={2} />
-            <PageMainRadioInput liIndex={3} />
-            <PageMainRadioInput liIndex={4} />
-            <PageMainRadioInput liIndex={5} />
+            <PageMainButtonInput liIndex={1} />
+            <PageMainButtonInput liIndex={2} />
+            <PageMainButtonInput liIndex={3} />
+            <PageMainButtonInput liIndex={4} />
+            <PageMainButtonInput liIndex={5} />
+            <PageMainButtonInput liIndex={6} />
 
-            <button onClick={() => {
-                setPageIndex(pageIndex + 1);
-                SetUserSelectDataFlag(flags.refresh, _userChosenData)
-            }}>moveNext</button>
+            <div className='m4'>
+                <button onClick={() => {
+                    var moveIndex = pageIndex - 1;
+                    if (moveIndex < 0) {
+                        setSceneIndex(sceneIndex - 1);
+                        moveIndex = 0;
+                    }
+                    setPageIndex(moveIndex);
+                    SetUserSelectDataFlag(flags.notRefresh, _userChosenData)
+                }}>movePrev</button>
+            </div>
+            
+            <div className='m4'> 
+                <button onClick={() => {
+                    setPageIndex(pageIndex + 1);
+                    SetUserSelectDataFlag(flags.refresh, _userChosenData)
+                }}>moveNext</button>
+            </div>
         </div>
     )
 }
 
-function PageMainRadioInput(prop) {
+function PageMainButtonInput(prop){
     const { pageIndex, setPageIndex, dataAry } = pageData();
     var liIndex = prop.liIndex;
 
+    if (dataAry[liIndex + 2] === " noData" || dataAry[liIndex + 2] === "noData") return <div className='invisible'> </div>;
+    console.log(dataAry[liIndex + 2]);
     return (
-        <div>
-            <li>
-                <label>
-                    <input
-                        type="radio"
-                        name="radioInput"
-                        onChange={() => {
-                            setPageIndex(pageIndex + 1);
-                            SetUserSelectDataFlag(flags.refresh, liIndex);
-                        }} />
-                    {dataAry[liIndex + 2]} <br />
-                </label>
-            </li>
+        <div className='t16 m4'>
+            <label>
+                <button className='w35 h40px'
+                    onClick={() => {
+                        setPageIndex(pageIndex + 1);
+                        SetUserSelectDataFlag(flags.refresh, liIndex);
+                    }}>
+                {dataAry[liIndex + 2]} </button> 
+            </label>
         </div>
     )
 }
+
+// function PageMainRadioInput(prop) {
+//     const { pageIndex, setPageIndex, dataAry } = pageData();
+//     var liIndex = prop.liIndex;
+
+//     if (dataAry[liIndex + 2] === " noData" || dataAry[liIndex + 2] === "noData") return <div className='invisible'> </div>;
+//     console.log(dataAry[liIndex + 2]);
+//     return (
+//         <div>
+//             <li>
+//                 <label>
+//                     <input
+//                         type="radio"
+//                         name="radioInput"
+//                         onChange={() => {
+//                             setPageIndex(pageIndex + 1);
+//                             SetUserSelectDataFlag(flags.refresh, liIndex);
+//                         }} />
+//                     {dataAry[liIndex + 2]} <br />
+//                 </label>
+//             </li>
+//         </div>
+//     )
+// }
 
 function PageMainUserSelectBox(prop) {
     const { pageIndex } = pageData();
@@ -191,6 +221,8 @@ function GetSelectPageData(prop) {
                     tempAry[4] = response.data[pageIndex ?? 0]?.a2 ?? "noData";
                     tempAry[5] = response.data[pageIndex ?? 0]?.a3 ?? "noData";
                     tempAry[6] = response.data[pageIndex ?? 0]?.a4 ?? "noData";
+                    tempAry[7] = response.data[pageIndex ?? 0]?.a5 ?? "noData";
+                    tempAry[8] = response.data[pageIndex ?? 0]?.a6 ?? "noData";
                     setAry(tempAry);
                     console.log(tempAry);
                 })

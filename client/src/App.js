@@ -9,9 +9,12 @@ import RenderResultPage from './Scenes/SceneResult';
 function App() {
   return (
     <div className="App">
-          <header className="App-header">
-              <PageRender></PageRender>
+        <header className="App-header">
+              
         </header>
+        <body> 
+            <PageRender></PageRender>
+        </body>
     </div>
   );
 }
