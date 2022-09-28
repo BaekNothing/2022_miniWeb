@@ -12,9 +12,9 @@ function App() {
         <header className="App-header">
               
         </header>
-        <body> 
+        <div className='body'> 
             <PageRender></PageRender>
-        </body>
+        </div>
     </div>
   );
 }

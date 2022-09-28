@@ -20,8 +20,7 @@ const flags = {
 
 function RenderSelectPage(prop) {
     const { pageIndex, setPageIndex, dataAry } = pageData();
-    const { setUserSelect } = userSelectData();
-    const { setSceneIndex } = sceneData();
+    console.log("pageIndex : " + pageIndex);
 
     return (
         <div className="main-body" key="setUserSelectData">
@@ -30,10 +29,7 @@ function RenderSelectPage(prop) {
             </div>
 
             <div className='Action'>
-                <SetUserSelectData
-                    //ChosenIndex is global variable
-                    setUserSelect={setUserSelect}
-                    setSceneIndex={setSceneIndex} />
+                <SetUserSelectData/>
                 <GetSelectPageData pageIndex={pageIndex} />
             </div>
             <PageMainImage image={dataAry[1]} />
@@ -64,13 +60,13 @@ function PageMainImage(prop) {
 }
 
 function PageMainQuestionBox(prop) {
-    const { pageIndex, setPageIndex } = pageData();
+    const { pageIndex, prevIndex, setPrevIndex, setPageIndex } = pageData();
     const { sceneIndex, setSceneIndex} = sceneData();
+    const { userSelect, setUserSelect } = userSelectData();
     const question = prop.question;
     //const pageIndex = prop.pageIndex;
     return (
         <div>
-
             <p> {pageIndex}question : {question} </p>
 
             <PageMainButtonInput liIndex={1} />
@@ -82,39 +78,40 @@ function PageMainQuestionBox(prop) {
 
             <div className='m4'>
                 <button onClick={() => {
-                    var moveIndex = pageIndex - 1;
+                    var moveIndex = prevIndex[prevIndex.length- 1];
+                    var newPrevIndex = prevIndex.slice(0, prevIndex.length - 1);
+                    setPrevIndex(newPrevIndex);
                     if (moveIndex < 0) {
                         setSceneIndex(sceneIndex - 1);
                         moveIndex = 0;
                     }
                     setPageIndex(moveIndex);
+                    setUserSelect([...userSelect.slice(0, userSelect.length - 1) ?? []]);
                     SetUserSelectDataFlag(flags.notRefresh, _userChosenData)
                 }}>movePrev</button>
             </div>
             
-            <div className='m4'> 
-                <button onClick={() => {
-                    setPageIndex(pageIndex + 1);
-                    SetUserSelectDataFlag(flags.refresh, _userChosenData)
-                }}>moveNext</button>
-            </div>
         </div>
     )
 }
 
 function PageMainButtonInput(prop){
-    const { pageIndex, setPageIndex, dataAry } = pageData();
+    const { pageIndex, setPageIndex, setPrevIndex, prevIndex, dataAry } = pageData();
     var liIndex = prop.liIndex;
 
     if (dataAry[liIndex + 2] === " noData" || dataAry[liIndex + 2] === "noData") return <div className='invisible'> </div>;
-    console.log(dataAry[liIndex + 2]);
     return (
         <div className='t16 m4'>
             <label>
                 <button className='w35 h40px'
                     onClick={() => {
-                        setPageIndex(pageIndex + 1);
                         SetUserSelectDataFlag(flags.refresh, liIndex);
+
+                        setPrevIndex([...prevIndex ?? [], pageIndex]);
+                        setPageIndex(
+                            dataAry[liIndex + 8] !== '-'
+                                ? dataAry[liIndex + 8] * 1
+                                : (pageIndex * 1) + 1);
                     }}>
                 {dataAry[liIndex + 2]} </button> 
             </label>
@@ -147,19 +144,15 @@ function PageMainButtonInput(prop){
 // }
 
 function PageMainUserSelectBox(prop) {
-    const { pageIndex } = pageData();
+    const { pageIndex, prevIndex } = pageData();
     const { userSelect } = userSelectData();
-
     const result = [];
 
-    for (let i = 1; i < _pageIndexMax; i++) {
-        if (i <= userSelect.length)
-            if (i !== pageIndex + 1)
-                result.push(<button className='box_Choosed' key={i}>{userSelect[i] ?? 0}</button>);
-            else
-                result.push(<button className='box_Choosed' style={{ color: "red" }} key={i}>{userSelect[i] ?? 0}</button>);
+    for (let i = 1; i < userSelect.length; i++) {
+        if (i !== pageIndex + 1)
+            result.push(<button className='box_Choosed' key={i}>{userSelect[i] ?? 0}</button>);
         else
-            result.push(<button className='box_Choosed' style={{ opacity: "0.3" }} key={i}>0</button>);
+            result.push(<button className='box_Choosed' style={{ color: "red" }} key={i}>{userSelect[i] ?? 0}</button>);   
     }
     return <div> {result} </div>
 }
@@ -167,31 +160,29 @@ function PageMainUserSelectBox(prop) {
 // *************** ACTION ***************
 
 function SetUserSelectData(prop) {
-    const { pageIndex } = pageData();
-    const { userSelect } = userSelectData();
-    const { sceneIndex } = sceneData();
+    const { pageIndex, prevIndex } = pageData();
+    const { userSelect, setUserSelect } = userSelectData();
+    const { sceneIndex, setSceneIndex } = sceneData();
 
-    const setUserSelect = prop.setUserSelect;
-    const setSceneIndex = prop.setSceneIndex;
     const chosenIndex = _userChosenData;
 
     useEffect(() => {
         if (_refreshUserSelectDataFlag) {
             //push SelectedNumber to userSelect
-            var tempAry = [...userSelect];
-            while (tempAry.length <= pageIndex)
-                tempAry.push(0);
-            tempAry[pageIndex] = chosenIndex;
-            console.log(tempAry);
+            var tempAry = [...userSelect, chosenIndex];
             setUserSelect(tempAry);
 
             //move to next Scene
-            if (pageIndex >= _pageIndexMax - 1)
+            if (pageIndex > _pageIndexMax)
+            {
+                console.log("userSelect : " + userSelect);
+                console.log("prevIndex : " + prevIndex);
                 setSceneIndex(sceneIndex + 1);
+            }
 
             _refreshUserSelectDataFlag = false;
         }
-    }, [userSelect, pageIndex, setUserSelect, sceneIndex, setSceneIndex, chosenIndex])
+    }, [userSelect, pageIndex, prevIndex, setUserSelect, sceneIndex, setSceneIndex, chosenIndex])
     return <div className='invisible'> </div>;
 }
 
@@ -223,6 +214,12 @@ function GetSelectPageData(prop) {
                     tempAry[6] = response.data[pageIndex ?? 0]?.a4 ?? "noData";
                     tempAry[7] = response.data[pageIndex ?? 0]?.a5 ?? "noData";
                     tempAry[8] = response.data[pageIndex ?? 0]?.a6 ?? "noData";
+                    tempAry[9] = response.data[pageIndex ?? 0]?.m1 ?? "-";
+                    tempAry[10] = response.data[pageIndex ?? 0]?.m2 ?? "-";
+                    tempAry[11] = response.data[pageIndex ?? 0]?.m3 ?? "-";
+                    tempAry[12] = response.data[pageIndex ?? 0]?.m4 ?? "-";
+                    tempAry[13] = response.data[pageIndex ?? 0]?.m5 ?? "-";
+                    tempAry[14] = response.data[pageIndex ?? 0]?.m6 ?? "-";
                     setAry(tempAry);
                     console.log(tempAry);
                 })
