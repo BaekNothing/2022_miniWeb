@@ -23,7 +23,7 @@
   color: white;
 }
 
-body{
+.body{
     background-color: #282c34;
     min-height: 95vh;
     display: flex;

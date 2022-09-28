@@ -1,12 +1,12 @@
 import '../App.css';
-import axios from "axios";
+// import axios from "axios";
 import React, { useEffect } from 'react';
 import { sceneData, pageData, userSelectData } from '../Data/AppVars';
 import RenderLineChart from '../Data/ChartDrawer';
 
 function RenderResultPage(prop) {
-    const { setPageIndex} = pageData();
-    const { userSelect, setUserSelect } = userSelectData();
+    const { setPageIndex, setPrevIndex} = pageData();
+    const { setUserSelect } = userSelectData();
     const { setSceneIndex } = sceneData();
 
     useEffect(() => {
@@ -19,7 +19,7 @@ function RenderResultPage(prop) {
             <button onClick={() => {
                 //sendData(userSelect)
                 setSceneIndex(0);
-                clearAlldata(setPageIndex, setUserSelect);
+                clearAlldata(setPageIndex, setUserSelect, setPrevIndex);
             }}> press to GoHome</button>
             <RenderLineChart />
             <RenderLineChart />
@@ -31,25 +31,26 @@ function RenderResultPage(prop) {
 
 // *************** ACTION ***************
 
-function sendData(userSelect){    
-    axios({
-        method: 'post',
-        url: 'http://localhost:8080/SetResultData',
-        params: {
-            email: "baeknothing@gmail.com",
-            name: "baeknothing",
-            answer: userSelect
-        }
-    })
-        .then(function async(response) {
-            console.log(response);
-        })
-        .catch(function (error) { console.log(error); })
-}
+// function sendData(userSelect){    
+//     axios({
+//         method: 'post',
+//         url: 'http://localhost:8080/SetResultData',
+//         params: {
+//             email: "baeknothing@gmail.com",
+//             name: "baeknothing",
+//             answer: userSelect
+//         }
+//     })
+//         .then(function async(response) {
+//             console.log(response);
+//         })
+//         .catch(function (error) { console.log(error); })
+// }
 
-function clearAlldata(setPageIndex, setUserSelect) {
+function clearAlldata(setPageIndex, setUserSelect, setPrevIndex) {
     setPageIndex(0);
     setUserSelect([]);
+    setPrevIndex([]);
 }
 
 export default RenderResultPage;
