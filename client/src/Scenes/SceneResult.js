@@ -32,21 +32,22 @@ function RenderResultPage(prop) {
 // *************** ACTION ***************
 
 function sendData(userSelect, prevIndex){
-
-    axios({
-        method: 'post',
-        url: 'http://localhost:8080/SetResultData',
-        params: {
-            email: "baeknothing@gmail.com",
-            name: "baeknothing",
-            answer: userSelect,
-            pages: prevIndex
-        }
-    })
-        .then(function async(response) {
-            console.log(response);
-        })
-        .catch(function (error) {  })
+    console.log("userSelect : " + userSelect);
+    console.log("prevIndex : " + prevIndex);
+    // axios({
+    //     method: 'post',
+    //     url: 'http://localhost:8080/SetResultData',
+    //     params: {
+    //         email: "baeknothing@gmail.com",
+    //         name: "baeknothing",
+    //         answer: userSelect,
+    //         pages: prevIndex
+    //     }
+    // })
+    //     .then(function async(response) {
+    //         console.log(response);
+    //     })
+    //     .catch(function (error) {  })
 }
 
 function clearAlldata(setPageIndex, setUserSelect, setPrevIndex) {
