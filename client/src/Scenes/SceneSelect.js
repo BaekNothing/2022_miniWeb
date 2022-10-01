@@ -1,8 +1,7 @@
 import '../App.css';
 import './SceneSelect.css';
-import axios from "axios";
 import React, { useEffect } from 'react';
-import { sceneData, pageData, userSelectData } from '../Data/AppVars';
+import { sceneData, pageData, userSelectData, questionData } from '../Data/AppVars';
 
 var _refreshUserSelectDataFlag = true;
 var _userChosenData = 0;
@@ -119,32 +118,8 @@ function PageMainButtonInput(prop){
     )
 }
 
-// function PageMainRadioInput(prop) {
-//     const { pageIndex, setPageIndex, dataAry } = pageData();
-//     var liIndex = prop.liIndex;
-
-//     if (dataAry[liIndex + 2] === " noData" || dataAry[liIndex + 2] === "noData") return <div className='invisible'> </div>;
-//     console.log(dataAry[liIndex + 2]);
-//     return (
-//         <div>
-//             <li>
-//                 <label>
-//                     <input
-//                         type="radio"
-//                         name="radioInput"
-//                         onChange={() => {
-//                             setPageIndex(pageIndex + 1);
-//                             SetUserSelectDataFlag(flags.refresh, liIndex);
-//                         }} />
-//                     {dataAry[liIndex + 2]} <br />
-//                 </label>
-//             </li>
-//         </div>
-//     )
-// }
-
 function PageMainUserSelectBox(prop) {
-    const { pageIndex, prevIndex } = pageData();
+    const { pageIndex } = pageData();
     const { userSelect } = userSelectData();
     const result = [];
 
@@ -195,39 +170,29 @@ function GetSelectPageData(prop) {
 
     useEffect(() => {
         if (prevPageIndex !== pageIndex) {
-            axios({
-                method: 'post',
-                url: 'http://localhost:8080/GetSelectData',
-                params: {
-
-                }
-            })
-                .then(function async(response) {
-                    //pageData_from_server = response;
-                    var tempAry = [...dataAry];
-                    tempAry[0] = response.data[pageIndex ?? 0]?.name ?? String(pageIndex ?? 0) + " noData";
-                    tempAry[1] = response.data[pageIndex ?? 0]?.image ?? "noData";
-                    tempAry[2] = response.data[pageIndex ?? 0]?.q ?? "noData";
-                    tempAry[3] = response.data[pageIndex ?? 0]?.a1 ?? "noData";
-                    tempAry[4] = response.data[pageIndex ?? 0]?.a2 ?? "noData";
-                    tempAry[5] = response.data[pageIndex ?? 0]?.a3 ?? "noData";
-                    tempAry[6] = response.data[pageIndex ?? 0]?.a4 ?? "noData";
-                    tempAry[7] = response.data[pageIndex ?? 0]?.a5 ?? "noData";
-                    tempAry[8] = response.data[pageIndex ?? 0]?.a6 ?? "noData";
-                    tempAry[9] = response.data[pageIndex ?? 0]?.m1 ?? "-";
-                    tempAry[10] = response.data[pageIndex ?? 0]?.m2 ?? "-";
-                    tempAry[11] = response.data[pageIndex ?? 0]?.m3 ?? "-";
-                    tempAry[12] = response.data[pageIndex ?? 0]?.m4 ?? "-";
-                    tempAry[13] = response.data[pageIndex ?? 0]?.m5 ?? "-";
-                    tempAry[14] = response.data[pageIndex ?? 0]?.m6 ?? "-";
-                    setAry(tempAry);
-                    console.log(tempAry);
-                })
-                .catch(function (error) { console.log(error); })
-            prevPageIndex = pageIndex;
+            var data = [...questionData]
+            console.log(questionData);
+            var tempAry = [...dataAry];
+            tempAry[0] = data[pageIndex ?? 0][0] ?? String(pageIndex ?? 0) + " noData";
+            tempAry[1] = data[pageIndex ?? 0][1] ?? "noData";
+            tempAry[2] = data[pageIndex ?? 0][2] ?? "noData";
+            tempAry[3] = data[pageIndex ?? 0][3] ?? "noData";
+            tempAry[4] = data[pageIndex ?? 0][4] ?? "noData";
+            tempAry[5] = data[pageIndex ?? 0][5] ?? "noData";
+            tempAry[6] = data[pageIndex ?? 0][6] ?? "noData";
+            tempAry[7] = data[pageIndex ?? 0][7] ?? "noData";
+            tempAry[8] = data[pageIndex ?? 0][8] ?? "noData";
+            tempAry[9] = data[pageIndex ?? 0][9] ?? "-";
+            tempAry[10] = data[pageIndex ?? 0][10] ?? "-";
+            tempAry[11] = data[pageIndex ?? 0][11] ?? "-";
+            tempAry[12] = data[pageIndex ?? 0][12] ?? "-";
+            tempAry[13] = data[pageIndex ?? 0][13] ?? "-";
+            tempAry[14] = data[pageIndex ?? 0][14] ?? "-";
+            setAry(tempAry);
+            console.log(tempAry);
         }
+        prevPageIndex = pageIndex;
     }, [dataAry, pageIndex, setAry])
-
     return (<div className="notDisplay"> </div>)
 }
 

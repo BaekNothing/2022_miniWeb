@@ -5,44 +5,38 @@ const csvParser = require('csv-parser');
 const validator = require("validator");
 const result = [];
 
-router.post('/GetSelectData', async (req, res) => {
-    if(result.length === 0){
-            result.length = 0;
-        await fs.createReadStream("./Router/data/data.csv")
-        .pipe(csvParser())
-        .on("data", (data) => {
-            result.push(data);
-        })
-        .on("end", () => {
-            res.send(result);
-        });
-    }
-    else
-        res.send(result);
-});
+// router.post('/GetSelectData', async (req, res) => {
+//     if(result.length === 0){
+//             result.length = 0;
+//         await fs.createReadStream("./Router/data/data.csv")
+//         .pipe(csvParser())
+//         .on("data", (data) => {
+//             result.push(data);
+//         })
+//         .on("end", () => {
+//             res.send(result);
+//         });
+//     }
+//     else
+//         res.send(result);
+// });
 
-router.post('/GetResultData', async (req, res) => {
+// router.post('/GetResultData', async (req, res) => {
     
-})
+// })
 
 router.post('/SetResultData', async (req, res) => {
     var email = req.query.email;
     var name = req.query.name;
     var answer = req.query.answer;
+    var pages = req.query.pages;
 
-    var result = [email, name];
-    answer.forEach(child => {
-        result += "," + child;
-    });
+    var result = ["email :", email, " name :",name, " answer :", answer, " pages :", pages];
+
     console.log(result);
 
     if(validator.isEmail(email))
-    {
         await WriteResultData(result);
-        res.send("success");
-    }
-    else 
-       res.send("fail");
 });
 
 async function WriteResultData(result) {
