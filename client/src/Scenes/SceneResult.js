@@ -1,7 +1,7 @@
 import '../App.css'; 
 //import axios from "axios";
 import React, { useEffect } from 'react';
-import { sceneData, pageData, userSelectData } from '../Data/AppVars';
+import { sceneData, pageData, userSelectData, baseHigherData } from '../Data/AppVars';
 import RenderLineChart from '../Data/ChartDrawer';
 
 function RenderResultPage(prop) {
@@ -22,9 +22,6 @@ function RenderResultPage(prop) {
                 clearAlldata(setPageIndex, setUserSelect, setPrevIndex);
             }}> press to GoHome</button>
             <RenderLineChart />
-            <RenderLineChart />
-            <RenderLineChart />
-            <RenderLineChart />
         </div>
     )
 }
@@ -34,20 +31,7 @@ function RenderResultPage(prop) {
 function sendData(userSelect, prevIndex){
     console.log("userSelect : " + userSelect);
     console.log("prevIndex : " + prevIndex);
-    // axios({
-    //     method: 'post',
-    //     url: 'http://localhost:8080/SetResultData',
-    //     params: {
-    //         email: "baeknothing@gmail.com",
-    //         name: "baeknothing",
-    //         answer: userSelect,
-    //         pages: prevIndex
-    //     }
-    // })
-    //     .then(function async(response) {
-    //         console.log(response);
-    //     })
-    //     .catch(function (error) {  })
+    
 }
 
 function clearAlldata(setPageIndex, setUserSelect, setPrevIndex) {
