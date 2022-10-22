@@ -1,23 +1,44 @@
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
-const data = [
-    { name: 'Page A', uv: 400, pv: 300, amt: 2400 },
-    { name: 'Page A', uv: 300, pv: 300, amt: 2400 },
-    { name: 'Page A', uv: 200, pv: 400, amt: 2400 },
-    { name: 'Page A', uv: 400, pv: 100, amt: 2400 }
+import React, { useEffect } from 'react';
+import { sceneData, pageData, userSelectData, baseHigherData, baseLowerData, mulitpliData } from './AppVars';
 
-];
+    
+function RenderLineChart() 
+{
+    const { userSelect } = userSelectData();
+    const { prevIndex } = pageData();
 
-function RenderLineChart() {
+    const originData = userSelect[0] === 0 ? baseHigherData : baseLowerData;
+    const mulitplier = GetMultplier(userSelect, prevIndex);
+    const newList = [];
+    for (let i = 0; i < originData.length; i++) {
+        newList.push({
+            name: i,
+            base: originData[i],
+            state: originData[i] * mulitplier,
+            amt: mulitplier
+        });
+    }
+
     return (
-        <LineChart width={480} height={350} data={data} margin={{ top: 50, right: 20, bottom: 5, left: -30 }}>
-            <Line type="monotone" dataKey="uv" stroke="#8884d8" />
-            <Line type="monotone" dataKey="pv" stroke="#ffffff"  />
-            <CartesianGrid stroke="#ccc" strokeDasharray="5 5" opacity={0.5}/>
-            <XAxis dataKey="name"  />
+        <LineChart width={480} height={350} data={newList} margin={{ top: 50, right: 50, bottom: 5, left: 50 }}>
+            <Line type="monotone" dataKey="base" stroke="#8884d8" />
+            <Line type="monotone" dataKey="state" stroke="#ffffff" />
+            <CartesianGrid stroke="#ccc" strokeDasharray="5 5" opacity={mulitplier} />
+            <XAxis dataKey="name" />
             <YAxis />
-            <Tooltip />
+            {/* <Tooltip /> */}
         </LineChart>
     )
+}
+
+function GetMultplier(userSelect, prevIndex) 
+{
+    var result = 1;
+    for (let i = 1; i < userSelect.length - 1; i++) {
+        result *= mulitpliData[prevIndex[i]][userSelect[i + 1]];
+    }
+    return result;
 }
 
 export default RenderLineChart;

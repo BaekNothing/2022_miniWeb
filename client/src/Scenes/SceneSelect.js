@@ -18,7 +18,7 @@ const flags = {
 // *************** MAIN PAGE ***************
 
 function RenderSelectPage(prop) {
-    const { pageIndex, setPageIndex, dataAry } = pageData();
+    const { pageIndex, setPageIndex, dataAry, prevIndex } = pageData();
     console.log("pageIndex : " + pageIndex);
 
     return (
@@ -31,7 +31,7 @@ function RenderSelectPage(prop) {
                 <SetUserSelectData/>
                 <GetSelectPageData pageIndex={pageIndex} />
             </div>
-            <PageMainImage image={dataAry[1]} />
+            <PageMainImage image={dataAry[1]} select={prevIndex} />
 
             <PageMainQuestionBox question={dataAry[2]} />
 
@@ -42,16 +42,16 @@ function RenderSelectPage(prop) {
 // *************** PAGE COMPONENTS ***************
 
 function PageMainImage(prop) {
-    // const image = prop.image;
-
-    var randomNumber = Math.floor(Math.random() * 4);
+    const image = prop.image;
+    var index = 0;
+    if(prop.select) index = prop.select[prop.select.length - 1] ?? 0;
 
     return (
         <div>
             <div className='main-image'>
-                <img className='char' id='char_acc' src={'./images/char/charACC_0' + randomNumber + '.png'} alt='charBody' />
-                <img className='char' id='char_hair' src={'./images/char/charHair_0' + randomNumber + '.png'} alt='charBody' />
-                <img className='char' id='char_body' src={'./images/char/charBody.png'} alt='charBody' />
+                {/* <img className='char' id='char_acc' src={'./images/char/charACC_0' + randomNumber + '.png'} alt='charBody' /> */}
+                {/* <img className='char' id='char_hair' src={'./images/char/charHair_0' + randomNumber + '.png'} alt='charBody' /> */}
+                <img className='char' id='char_body' src={'./images/char/' + image + '_' + 0 +'.png'} alt='charBody' />
             </div>
             {/* <img src={'./images/' + image + '.png'} style={{ width: '480px' }} alt='' /> */}
         </div>
