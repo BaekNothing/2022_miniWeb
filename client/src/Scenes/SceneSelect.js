@@ -1,7 +1,7 @@
 import '../App.css';
 import './SceneSelect.css';
 import React, { useEffect } from 'react';
-import { sceneData, pageData, userSelectData, questionData } from '../Data/AppVars';
+import { dummyData, sceneData, pageData, userSelectData, questionData } from '../Data/AppVars';
 
 var _refreshUserSelectDataFlag = true;
 var _userChosenData = 0;
@@ -14,6 +14,7 @@ const flags = {
     refresh: true,
     notRefresh: false
 }
+
 
 // *************** MAIN PAGE ***************
 
@@ -33,7 +34,7 @@ function RenderSelectPage(prop) {
             </div>
             <PageMainImage image={dataAry[1]} select={prevIndex} />
 
-            <PageMainQuestionBox question={dataAry[2]} />
+            <PageMainQuestionBox userData={_userChosenData === 0 ? 0 : 1} question={dataAry[2]} />
 
         </div>
     )
@@ -59,11 +60,12 @@ function PageMainImage(prop) {
 }
 
 function PageMainQuestionBox(prop) {
-    const { pageIndex, prevIndex, setPrevIndex, setPageIndex } = pageData();
+    const { pageIndex, prevIndex, setPrevIndex, setPageIndex, dataAry } = pageData();
     const { sceneIndex, setSceneIndex} = sceneData();
     const { userSelect, setUserSelect } = userSelectData();
     const question = prop.question;
     //const pageIndex = prop.pageIndex;
+
     return (
         <div>
             <p> {pageIndex}question : {question} </p>
@@ -88,6 +90,16 @@ function PageMainQuestionBox(prop) {
                     setUserSelect([...userSelect.slice(0, userSelect.length - 1) ?? []]);
                     SetUserSelectDataFlag(flags.notRefresh, _userChosenData)
                 }}>movePrev</button>
+
+                <button onClick={() => {
+                    SetUserSelectDataFlag(flags.refresh, _userChosenData);
+
+                    setPrevIndex([...prevIndex ?? [], pageIndex]);
+                    setPageIndex(
+                        dataAry[_userChosenData + 8] !== '-'
+                            ? dataAry[_userChosenData + 8] * 1
+                            : (pageIndex * 1) + 1);
+                }}>moveNext</button>
             </div>
             
         </div>
@@ -95,22 +107,27 @@ function PageMainQuestionBox(prop) {
 }
 
 function PageMainButtonInput(prop){
+    const { dummy, SetDummy } = dummyData();
     const { pageIndex, setPageIndex, setPrevIndex, prevIndex, dataAry } = pageData();
     var liIndex = prop.liIndex;
+    console.log(dummy);
 
     if (dataAry[liIndex + 2] === " noData" || dataAry[liIndex + 2] === "noData") return <div className='invisible'> </div>;
     return (
         <div className='t16 m4'>
             <label>
-                <button className='w35 h40px'
+                <button className='w35 h40px' style={ liIndex === _userChosenData ? { color: "red" } : { color: "black" } }
                     onClick={() => {
                         SetUserSelectDataFlag(flags.refresh, liIndex);
+                        _userChosenData = liIndex;
+                        SetDummy(liIndex);
 
-                        setPrevIndex([...prevIndex ?? [], pageIndex]);
-                        setPageIndex(
-                            dataAry[liIndex + 8] !== '-'
-                                ? dataAry[liIndex + 8] * 1
-                                : (pageIndex * 1) + 1);
+                        // for choose and move next
+                        // setPrevIndex([...prevIndex ?? [], pageIndex]);
+                        // setPageIndex(
+                        //     dataAry[liIndex + 8] !== '-'
+                        //         ? dataAry[liIndex + 8] * 1
+                        //         : (pageIndex * 1) + 1);
                     }}>
                 {dataAry[liIndex + 2]} </button> 
             </label>

@@ -1,5 +1,12 @@
 import create from 'zustand';
 
+
+const dummyData = create(set => ({
+    dummy: 0,
+    SetDummy: (inputData) => set(() => { return { inputData } }),
+
+}));
+
 const sceneData = create(set => ({
     sceneIndex: 0,
     setSceneIndex: (sceneIndex) => set(() => { return { sceneIndex } }),
@@ -95,4 +102,4 @@ const baseLowerData = [
     140
 ]
 
-export {sceneData, pageData, userSelectData, questionData, baseHigherData, baseLowerData, mulitpliData}
+export {dummyData, sceneData, pageData, userSelectData, questionData, baseHigherData, baseLowerData, mulitpliData}
