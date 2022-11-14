@@ -36,7 +36,8 @@ function GetMultplier(userSelect, prevIndex)
 {
     var result = 1;
     for (let i = 1; i < userSelect.length - 1; i++) {
-        result *= mulitpliData[prevIndex[i]][userSelect[i + 1]];
+        result *= 1 + mulitpliData[prevIndex[i]][userSelect[i + 1]] * 0.01;
+        console.log(result);
     }
     return result;
 }
