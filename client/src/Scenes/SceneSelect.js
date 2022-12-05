@@ -2,7 +2,11 @@ import '../App.css';
 import './SceneSelect.css';
 import React, { useEffect } from 'react';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { sceneData, pageData, userSelectData, questionData } from '../Data/AppVars';
+=======
+import { dummyData, sceneData, pageData, userSelectData, questionData } from '../Data/AppVars';
+>>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
 =======
 import { dummyData, sceneData, pageData, userSelectData, questionData } from '../Data/AppVars';
 >>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
@@ -20,6 +24,10 @@ const flags = {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
 =======
 
 >>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
@@ -42,7 +50,11 @@ function RenderSelectPage(prop) {
             <PageMainImage image={dataAry[1]} select={prevIndex} />
 
 <<<<<<< HEAD
+<<<<<<< HEAD
             <PageMainQuestionBox question={dataAry[2]} />
+=======
+            <PageMainQuestionBox userData={_userChosenData === 0 ? 0 : 1} question={dataAry[2]} />
+>>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
 =======
             <PageMainQuestionBox userData={_userChosenData === 0 ? 0 : 1} question={dataAry[2]} />
 >>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
@@ -72,7 +84,11 @@ function PageMainImage(prop) {
 
 function PageMainQuestionBox(prop) {
 <<<<<<< HEAD
+<<<<<<< HEAD
     const { pageIndex, prevIndex, setPrevIndex, setPageIndex } = pageData();
+=======
+    const { pageIndex, prevIndex, setPrevIndex, setPageIndex, dataAry } = pageData();
+>>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
 =======
     const { pageIndex, prevIndex, setPrevIndex, setPageIndex, dataAry } = pageData();
 >>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
@@ -81,6 +97,10 @@ function PageMainQuestionBox(prop) {
     const question = prop.question;
     //const pageIndex = prop.pageIndex;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
 =======
 
 >>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
@@ -109,7 +129,10 @@ function PageMainQuestionBox(prop) {
                     SetUserSelectDataFlag(flags.notRefresh, _userChosenData)
                 }}>movePrev</button>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
 
                 <button onClick={() => {
                     SetUserSelectDataFlag(flags.refresh, _userChosenData);
@@ -120,6 +143,9 @@ function PageMainQuestionBox(prop) {
                             ? dataAry[_userChosenData + 8] * 1
                             : (pageIndex * 1) + 1);
                 }}>moveNext</button>
+<<<<<<< HEAD
+>>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
+=======
 >>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
             </div>
             
@@ -129,19 +155,26 @@ function PageMainQuestionBox(prop) {
 
 function PageMainButtonInput(prop){
 <<<<<<< HEAD
+<<<<<<< HEAD
     const { pageIndex, setPageIndex, setPrevIndex, prevIndex, dataAry } = pageData();
     var liIndex = prop.liIndex;
 =======
+=======
+>>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
     const { dummy, SetDummy } = dummyData();
     const { pageIndex, setPageIndex, setPrevIndex, prevIndex, dataAry } = pageData();
     var liIndex = prop.liIndex;
     console.log(dummy);
+<<<<<<< HEAD
+>>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
+=======
 >>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
 
     if (dataAry[liIndex + 2] === " noData" || dataAry[liIndex + 2] === "noData") return <div className='invisible'> </div>;
     return (
         <div className='t16 m4'>
             <label>
+<<<<<<< HEAD
 <<<<<<< HEAD
                 <button className='w35 h40px'
                     onClick={() => {
@@ -153,6 +186,8 @@ function PageMainButtonInput(prop){
                                 ? dataAry[liIndex + 8] * 1
                                 : (pageIndex * 1) + 1);
 =======
+=======
+>>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
                 <button className='w35 h40px' style={ liIndex === _userChosenData ? { color: "red" } : { color: "black" } }
                     onClick={() => {
                         SetUserSelectDataFlag(flags.refresh, liIndex);
@@ -165,6 +200,9 @@ function PageMainButtonInput(prop){
                         //     dataAry[liIndex + 8] !== '-'
                         //         ? dataAry[liIndex + 8] * 1
                         //         : (pageIndex * 1) + 1);
+<<<<<<< HEAD
+>>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
+=======
 >>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
                     }}>
                 {dataAry[liIndex + 2]} </button> 

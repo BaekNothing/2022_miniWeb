@@ -1,7 +1,10 @@
 import create from 'zustand';
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
 
 const dummyData = create(set => ({
     dummy: 0,
@@ -9,6 +12,9 @@ const dummyData = create(set => ({
 
 }));
 
+<<<<<<< HEAD
+>>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
+=======
 >>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
 const sceneData = create(set => ({
     sceneIndex: 0,
@@ -106,7 +112,11 @@ const baseLowerData = [
 ]
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 export {sceneData, pageData, userSelectData, questionData, baseHigherData, baseLowerData, mulitpliData}
+=======
+export {dummyData, sceneData, pageData, userSelectData, questionData, baseHigherData, baseLowerData, mulitpliData}
+>>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
 =======
 export {dummyData, sceneData, pageData, userSelectData, questionData, baseHigherData, baseLowerData, mulitpliData}
 >>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
