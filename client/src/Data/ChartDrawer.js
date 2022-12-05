@@ -2,8 +2,8 @@ import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts'
 import React, { useEffect } from 'react';
 import { sceneData, pageData, userSelectData, baseHigherData, baseLowerData, mulitpliData } from './AppVars';
 
-    
-function RenderLineChart() 
+
+function RenderLineChart()
 {
     const { userSelect } = userSelectData();
     const { prevIndex } = pageData();
@@ -32,21 +32,12 @@ function RenderLineChart()
     )
 }
 
-function GetMultplier(userSelect, prevIndex) 
+function GetMultplier(userSelect, prevIndex)
 {
     var result = 1;
     for (let i = 1; i < userSelect.length - 1; i++) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-        result *= mulitpliData[prevIndex[i]][userSelect[i + 1]];
-=======
         result *= 1 + mulitpliData[prevIndex[i]][userSelect[i + 1]] * 0.01;
         console.log(result);
->>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
-=======
-        result *= 1 + mulitpliData[prevIndex[i]][userSelect[i + 1]] * 0.01;
-        console.log(result);
->>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
     }
     return result;
 }

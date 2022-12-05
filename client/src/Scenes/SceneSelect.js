@@ -1,15 +1,7 @@
 import '../App.css';
 import './SceneSelect.css';
 import React, { useEffect } from 'react';
-<<<<<<< HEAD
-<<<<<<< HEAD
-import { sceneData, pageData, userSelectData, questionData } from '../Data/AppVars';
-=======
 import { dummyData, sceneData, pageData, userSelectData, questionData } from '../Data/AppVars';
->>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
-=======
-import { dummyData, sceneData, pageData, userSelectData, questionData } from '../Data/AppVars';
->>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
 
 var _refreshUserSelectDataFlag = true;
 var _userChosenData = 0;
@@ -23,14 +15,7 @@ const flags = {
     notRefresh: false
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 
->>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
-=======
-
->>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
 // *************** MAIN PAGE ***************
 
 function RenderSelectPage(prop) {
@@ -49,15 +34,7 @@ function RenderSelectPage(prop) {
             </div>
             <PageMainImage image={dataAry[1]} select={prevIndex} />
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <PageMainQuestionBox question={dataAry[2]} />
-=======
             <PageMainQuestionBox userData={_userChosenData === 0 ? 0 : 1} question={dataAry[2]} />
->>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
-=======
-            <PageMainQuestionBox userData={_userChosenData === 0 ? 0 : 1} question={dataAry[2]} />
->>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
 
         </div>
     )
@@ -83,27 +60,12 @@ function PageMainImage(prop) {
 }
 
 function PageMainQuestionBox(prop) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-    const { pageIndex, prevIndex, setPrevIndex, setPageIndex } = pageData();
-=======
     const { pageIndex, prevIndex, setPrevIndex, setPageIndex, dataAry } = pageData();
->>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
-=======
-    const { pageIndex, prevIndex, setPrevIndex, setPageIndex, dataAry } = pageData();
->>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
     const { sceneIndex, setSceneIndex} = sceneData();
     const { userSelect, setUserSelect } = userSelectData();
     const question = prop.question;
     //const pageIndex = prop.pageIndex;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 
->>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
-=======
-
->>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
     return (
         <div>
             <p> {pageIndex}question : {question} </p>
@@ -128,11 +90,6 @@ function PageMainQuestionBox(prop) {
                     setUserSelect([...userSelect.slice(0, userSelect.length - 1) ?? []]);
                     SetUserSelectDataFlag(flags.notRefresh, _userChosenData)
                 }}>movePrev</button>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
 
                 <button onClick={() => {
                     SetUserSelectDataFlag(flags.refresh, _userChosenData);
@@ -143,51 +100,22 @@ function PageMainQuestionBox(prop) {
                             ? dataAry[_userChosenData + 8] * 1
                             : (pageIndex * 1) + 1);
                 }}>moveNext</button>
-<<<<<<< HEAD
->>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
-=======
->>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
             </div>
-            
+
         </div>
     )
 }
 
 function PageMainButtonInput(prop){
-<<<<<<< HEAD
-<<<<<<< HEAD
-    const { pageIndex, setPageIndex, setPrevIndex, prevIndex, dataAry } = pageData();
-    var liIndex = prop.liIndex;
-=======
-=======
->>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
     const { dummy, SetDummy } = dummyData();
     const { pageIndex, setPageIndex, setPrevIndex, prevIndex, dataAry } = pageData();
     var liIndex = prop.liIndex;
     console.log(dummy);
-<<<<<<< HEAD
->>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
-=======
->>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
 
     if (dataAry[liIndex + 2] === " noData" || dataAry[liIndex + 2] === "noData") return <div className='invisible'> </div>;
     return (
         <div className='t16 m4'>
             <label>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                <button className='w35 h40px'
-                    onClick={() => {
-                        SetUserSelectDataFlag(flags.refresh, liIndex);
-
-                        setPrevIndex([...prevIndex ?? [], pageIndex]);
-                        setPageIndex(
-                            dataAry[liIndex + 8] !== '-'
-                                ? dataAry[liIndex + 8] * 1
-                                : (pageIndex * 1) + 1);
-=======
-=======
->>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
                 <button className='w35 h40px' style={ liIndex === _userChosenData ? { color: "red" } : { color: "black" } }
                     onClick={() => {
                         SetUserSelectDataFlag(flags.refresh, liIndex);
@@ -200,12 +128,8 @@ function PageMainButtonInput(prop){
                         //     dataAry[liIndex + 8] !== '-'
                         //         ? dataAry[liIndex + 8] * 1
                         //         : (pageIndex * 1) + 1);
-<<<<<<< HEAD
->>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
-=======
->>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
                     }}>
-                {dataAry[liIndex + 2]} </button> 
+                {dataAry[liIndex + 2]} </button>
             </label>
         </div>
     )
@@ -220,7 +144,7 @@ function PageMainUserSelectBox(prop) {
         if (i !== pageIndex + 1)
             result.push(<button className='box_Choosed' key={i}>{userSelect[i] ?? 0}</button>);
         else
-            result.push(<button className='box_Choosed' style={{ color: "red" }} key={i}>{userSelect[i] ?? 0}</button>);   
+            result.push(<button className='box_Choosed' style={{ color: "red" }} key={i}>{userSelect[i] ?? 0}</button>);
     }
     return <div> {result} </div>
 }

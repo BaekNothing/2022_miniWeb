@@ -1,10 +1,5 @@
 import create from 'zustand';
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
 
 const dummyData = create(set => ({
     dummy: 0,
@@ -12,14 +7,10 @@ const dummyData = create(set => ({
 
 }));
 
-<<<<<<< HEAD
->>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
-=======
->>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
 const sceneData = create(set => ({
     sceneIndex: 0,
     setSceneIndex: (sceneIndex) => set(() => { return { sceneIndex } }),
-    
+
 }));
 
 const pageData = create((set) => ({
@@ -27,8 +18,8 @@ const pageData = create((set) => ({
     setPrevIndex: (prevIndex) => set(() => { return { prevIndex } }),
     pageIndex: 0,
     setPageIndex: (pageIndex) => set(() => { return { pageIndex } }),
-    dataAry: ['name', 'image', 'qusetion', 
-        'answer1', 'answer2', 'answer3', 'answer4', 'answer5', 'answer6', 
+    dataAry: ['name', 'image', 'qusetion',
+        'answer1', 'answer2', 'answer3', 'answer4', 'answer5', 'answer6',
         'm1', 'm2', 'm3', 'm4', 'm5', 'm6'],
     setAry: (dataAry) => set(() => { return { dataAry } })
 }
@@ -111,12 +102,4 @@ const baseLowerData = [
     140
 ]
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-export {sceneData, pageData, userSelectData, questionData, baseHigherData, baseLowerData, mulitpliData}
-=======
 export {dummyData, sceneData, pageData, userSelectData, questionData, baseHigherData, baseLowerData, mulitpliData}
->>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
-=======
-export {dummyData, sceneData, pageData, userSelectData, questionData, baseHigherData, baseLowerData, mulitpliData}
->>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
