@@ -1,5 +1,15 @@
 import create from 'zustand';
 
+<<<<<<< HEAD
+=======
+
+const dummyData = create(set => ({
+    dummy: 0,
+    SetDummy: (inputData) => set(() => { return { inputData } }),
+
+}));
+
+>>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
 const sceneData = create(set => ({
     sceneIndex: 0,
     setSceneIndex: (sceneIndex) => set(() => { return { sceneIndex } }),
@@ -95,4 +105,8 @@ const baseLowerData = [
     140
 ]
 
+<<<<<<< HEAD
 export {sceneData, pageData, userSelectData, questionData, baseHigherData, baseLowerData, mulitpliData}
+=======
+export {dummyData, sceneData, pageData, userSelectData, questionData, baseHigherData, baseLowerData, mulitpliData}
+>>>>>>> 0e4efdb047112f0c31f8ad0e62f1b4063d69d5fb
