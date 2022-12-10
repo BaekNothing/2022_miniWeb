@@ -7,7 +7,7 @@ import RaderChart from '../Data/RaderChartDrawer';
 
 function RenderResultPage(prop) {
     const { setPageIndex, setPrevIndex, prevIndex} = pageData();
-    const { setUserSelect, userSelect } = userSelectData();
+    const { setUserSelect, userSelect, SetUserName } = userSelectData();
     const { setSceneIndex } = sceneData();
 
     useEffect(() => {
@@ -20,11 +20,10 @@ function RenderResultPage(prop) {
             <button onClick={() => {
                 sendData(userSelect, prevIndex)
                 setSceneIndex(0);
-                clearAlldata(setPageIndex, setUserSelect, setPrevIndex);
+                clearAlldata(setPageIndex, setUserSelect, setPrevIndex, SetUserName);
             }}> press to GoHome</button>
             <RaderChart />
             <RenderLineChart />
-
         </div>
     )
 }
@@ -37,10 +36,11 @@ function sendData(userSelect, prevIndex){
     
 }
 
-function clearAlldata(setPageIndex, setUserSelect, setPrevIndex) {
+function clearAlldata(setPageIndex, setUserSelect, setPrevIndex, setUserName) {
     setPageIndex(0);
     setUserSelect([]);
     setPrevIndex([]);
+    setUserName('');
 }
 
 export default RenderResultPage;

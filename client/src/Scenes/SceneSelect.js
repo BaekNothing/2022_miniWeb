@@ -46,11 +46,11 @@ function RenderSelectPage(prop) {
 
 function PageProgressBar(prop){
     const { pageIndex } = pageData();
-    const { userSelect } = userSelectData();
+    const { userSelect} = userSelectData();
 
     return(
         <div>
-            <progress className='w280' max={10} value={pageIndex}>
+            <progress className='w280' max={_pageIndexMax} value={pageIndex}>
 
             </progress>
         </div>
@@ -134,7 +134,13 @@ function NextButton() {
     const { sceneIndex, setSceneIndex } = sceneData();
     const { userSelect, setUserSelect } = userSelectData();
 
-    if (_userChosenData <= 0) return <div className='invisible'> </div>;
+    if (_userChosenData <= 0) return(
+        <div>
+            <div className='t16 m4 inline-block btn_selectable_half'> </div>
+            <button className='m4 inline-block btn_selectable_half'>다음으로</button>
+        </div>
+    ) 
+        
 
     return (
         <div>
@@ -180,6 +186,7 @@ function SetUserSelectData(prop) {
             //push SelectedNumber to userSelect
             var tempAry = [...userSelect, chosenIndex];
             setUserSelect(tempAry);
+            _userChosenData = 0;
 
             //move to next Scene
             if (pageIndex > _pageIndexMax)
@@ -197,7 +204,7 @@ function SetUserSelectData(prop) {
 
 // *************** DATA ***************
 
-var _pageIndexMax = 10;
+var _pageIndexMax = 13;
 var prevPageIndex = -1;
 function GetSelectPageData(prop) {
     const { pageIndex, dataAry, setAry } = pageData();
