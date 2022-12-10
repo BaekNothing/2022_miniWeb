@@ -2,14 +2,16 @@ import '../App.css';
 import React, { useEffect } from 'react';
 import { sceneData, pageData, userSelectData } from '../Data/AppVars';
 
+
 function RenderIntroPage(prop){
     const { setPageIndex } = pageData();
-    const { setUserSelect } = userSelectData();
+    const { setUserSelect, SetUserName} = userSelectData();
     const { sceneIndex, setSceneIndex } = sceneData();
 
     useEffect(() => {
 
     }, [])
+
 
     return (
         <div className="main-body" key="introPage">

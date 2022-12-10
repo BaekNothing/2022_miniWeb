@@ -32,9 +32,10 @@ function RenderSelectPage(prop) {
                 <SetUserSelectData/>
                 <GetSelectPageData pageIndex={pageIndex} />
             </div>
+            <PageProgressBar />
+            <PageQuestionTitle question={dataAry[2]} />
             <PageMainImage image={dataAry[1]} select={prevIndex} />
-
-            <PageMainQuestionBox userData={_userChosenData === 0 ? 0 : 1} question={dataAry[2]} />
+            <PageMainQuestionBox userData={_userChosenData === 0 ? 0 : 1} />
 
         </div>
     )
@@ -42,8 +43,32 @@ function RenderSelectPage(prop) {
 
 // *************** PAGE COMPONENTS ***************
 
+
+function PageProgressBar(prop){
+    const { pageIndex } = pageData();
+    const { userSelect } = userSelectData();
+    
+    return( 
+        <div> 
+            <progress className='w280' max={10} value={pageIndex}>
+
+            </progress>
+        </div>
+    )
+}
+
+function PageQuestionTitle(prop){
+    const question = prop.question;
+    return (
+        <div> 
+            <p> {question} </p>
+        </div>
+    )
+}
+
 function PageMainImage(prop) {
     const image = prop.image;
+    const { dummy } = dummyData();
     var index = 0;
     if(prop.select) index = prop.select[prop.select.length - 1] ?? 0;
 
@@ -52,7 +77,7 @@ function PageMainImage(prop) {
             <div className='main-image'>
                 {/* <img className='char' id='char_acc' src={'./images/char/charACC_0' + randomNumber + '.png'} alt='charBody' /> */}
                 {/* <img className='char' id='char_hair' src={'./images/char/charHair_0' + randomNumber + '.png'} alt='charBody' /> */}
-                <img className='char' id='char_body' src={'./images/char/' + image + '_' + 0 +'.png'} alt='charBody' />
+                <img className='char' id='char_body' src={'./images/char/' + image + '_' + (_userChosenData <= 0 ? 1 : _userChosenData) +'.png'} alt='charBody' />
             </div>
             {/* <img src={'./images/' + image + '.png'} style={{ width: '480px' }} alt='' /> */}
         </div>
@@ -60,46 +85,20 @@ function PageMainImage(prop) {
 }
 
 function PageMainQuestionBox(prop) {
-    const { pageIndex, prevIndex, setPrevIndex, setPageIndex, dataAry } = pageData();
-    const { sceneIndex, setSceneIndex} = sceneData();
-    const { userSelect, setUserSelect } = userSelectData();
-    const question = prop.question;
-    //const pageIndex = prop.pageIndex;
-
     return (
         <div>
-            <p> {pageIndex}question : {question} </p>
+            <div className='btns_box'>
+                <PageMainButtonInput liIndex={1} />
+                <PageMainButtonInput liIndex={2} />
+                <PageMainButtonInput liIndex={3} />
+                <PageMainButtonInput liIndex={4} />
+                <PageMainButtonInput liIndex={5} />
+                <PageMainButtonInput liIndex={6} />
+            </div>
+            
 
-            <PageMainButtonInput liIndex={1} />
-            <PageMainButtonInput liIndex={2} />
-            <PageMainButtonInput liIndex={3} />
-            <PageMainButtonInput liIndex={4} />
-            <PageMainButtonInput liIndex={5} />
-            <PageMainButtonInput liIndex={6} />
-
-            <div className='m4'>
-                <button onClick={() => {
-                    var moveIndex = prevIndex[prevIndex.length- 1];
-                    var newPrevIndex = prevIndex.slice(0, prevIndex.length - 1);
-                    setPrevIndex(newPrevIndex);
-                    if (moveIndex < 0) {
-                        setSceneIndex(sceneIndex - 1);
-                        moveIndex = 0;
-                    }
-                    setPageIndex(moveIndex);
-                    setUserSelect([...userSelect.slice(0, userSelect.length - 1) ?? []]);
-                    SetUserSelectDataFlag(flags.notRefresh, _userChosenData)
-                }}>movePrev</button>
-
-                <button onClick={() => {
-                    SetUserSelectDataFlag(flags.refresh, _userChosenData);
-
-                    setPrevIndex([...prevIndex ?? [], pageIndex]);
-                    setPageIndex(
-                        dataAry[_userChosenData + 8] !== '-'
-                            ? dataAry[_userChosenData + 8] * 1
-                            : (pageIndex * 1) + 1);
-                }}>moveNext</button>
+            <div className='btns_box'>
+                <NextButton />
             </div>
             
         </div>
@@ -110,27 +109,45 @@ function PageMainButtonInput(prop){
     const { dummy, SetDummy } = dummyData();
     const { pageIndex, setPageIndex, setPrevIndex, prevIndex, dataAry } = pageData();
     var liIndex = prop.liIndex;
-    console.log(dummy);
 
-    if (dataAry[liIndex + 2] === " noData" || dataAry[liIndex + 2] === "noData") return <div className='invisible'> </div>;
+    if (dataAry[liIndex + 2] === " noData" || dataAry[liIndex + 2] === "noData") 
+        return <div className='invisible'> </div>;
     return (
-        <div className='t16 m4'>
-            <label>
-                <button className='w35 h40px' style={ liIndex === _userChosenData ? { color: "red" } : { color: "black" } }
-                    onClick={() => {
-                        SetUserSelectDataFlag(flags.refresh, liIndex);
-                        _userChosenData = liIndex;
-                        SetDummy(liIndex);
+        <div className='t16 m4 inline-block btn_selectable'>
+            <button className='bg_white btn_selectable' 
+                style={ liIndex === _userChosenData 
+                    ? { background: "#2F4FFD", color: "white", border: "white" } 
+                    : { background: "white", color: "black" } }
+                onClick={() => {
+                    SetUserSelectDataFlag(flags.refresh, liIndex);
+                    _userChosenData = liIndex;
+                    SetDummy(liIndex);
+                }}>
+            {dataAry[liIndex + 2]} </button> 
+        </div>
+    )
+}
 
-                        // for choose and move next
-                        // setPrevIndex([...prevIndex ?? [], pageIndex]);
-                        // setPageIndex(
-                        //     dataAry[liIndex + 8] !== '-'
-                        //         ? dataAry[liIndex + 8] * 1
-                        //         : (pageIndex * 1) + 1);
-                    }}>
-                {dataAry[liIndex + 2]} </button> 
-            </label>
+function NextButton() {
+    const { dummy, SetDummy } = dummyData();
+    const { pageIndex, prevIndex, setPrevIndex, setPageIndex, dataAry } = pageData();
+    const { sceneIndex, setSceneIndex } = sceneData();
+    const { userSelect, setUserSelect } = userSelectData();
+
+    if (_userChosenData <= 0) return <div className='invisible'> </div>;
+
+    return (
+        <div>
+            <div className='t16 m4 inline-block btn_selectable_half'> </div>
+            <button className='m4 inline-block btn_selectable_half bg_blue' onClick={() => {
+                SetUserSelectDataFlag(flags.refresh, _userChosenData);
+
+                setPrevIndex([...prevIndex ?? [], pageIndex]);
+                setPageIndex(
+                    dataAry[_userChosenData + 8] !== '-'
+                        ? dataAry[_userChosenData + 8] * 1
+                        : (pageIndex * 1) + 1);
+            }}>다음으로</button>
         </div>
     )
 }
@@ -140,12 +157,12 @@ function PageMainUserSelectBox(prop) {
     const { userSelect } = userSelectData();
     const result = [];
 
-    for (let i = 1; i < userSelect.length; i++) {
-        if (i !== pageIndex + 1)
-            result.push(<button className='box_Choosed' key={i}>{userSelect[i] ?? 0}</button>);
-        else
-            result.push(<button className='box_Choosed' style={{ color: "red" }} key={i}>{userSelect[i] ?? 0}</button>);   
-    }
+    // for (let i = 1; i < userSelect.length; i++) {
+    //     if (i !== pageIndex + 1)
+    //         result.push(<button className='box_Choosed' key={i}>{userSelect[i] ?? 0}</button>);
+    //     else
+    //         result.push(<button className='box_Choosed' style={{ color: "red" }} key={i}>{userSelect[i] ?? 0}</button>);   
+    // }
     return <div> {result} </div>
 }
 

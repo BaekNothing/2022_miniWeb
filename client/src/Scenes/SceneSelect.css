@@ -17,6 +17,53 @@
     box-shadow: 0 0 10px #000;
 }
 
+.btns_box
+{
+    display: inline-block;
+    width: 400px;
+    text-align: center;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.float-right {
+    float: right;
+}
+
+.btn_selectable
+{
+    width: 280px;
+    height : 40px;
+    border-radius: 5px;
+    border-color: lightgray;
+    border-width: 2px;
+    box-shadow: none !important;
+}
+
+.btn_selectable_half
+{
+    width: 140px;
+    height : 40px;
+    border-radius: 5px;
+    border-color: lightgray;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+
+.bg_white {
+    background-color: white;
+    color: black;
+}
+
+.bg_blue{
+    background-color: #2F4FFD;
+    color: white;
+}
+
 .char {
     height : 200px;
     width : auto;
@@ -71,6 +118,15 @@
 .w50{
     width: 50%;
 }
+
+.w480{
+    width: 480px;
+}
+
+.w280{
+    width: 280px;
+}
+
 
 .h10px{
     height: 10px;

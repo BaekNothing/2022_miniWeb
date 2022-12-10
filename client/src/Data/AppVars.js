@@ -26,6 +26,8 @@ const pageData = create((set) => ({
 ))
 
 const userSelectData = create((set) => ({
+    userName : '',
+    SetUserName: (userName) => set(() => { return { userName } }),
     userSelect: [],
     setUserSelect: (userSelect) => set(() => {
         return { userSelect };

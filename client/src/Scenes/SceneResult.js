@@ -2,7 +2,8 @@ import '../App.css';
 //import axios from "axios";
 import React, { useEffect } from 'react';
 import { sceneData, pageData, userSelectData, baseHigherData } from '../Data/AppVars';
-import RenderLineChart from '../Data/ChartDrawer';
+import RenderLineChart from '../Data/LineChartDrawer';
+import RaderChart from '../Data/RaderChartDrawer';
 
 function RenderResultPage(prop) {
     const { setPageIndex, setPrevIndex, prevIndex} = pageData();
@@ -21,7 +22,9 @@ function RenderResultPage(prop) {
                 setSceneIndex(0);
                 clearAlldata(setPageIndex, setUserSelect, setPrevIndex);
             }}> press to GoHome</button>
+            <RaderChart />
             <RenderLineChart />
+
         </div>
     )
 }
