@@ -5,6 +5,7 @@ import {sceneData/*, pageData, userSelectData*/} from './Data/AppVars';
 import RenderIntroPage from './Scenes/SceneIntro';
 import RenderSelectPage from './Scenes/SceneSelect';
 import RenderResultPage from './Scenes/SceneResult';
+import RenderLoading from './Scenes/SceneLoading';
 
 function App() {
   return (
@@ -33,6 +34,9 @@ function PageRender() {
     }
     else if (sceneIndex === 1) {
         return <RenderSelectPage />
+    }
+    else if (sceneIndex === 2) {
+        return <RenderLoading />
     }
     else {
         return <RenderResultPage />

@@ -28,6 +28,7 @@ function RenderResultPage(prop) {
     )
 }
 
+
 // *************** ACTION ***************
 
 function sendData(userSelect, prevIndex){

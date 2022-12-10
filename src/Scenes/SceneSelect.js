@@ -204,7 +204,7 @@ function SetUserSelectData(prop) {
 
 // *************** DATA ***************
 
-var _pageIndexMax = 13;
+var _pageIndexMax = 14;
 var prevPageIndex = -1;
 function GetSelectPageData(prop) {
     const { pageIndex, dataAry, setAry } = pageData();

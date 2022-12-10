@@ -46,6 +46,11 @@
     background-color: white;
     display: inline-block;
     width: 480px;
+    min-height: 640px;
+    margin-top: 0;
+    top: 0;
+    padding-bottom: 100px;
+
     overflow-x: hidden;
 }
 
