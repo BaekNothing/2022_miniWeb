@@ -47,9 +47,9 @@ function RenderSelectPage(prop) {
 function PageProgressBar(prop){
     const { pageIndex } = pageData();
     const { userSelect } = userSelectData();
-    
-    return( 
-        <div> 
+
+    return(
+        <div>
             <progress className='w280' max={10} value={pageIndex}>
 
             </progress>
@@ -60,7 +60,7 @@ function PageProgressBar(prop){
 function PageQuestionTitle(prop){
     const question = prop.question;
     return (
-        <div> 
+        <div>
             <p> {question} </p>
         </div>
     )
@@ -95,12 +95,12 @@ function PageMainQuestionBox(prop) {
                 <PageMainButtonInput liIndex={5} />
                 <PageMainButtonInput liIndex={6} />
             </div>
-            
+
 
             <div className='btns_box'>
                 <NextButton />
             </div>
-            
+
         </div>
     )
 }
@@ -110,20 +110,20 @@ function PageMainButtonInput(prop){
     const { pageIndex, setPageIndex, setPrevIndex, prevIndex, dataAry } = pageData();
     var liIndex = prop.liIndex;
 
-    if (dataAry[liIndex + 2] === " noData" || dataAry[liIndex + 2] === "noData") 
+    if (dataAry[liIndex + 2] === " noData" || dataAry[liIndex + 2] === "noData")
         return <div className='invisible'> </div>;
     return (
         <div className='t16 m4 inline-block btn_selectable'>
-            <button className='bg_white btn_selectable' 
-                style={ liIndex === _userChosenData 
-                    ? { background: "#2F4FFD", color: "white", border: "white" } 
+            <button className='bg_white btn_selectable'
+                style={ liIndex === _userChosenData
+                    ? { background: "#2F4FFD", color: "white", border: "white" }
                     : { background: "white", color: "black" } }
                 onClick={() => {
                     SetUserSelectDataFlag(flags.refresh, liIndex);
                     _userChosenData = liIndex;
                     SetDummy(liIndex);
                 }}>
-            {dataAry[liIndex + 2]} </button> 
+            {dataAry[liIndex + 2]} </button>
         </div>
     )
 }
@@ -161,7 +161,7 @@ function PageMainUserSelectBox(prop) {
     //     if (i !== pageIndex + 1)
     //         result.push(<button className='box_Choosed' key={i}>{userSelect[i] ?? 0}</button>);
     //     else
-    //         result.push(<button className='box_Choosed' style={{ color: "red" }} key={i}>{userSelect[i] ?? 0}</button>);   
+    //         result.push(<button className='box_Choosed' style={{ color: "red" }} key={i}>{userSelect[i] ?? 0}</button>);
     // }
     return <div> {result} </div>
 }
