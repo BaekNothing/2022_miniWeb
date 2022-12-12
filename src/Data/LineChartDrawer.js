@@ -35,9 +35,14 @@ function RenderLineChart()
 function GetMultplier(userSelect, prevIndex)
 {
     var result = 1;
-    for (let i = 1; i < userSelect.length - 1; i++) {
-        result *= mulitpliData[prevIndex[i]][userSelect[i + 1]];
+    for (let i = 0; i < userSelect.length - 1; i++) 
+    {
+        result *= mulitpliData[i][userSelect[i] - 1];
+        //console.log("No." + i + ":" + userSelect[i] + " is "+ mulitpliData[i][userSelect[i]]);
     }
+    //remap [0.168 ~ 2.43] to [0.3 ~ 3]
+    result = (result - 0.168) / (2.43 - 0.168) * (3 - 0.3) + 0.3;
+    console.log("result:" + result);
     return result;
 }
 
