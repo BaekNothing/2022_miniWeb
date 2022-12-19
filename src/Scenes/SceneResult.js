@@ -7,7 +7,7 @@ import RaderChart from '../Data/RaderChartDrawer';
 
 function RenderResultPage(prop) {
     const { setPageIndex, setPrevIndex, prevIndex} = pageData();
-    const { setUserSelect, userSelect, SetUserName } = userSelectData();
+    const { setUserSelect, userSelect, SetUserName, userName } = userSelectData();
     const { setSceneIndex } = sceneData();
 
     useEffect(() => {
@@ -22,6 +22,7 @@ function RenderResultPage(prop) {
                 setSceneIndex(0);
                 clearAlldata(setPageIndex, setUserSelect, setPrevIndex, SetUserName);
             }}> press to GoHome</button>
+            <p>userName : {userName}</p>
             <RaderChart />
             <RenderLineChart />
         </div>
