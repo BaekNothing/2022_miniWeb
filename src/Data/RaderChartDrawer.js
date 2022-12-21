@@ -93,7 +93,10 @@ function SetData(userSelect)
     //0: 본질 1: 직장 2: 교육 3: 재력 4: 건강
     data[0].A += addictiveData[1][userSelect[1]] // 나이 - 본질
     data[1].A += addictiveData[1][userSelect[1]] // 나이 - 직장
-
+    data[4].A += addictiveData[1][userSelect[1]] // 나이 - 건강
+    
+    
+    
     data[0].A += addictiveData[2][userSelect[2]] // 국적 - 본질
     data[0].A += addictiveData[3][userSelect[3]] // 퀴어 - 본질
     data[0].A += addictiveData[4][userSelect[4]] // 장애 - 건강
