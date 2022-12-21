@@ -91,8 +91,8 @@ function SetData(userSelect)
     }
     SetMaximalData(userSelect);
     //0: 본질 1: 직장 2: 교육 3: 재력 4: 건강
-    data[4].A += addictiveData[0][userSelect[0]] // 성별 - 건강
-    data[0].A += addictiveData[0][userSelect[0]] // 성별 - 본질
+    data[4].A += addictiveData[0][userSelect[0]] // 성별 - 건강 + 최상 상 중 하 최하
+    data[0].A += addictiveData[0][userSelect[0]] // 성별 - 본질 - 2
 
     data[0].A += addictiveData[1][userSelect[1]] // 나이 - 본질
     data[1].A += addictiveData[1][userSelect[1]] // 나이 - 직장
