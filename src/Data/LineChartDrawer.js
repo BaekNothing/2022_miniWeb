@@ -37,6 +37,8 @@ function GetMultplier(userSelect, prevIndex)
     var result = 1;
     for (let i = 0; i < userSelect.length - 1; i++) 
     {
+        if(userSelect[i] <= 0)
+            continue;
         result *= mulitpliData[i][userSelect[i] - 1];
         //console.log("No." + i + ":" + userSelect[i] + " is "+ mulitpliData[i][userSelect[i]]);
     }
