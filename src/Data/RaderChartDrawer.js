@@ -99,15 +99,15 @@ function SetData(userSelect)
     
     data[0].A += addictiveData[2][userSelect[2]] // 국적 - 본질
     data[0].A += addictiveData[3][userSelect[3]] // 퀴어 - 본질
-    data[0].A += addictiveData[4][userSelect[4]] // 장애 - 건강
+    data[4].A += addictiveData[4][userSelect[4]] // 장애 - 건강
     data[0].A += addictiveData[5][userSelect[5]] // 수도권 - 본질
     data[0].A += addictiveData[6][userSelect[6]] // 결혼 - 본질
-    data[0].A += addictiveData[7][userSelect[7]] // 불로소득 - 재력
-    data[0].A += addictiveData[8][userSelect[8]] // 고정지출 - 재력
-    data[0].A += addictiveData[9][userSelect[9]] // 근로방식 - 직장
-    data[0].A += addictiveData[10][userSelect[10]] // 근로 규모 - 직장
-    data[0].A += addictiveData[11][userSelect[11]] // 최종학력 - 교육
-    data[0].A += addictiveData[12][userSelect[12]] // 교육 장소 - 교육
+    data[3].A += addictiveData[7][userSelect[7]] // 불로소득 - 재력
+    data[3].A += addictiveData[8][userSelect[8]] // 고정지출 - 재력
+    data[1].A += addictiveData[9][userSelect[9]] // 근로방식 - 직장
+    data[1].A += addictiveData[10][userSelect[10]] // 근로 규모 - 직장
+    data[2].A += addictiveData[11][userSelect[11]] // 최종학력 - 교육
+    data[2].A += addictiveData[12][userSelect[12]] // 교육 장소 - 교육
 
     // data[indexData[0]].A += addictiveData[0][userSelect[0]] // 성별 - 본질
     // data[indexData[1]].A += addictiveData[1][userSelect[1]] // 나이 - 건강
