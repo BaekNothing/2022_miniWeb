@@ -1,13 +1,13 @@
 import create from 'zustand';
 
 
-const dummyData = create(set => ({
+const dummyData = create((set) => ({
     dummy: 0,
     SetDummy: (inputData) => set(() => { return { inputData } }),
 
 }));
 
-const sceneData = create(set => ({
+const sceneData = create((set) => ({
     sceneIndex: 0,
     setSceneIndex: (sceneIndex) => set(() => { return { sceneIndex } }),
 

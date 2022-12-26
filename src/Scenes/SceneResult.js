@@ -1,7 +1,7 @@
 import '../App.css'; 
 //import axios from "axios";
 import React, { useEffect } from 'react';
-import { textData, sceneData, pageData, userSelectData, baseHigherData } from '../Data/AppVars';
+import { textData, sceneData, pageData, userSelectData, mulitpliData, baseHigherData } from '../Data/AppVars';
 import RenderLineChart from '../Data/LineChartDrawer';
 import RaderChart from '../Data/RaderChartDrawer';
 
@@ -17,7 +17,7 @@ function RenderResultPage(prop) {
     return (
         <div className="main-body" key="introPage">
             <p>this_Is_result_Page</p>
-            <div> {textData[0]} </div>
+            <div> {textData[GetRank(mulitpliData, userSelect)]} </div>
             <button onClick={() => {
                 sendData(userSelect, prevIndex)
                 setSceneIndex(0);
@@ -38,6 +38,24 @@ function sendData(userSelect, prevIndex){
     console.log("prevIndex : " + prevIndex);
 }
 
+function GetRank(mulitpliData, userSelect)
+{
+    var result = 1;
+    for (let i = 0; i < userSelect.length - 1; i++) 
+    {
+        if(userSelect[i] <= 0)
+            continue;
+        result *= mulitpliData[i][userSelect[i] - 1];
+    }
+    //remap [0.168 ~ 2.43] to [0 ~ 9]
+    result = (result - 0.168) / (2.43 - 0.168) * 9;
+    if(result < 0)
+        result = 0;
+    if(result > 9)
+        result = 9;
+    console.log("result:" + result);
+    return Math.round(result);
+}
 
 function clearAlldata(setPageIndex, setUserSelect, setPrevIndex, setUserName) {
     setPageIndex(0);

@@ -9,7 +9,7 @@ function RenderLineChart()
     const { prevIndex } = pageData();
 
     const originData = userSelect[0] === 0 ? baseHigherData : baseLowerData;
-    const mulitplier = GetMultplier(userSelect, prevIndex);
+    const mulitplier = GetMultplier(userSelect);
     const newList = [];
     for (let i = 0; i < originData.length; i++) {
         newList.push({
@@ -32,7 +32,7 @@ function RenderLineChart()
     )
 }
 
-function GetMultplier(userSelect, prevIndex)
+function GetMultplier(userSelect)
 {
     var result = 1;
     for (let i = 0; i < userSelect.length - 1; i++) 
