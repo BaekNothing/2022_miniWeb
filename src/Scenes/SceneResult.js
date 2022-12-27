@@ -16,15 +16,15 @@ function RenderResultPage(prop) {
 
     return (
         <div className="main-body" key="introPage">
-            <p>this_Is_result_Page</p>
-            <div> {textData[GetRank(mulitpliData, userSelect)]} </div>
             <button onClick={() => {
                 sendData(userSelect, prevIndex)
                 setSceneIndex(0);
                 clearAlldata(setPageIndex, setUserSelect, setPrevIndex, SetUserName);
             }}> press to GoHome</button>
+            <p>this_Is_result_Page</p>
             <p>userName : {userName}</p>
             <RaderChart />
+            <div> {textData[GetRank(mulitpliData, userSelect)]} </div>
             <RenderLineChart />
         </div>
     )

@@ -34,7 +34,7 @@ function RenderSelectPage(prop) {
             </div>
             <PageProgressBar />
             <PageQuestionTitle question={dataAry[2]} />
-            <PageMainImage image={dataAry[1]} select={prevIndex} />
+            <PageMainImage />
             <PageMainQuestionBox userData={_userChosenData === 0 ? 0 : 1} />
 
         </div>
@@ -66,18 +66,81 @@ function PageQuestionTitle(prop){
     )
 }
 
-function PageMainImage(prop) {
-    const image = prop.image;
+function PageMainImage(prop) 
+{
     const { dummy } = dummyData();
+    const { userSelect } = userSelectData();
+    const { prevIndex } = pageData();
     var index = 0;
-    if(prop.select) index = prop.select[prop.select.length - 1] ?? 0;
+    var result = [];
 
+    // 성별 나이 국적 퀴어 장애 수도권 결혼 불로소득 지출 고용형태 기업규모 연봉 학력 출신지
+    if (userSelect.length > 6) // 거주지
+    {
+        var imagePath = "century_" + userSelect[6];
+        result.push(<img key='century' className='char' id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);
+    }
+    if (userSelect.length > 11) // 근로규모
+    {
+        var imagePath = "amount_" + userSelect[11];
+        result.push(<img key='amount' className='char' id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);
+    }
+    
+    if(userSelect.length > 1) // 성별
+    {
+        var imagePath = "gender_" + userSelect[1];
+        result.push(<img key='gender' className='char' id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);
+    }
+    
+    if (userSelect.length > 3) // 국적
+    {
+        var imagePath = "contury_" + userSelect[3];
+        result.push(<img key='contury' className='char' id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);
+    }
+    if (userSelect.length > 4) // 퀴어
+    {
+        var imagePath = "queer_" + userSelect[4];
+        result.push(<img key='queer' className='char' id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);
+    }
+    if (userSelect.length > 5) // 장애
+    {
+        var imagePath = "disabled_" + userSelect[5];
+        result.push(<img key='disabled' className='char' id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);
+    }
+    
+    if (userSelect.length > 9) // 지출
+    {
+        var imagePath = "income_" + userSelect[9];
+        result.push(<img key='income' className='char' id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);
+    }
+    if (userSelect.length > 10) // 근로형태
+    {
+        var imagePath = "outcome_" + userSelect[10];
+        result.push(<img key='outcome' className='char' id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);
+    }
+    
+    if (userSelect.length > 13) // 학력
+    {
+        var imagePath = "grade_" + userSelect[13];
+        result.push(<img key='grade' className='char' id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);
+    }
+    if (userSelect.length > 14) // 출신
+    {
+        var imagePath = "schoolRegion_" + userSelect[14];
+        result.push(<img key='choolRegion' className='char' id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);
+    }
+
+    var index = (prevIndex ?? []).length;
+    if(_userChosenData > 0 || prevIndex === undefined)
+    {
+        var imagePath = questionData[index][1] + "_" + _userChosenData;
+        result.push(<img key='now' className='char' id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);
+    }
+    
     return (
         <div>
             <div className='main-image'>
-                {/* <img className='char' id='char_acc' src={'./images/char/charACC_0' + randomNumber + '.png'} alt='charBody' /> */}
-                {/* <img className='char' id='char_hair' src={'./images/char/charHair_0' + randomNumber + '.png'} alt='charBody' /> */}
-                <img className='char' id='char_body' src={'./images/char/' + image + '_' + (_userChosenData <= 0 ? 1 : _userChosenData) +'.png'} alt='charBody' />
+                {result}
             </div>
             {/* <img src={'./images/' + image + '.png'} style={{ width: '480px' }} alt='' /> */}
         </div>
