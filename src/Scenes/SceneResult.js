@@ -11,7 +11,7 @@ function RenderResultPage(prop) {
     const { setSceneIndex } = sceneData();
 
     useEffect(() => {
-        
+      
     }, [])
 
     return (
