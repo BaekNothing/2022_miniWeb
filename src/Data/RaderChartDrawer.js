@@ -195,7 +195,10 @@ function SetData(userSelect)
     switch (userSelect[6]) { // 결혼
         case 0: // 결혼
             //data[dicType["본질"]].A += +1;
-            data[dicType["직장"]].A += +-1; //남성은 +1, 여성은 -1
+            if(userSelect[0] === 0)
+                data[dicType["직장"]].A += -1; //남성은 +1, 여성은 -1
+            else
+                data(dicType["직장"]).A += 1;
             data[dicType["재력"]].A += +1;
             //data[dicType["교육"]].A += 0;
             //data[dicType["건강"]].A += 0;
