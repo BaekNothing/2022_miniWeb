@@ -267,8 +267,8 @@ function SetData(userSelect)
             break;
         case 1: // 비정규직
             data[dicType["본질"]].A += -1;
-            data[dicType["직장"]].A += -2;
-            data[dicType["재력"]].A += -2;
+            data[dicType["직장"]].A += -1;
+            data[dicType["재력"]].A += 0;
             data[dicType["교육"]].A += 0;
             data[dicType["건강"]].A += 0;
             break;
