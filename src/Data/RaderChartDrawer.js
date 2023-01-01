@@ -7,27 +7,27 @@ const data = [
     {
         subject: '본질',
         A: 120,
-        fullMark: 150,
+        fullMark: 16, // -10 ~ 16
     },
     {
         subject: '직장',
         A: 98,
-        fullMark: 150,
+        fullMark: 22, // -20 ~ 22
     },
     {
         subject: '교육',
         A: 86,
-        fullMark: 150,
+        fullMark: 24, // -20 ~ 24
     },
     {
         subject: '재력',
         A: 99,
-        fullMark: 150,
+        fullMark: 15, // -1 ~ 15
     },
     {
         subject: '건강',
         A: 85,
-        fullMark: 150,
+        fullMark: 14, // -8 ~ 14
     }
 ];
 
