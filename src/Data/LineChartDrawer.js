@@ -2,6 +2,15 @@ import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip} from 'recharts';
 import React, { useEffect } from 'react';
 import { sceneData, pageData, userSelectData, baseHigherData, baseLowerData, mulitpliData } from './AppVars';
 
+const _name = [
+    "10대",
+    "20대",
+    "30대",
+    "40대",
+    "50대",
+    "60대"
+]
+
 
 function RenderLineChart()
 {
@@ -11,9 +20,10 @@ function RenderLineChart()
     const originData = userSelect[0] === 0 ? baseHigherData : baseLowerData;
     const mulitplier = GetMultplier(userSelect);
     const newList = [];
+    
     for (let i = 0; i < originData.length; i++) {
         newList.push({
-            name: i,
+            name: _name[i],
             base: originData[i],
             state: originData[i] * mulitplier,
             amt: mulitplier
@@ -21,9 +31,9 @@ function RenderLineChart()
     }
 
     return (
-        <LineChart width={480} height={350} data={newList} margin={{ top: 50, right: 50, bottom: 5, left: 50 }}>
+        <LineChart width={440} height={350} data={newList} margin={{ top: 50, right: 50, bottom: 5, left: 0 }}>
             <Line type="monotone" dataKey="base" stroke="#8884d8" />
-            <Line type="monotone" dataKey="state" stroke="#ff00ff" />
+            <Line type="monotone" dataKey="state" stroke="#ff00ff" label={CustomLabel} />
             <CartesianGrid stroke="#ccc" strokeDasharray="5 5" opacity={1.0} />
             <XAxis dataKey="name" />
             <YAxis />
@@ -31,6 +41,12 @@ function RenderLineChart()
         </LineChart>
     )
 }
+
+const CustomLabel = ({ x, y, stroke, value }) => (
+    <text x={x} y={y} dy={-4} fill={stroke} fontSize={10} textAnchor="middle">
+        {Math.round(value)}
+    </text>
+);
 
 function GetMultplier(userSelect)
 {

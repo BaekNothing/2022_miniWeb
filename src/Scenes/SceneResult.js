@@ -21,11 +21,60 @@ function RenderResultPage(prop) {
                 setSceneIndex(0);
                 clearAlldata(setPageIndex, setUserSelect, setPrevIndex, SetUserName);
             }}> press to GoHome</button>
-            <p>this_Is_result_Page</p>
-            <p>userName : {userName}</p>
+
+            <ResulTitle />
+            <ResultLevelImage rank={GetRank(mulitpliData, userSelect)} />
+            <ResultReport name={userName} text={textData[GetRank(mulitpliData, userSelect)]} />
+            <Resultchart />
+        </div>
+    )
+}
+
+
+function ResulTitle()
+{
+    return (
+        <div >  
+            <hr/>
+                <p>No. 275A-64</p>
+            <hr/>
+        </div>
+    )
+}
+
+function ResultLevelImage(prop)
+{
+    const rank = prop.rank
+    return (
+        <div>
+
+            <p> Level {rank}</p>
+            <img className='char' src={'./images/char/age_1.png'} alt="LevelImage" />
+        </div>
+    )
+}
+
+function ResultReport(prop)
+{
+    const name = prop.name
+    const textData = prop.text
+    return (
+        <div>
+            <hr/>
+            <p>userName : {name}</p>
+            <p>textData : {textData}</p>
+        </div>
+    )
+}
+
+function Resultchart(){
+    return(
+        <div>
+            <hr />            
             <RaderChart />
-            <div> {textData[GetRank(mulitpliData, userSelect)]} </div>
+            <hr />
             <RenderLineChart />
+            <hr />
         </div>
     )
 }

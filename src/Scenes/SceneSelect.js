@@ -122,7 +122,7 @@ function PageMainImage(prop)
     if (userSelect.length > 13) // 학력
     {
         var imagePath = "grade_" + userSelect[13];
-        result.push(<img key='grade' className='char' id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);
+        result.push(<img key='grade45' className='char' id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);
     }
     if (userSelect.length > 14) // 출신
     {

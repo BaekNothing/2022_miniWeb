@@ -41,12 +41,20 @@ function RaiderChart()
         <RadarChart width={480} height={350} cx="50%" cy="50%" outerRadius="80%" data={data}>
             <PolarGrid />
             <PolarAngleAxis dataKey="subject" />
-            <PolarRadiusAxis angle={30} domain={[0, 5]} />
-            <Radar  dataKey="A" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
+            <PolarRadiusAxis angle={30} domain={[-10, 15]} />
+            <Radar  
+                dataKey="A" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6}
+                label={CustomLabel} />
             <Legend />
         </RadarChart>
     );   
 }
+
+const CustomLabel = ({ x, y, stroke, value }) => (
+    <text x={x} y={y} dy={-4} fill={stroke} fontSize={10} textAnchor="middle">
+        {value}
+    </text>
+);
 
 const dicType = {
     "본질": 0,
@@ -67,16 +75,16 @@ function SetData(userSelect)
     {
         data[i].A = 0;
     }
-    
-    switch (userSelect[0]) { // 성별
-        case 0: // 여성
+
+    switch (userSelect[1]) { // 성별
+        case 1: // 여성
             data[dicType["본질"]].A += -1;
             data[dicType["직장"]].A += -1;
             data[dicType["재력"]].A += -1;
             data[dicType["교육"]].A += 0;
             data[dicType["건강"]].A += 1;
             break;
-        case 1: // 남성
+        case 2: // 남성
             data[dicType["본질"]].A += 2;
             data[dicType["직장"]].A += 2;
             data[dicType["재력"]].A += 2;
@@ -84,43 +92,44 @@ function SetData(userSelect)
             data[dicType["건강"]].A += 2;
             break;
     }
-    switch (userSelect[1]) { // 나이
-        case 0: // 0 ~ 19
+
+    switch (userSelect[2]) { // 나이
+        case 1: // 0 ~ 19
             data[dicType["본질"]].A += 2;
             data[dicType["직장"]].A += -2;
             data[dicType["재력"]].A += -2;
             data[dicType["교육"]].A += 2;
             data[dicType["건강"]].A += 2;
             break;
-        case 1: // 20 ~ 29
+        case 2: // 20 ~ 29
             data[dicType["본질"]].A += 2;
             data[dicType["직장"]].A += 2;
             data[dicType["재력"]].A += 1;
             data[dicType["교육"]].A += 2;
             data[dicType["건강"]].A += 2;
             break;
-        case 2: // 30 ~ 39
+        case 3: // 30 ~ 39
             data[dicType["본질"]].A += 1;
             data[dicType["직장"]].A += 2;
             data[dicType["재력"]].A += 2;
             data[dicType["교육"]].A += 1;
             data[dicType["건강"]].A += 1;
             break;
-        case 3: // 40 ~ 49
+        case 4: // 40 ~ 49
             data[dicType["본질"]].A += 0;
             data[dicType["직장"]].A += 1;
             data[dicType["재력"]].A += 1;
             data[dicType["교육"]].A += 0;
             data[dicType["건강"]].A += 0;
             break;
-        case 4: // 50 ~ 59
+        case 5: // 50 ~ 59
             data[dicType["본질"]].A += -1;
             data[dicType["직장"]].A += -1;
             data[dicType["재력"]].A += 0;
             data[dicType["교육"]].A += -1;
             data[dicType["건강"]].A += -1;
             break;
-        case 5: // 60 ~
+        case 6: // 60 ~
             data[dicType["본질"]].A += -2;
             data[dicType["직장"]].A += -2;
             data[dicType["재력"]].A += -2;
@@ -128,15 +137,15 @@ function SetData(userSelect)
             data[dicType["건강"]].A += -2;
             break;
     }
-    switch (userSelect[2]) { // 국적
-        case 0: // 한국
+    switch (userSelect[3]) { // 국적
+        case 1: // 한국
             data[dicType["본질"]].A += +1;
             data[dicType["직장"]].A += +2;
             data[dicType["재력"]].A += +2;
             data[dicType["교육"]].A += +1;
             data[dicType["건강"]].A += +2;
             break;
-        case 1: // 외국
+        case 2: // 외국
             data[dicType["본질"]].A += -1;
             data[dicType["직장"]].A += -2;
             data[dicType["재력"]].A += -2;
@@ -144,15 +153,15 @@ function SetData(userSelect)
             data[dicType["건강"]].A += -2;
             break;
     }
-    switch (userSelect[3]) { // 퀴어
-        case 0: // 퀴어
+    switch (userSelect[4]) { // 퀴어
+        case 1: // 퀴어
             data[dicType["본질"]].A += -2;
             data[dicType["직장"]].A += -1;
             data[dicType["재력"]].A += -1;
             //data[dicType["교육"]].A += 0;
             data[dicType["건강"]].A += -1;
             break;
-        case 1: // 비퀴어
+        case 2: // 비퀴어
             data[dicType["본질"]].A += +2;
             data[dicType["직장"]].A += +1;
             data[dicType["재력"]].A += +1;
@@ -160,15 +169,15 @@ function SetData(userSelect)
             data[dicType["건강"]].A += +1;
             break;
     }
-    switch (userSelect[4]) { // 장애
-        case 0: // 장애
+    switch (userSelect[5]) { // 장애
+        case 1: // 장애
             data[dicType["본질"]].A += -2;
             data[dicType["직장"]].A += -2;
             data[dicType["재력"]].A += -2;
             data[dicType["교육"]].A += -2;
             data[dicType["건강"]].A += -2;
             break;
-        case 1: // 비장애
+        case 2: // 비장애
             data[dicType["본질"]].A += +2;
             data[dicType["직장"]].A += +2;
             data[dicType["재력"]].A += +2;
@@ -176,15 +185,15 @@ function SetData(userSelect)
             data[dicType["건강"]].A += +2;
             break;
     }
-    switch (userSelect[5]) { // 수도권
-        case 0: // 수도권
+    switch (userSelect[6]) { // 수도권
+        case 1: // 수도권
             //data[dicType["본질"]].A += +1;
             data[dicType["직장"]].A += +2;
             data[dicType["재력"]].A += +1;
             data[dicType["교육"]].A += +2;
             data[dicType["건강"]].A += +1;
             break;
-        case 1: // 비수도권
+        case 2: // 비수도권
             //data[dicType["본질"]].A += -1;
             data[dicType["직장"]].A += -2;
             data[dicType["재력"]].A += -1;
@@ -192,8 +201,8 @@ function SetData(userSelect)
             data[dicType["건강"]].A += -1;
             break;
     }
-    switch (userSelect[6]) { // 결혼
-        case 0: // 결혼
+    switch (userSelect[7]) { // 결혼
+        case 1: // 결혼
             //data[dicType["본질"]].A += +1;
             if(userSelect[0] === 0)
                 data[dicType["직장"]].A += -1; //남성은 +1, 여성은 -1
@@ -203,7 +212,7 @@ function SetData(userSelect)
             //data[dicType["교육"]].A += 0;
             //data[dicType["건강"]].A += 0;
             break;
-        case 1: // 미혼
+        case 2: // 미혼
             //data[dicType["본질"]].A += 0;
             data[dicType["직장"]].A += 0;
             data[dicType["재력"]].A += -1;
@@ -211,22 +220,22 @@ function SetData(userSelect)
             //data[dicType["건강"]].A += 0;
             break;
     }
-    switch (userSelect[7]) { // 불로소득
-        case 0: // 많음
+    switch (userSelect[8]) { // 불로소득
+        case 1: // 많음
             data[dicType["본질"]].A += +2;
             //data[dicType["직장"]].A += 0;
             data[dicType["재력"]].A += +2;
             //data[dicType["교육"]].A += 1;
             data[dicType["건강"]].A += +2;
             break;
-        case 1: // 적음
+        case 2: // 적음
             data[dicType["본질"]].A += +1;
             //data[dicType["직장"]].A += 1;
             data[dicType["재력"]].A += +1;
             //data[dicType["교육"]].A += 1;
             data[dicType["건강"]].A += +1;
             break;
-        case 2: // 없음
+        case 3: // 없음
             data[dicType["본질"]].A += 0;
             //data[dicType["직장"]].A += 1;
             data[dicType["재력"]].A += 0;
@@ -234,22 +243,22 @@ function SetData(userSelect)
             data[dicType["건강"]].A += 0;
             break;
     }
-    switch (userSelect[8]) { // 고정지출
-        case 0: // 많음
+    switch (userSelect[9]) { // 고정지출
+        case 1: // 많음
             //data[dicType["본질"]].A += 1;
             //data[dicType["직장"]].A += 1;
             data[dicType["재력"]].A += -1;
             //data[dicType["교육"]].A += 1;
             //data[dicType["건강"]].A += 1;
             break;
-        case 1: // 적음
+        case 2: // 적음
             //data[dicType["본질"]].A += 1;
             //data[dicType["직장"]].A += 1;
             data[dicType["재력"]].A += 0;
             //data[dicType["교육"]].A += 1;
             //data[dicType["건강"]].A += 1;
             break;
-        case 2: // 없음
+        case 3: // 없음
             //data[dicType["본질"]].A += 1;
             //data[dicType["직장"]].A += 1;
             data[dicType["재력"]].A += +1;
@@ -257,22 +266,22 @@ function SetData(userSelect)
             //data[dicType["건강"]].A += 1;
             break;
     }
-    switch (userSelect[9]) { // 근로방식
-        case 0: // 정규직
+    switch (userSelect[10]) { // 근로방식
+        case 1: // 정규직
             data[dicType["본질"]].A += +2;
             data[dicType["직장"]].A += +2;
             data[dicType["재력"]].A += +2;
             data[dicType["교육"]].A += +1;
             data[dicType["건강"]].A += +1;
             break;
-        case 1: // 비정규직
+        case 2: // 비정규직
             data[dicType["본질"]].A += -1;
             data[dicType["직장"]].A += -1;
             data[dicType["재력"]].A += 0;
             data[dicType["교육"]].A += 0;
             data[dicType["건강"]].A += 0;
             break;
-        case 2: // 무직
+        case 3: // 무직
             data[dicType["본질"]].A += -2;
             data[dicType["직장"]].A += -2;
             data[dicType["재력"]].A += -2;
@@ -280,36 +289,36 @@ function SetData(userSelect)
             data[dicType["건강"]].A += 0;
             break;
     }
-    switch (userSelect[10]) { // 근로 규모
-        case 0: // 대기업
+    switch (userSelect[11]) { // 근로 규모
+        case 1: // 대기업
             data[dicType["본질"]].A += +2;
             data[dicType["직장"]].A += +2;
             data[dicType["재력"]].A += +2;
             data[dicType["교육"]].A += +1;
             data[dicType["건강"]].A += +1;
             break;
-        case 1: // 중소기업
+        case 2: // 중소기업
             data[dicType["본질"]].A += +1;
             data[dicType["직장"]].A += +1;
             data[dicType["재력"]].A += +1;
             data[dicType["교육"]].A += 0;
             data[dicType["건강"]].A += 0;
             break;
-        case 2: // 자영업
+        case 3: // 자영업
             data[dicType["본질"]].A += +1;
             data[dicType["직장"]].A += +1;
             data[dicType["재력"]].A += +1;
             data[dicType["교육"]].A += 0;
             data[dicType["건강"]].A += -1;
             break;
-        case 3: // 프리랜서
+        case 4: // 프리랜서
             data[dicType["본질"]].A += +1;
             data[dicType["직장"]].A += +1;
             data[dicType["재력"]].A += +1;
             data[dicType["교육"]].A += 0;
             data[dicType["건강"]].A += -1;
             break;
-        case 4: // 무직
+        case 5: // 무직
             data[dicType["본질"]].A += 0;
             data[dicType["직장"]].A += -2;
             data[dicType["재력"]].A += -2;
@@ -317,29 +326,29 @@ function SetData(userSelect)
             data[dicType["건강"]].A += 0;
             break;
     }
-    switch (userSelect[11]) { // 연봉
-        case 0: // 8000이상
+    switch (userSelect[12]) { // 연봉
+        case 1: // 8000이상
             //data[dicType["본질"]].A += +2;
             data[dicType["직장"]].A += +2;
             data[dicType["재력"]].A += +2;
             //data[dicType["교육"]].A += 0;
             //data[dicType["건강"]].A += +2;
             break;
-        case 1: // 5000이상
+        case 2: // 5000이상
             //data[dicType["본질"]].A += 1;
             data[dicType["직장"]].A += +1;
             data[dicType["재력"]].A += +1;
             //data[dicType["교육"]].A += 1;
             //data[dicType["건강"]].A += 1;
             break;
-        case 2: // 3000이상
+        case 3: // 3000이상
             //data[dicType["본질"]].A += 1;
             data[dicType["직장"]].A += 0;
             data[dicType["재력"]].A += 0;
             //data[dicType["교육"]].A += 1;
             //data[dicType["건강"]].A += 1;
             break;
-        case 3: // 3000미만
+        case 4: // 3000미만
             //data[dicType["본질"]].A += 1;
             data[dicType["직장"]].A += -1;
             data[dicType["재력"]].A += -1;
@@ -347,36 +356,36 @@ function SetData(userSelect)
             //data[dicType["건강"]].A += 1;
             break;
     }
-    switch (userSelect[12]) { // 학력
-        case 0: // 석사 이상
+    switch (userSelect[13]) { // 학력
+        case 1: // 석사 이상
             //data[dicType["본질"]].A += 1;
             data[dicType["직장"]].A += +2;
             data[dicType["재력"]].A += +2;
             data[dicType["교육"]].A += +2;
             //data[dicType["건강"]].A += 1;
             break;
-        case 1: // 대학 이상
+        case 2: // 대학 이상
             //data[dicType["본질"]].A += 1;
             data[dicType["직장"]].A += +1;
             data[dicType["재력"]].A += +1;
             data[dicType["교육"]].A += +1;
             //data[dicType["건강"]].A += 1;
             break;
-        case 2: // 고등 이상
+        case 3: // 고등 이상
             //data[dicType["본질"]].A += 1;
             data[dicType["직장"]].A += -1;
             data[dicType["재력"]].A += -1;
             data[dicType["교육"]].A += -1;
             //data[dicType["건강"]].A += 1;
             break;
-        case 3: // 의무교육 이상
+        case 4: // 의무교육 이상
             //data[dicType["본질"]].A += 1;
             data[dicType["직장"]].A += -1;
             data[dicType["재력"]].A += -1;
             data[dicType["교육"]].A += -1;
             //data[dicType["건강"]].A += 1;
             break;
-        case 4: // 해당사항 없음
+        case 5: // 해당사항 없음
             //data[dicType["본질"]].A += 1;
             data[dicType["직장"]].A += -2;
             data[dicType["재력"]].A += -2;
@@ -384,22 +393,22 @@ function SetData(userSelect)
             //data[dicType["건강"]].A += 1;
             break;
     }
-    switch (userSelect[13]) { // 교육 장소
-        case 0: // 서울
+    switch (userSelect[14]) { // 교육 장소
+        case 1: // 서울
             data[dicType["본질"]].A += +2;
             data[dicType["직장"]].A += +2;
             data[dicType["재력"]].A += +2;
             data[dicType["교육"]].A += +2;
             //data[dicType["건강"]].A += 1;
             break;
-        case 1: // 수도권
+        case 2: // 수도권
             data[dicType["본질"]].A += +1;
             data[dicType["직장"]].A += +1;
             data[dicType["재력"]].A += +1;
             data[dicType["교육"]].A += +1;
             //data[dicType["건강"]].A += 1;
             break;
-        case 1: // 비 수도권
+        case 3: // 비 수도권
             data[dicType["본질"]].A += -1;
             data[dicType["직장"]].A += -2;
             data[dicType["재력"]].A += -2;
