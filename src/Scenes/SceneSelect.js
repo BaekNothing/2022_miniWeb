@@ -71,24 +71,30 @@ function PageMainImage(prop)
     const { dummy } = dummyData();
     const { userSelect } = userSelectData();
     const { prevIndex } = pageData();
-    var index = 0;
     var result = [];
-
-    // 성별 나이 국적 퀴어 장애 수도권 결혼 불로소득 지출 고용형태 기업규모 연봉 학력 출신지
-    if (userSelect.length > 6) // 거주지
+    var index = (prevIndex ?? []).length;
+    if (index === 5 || index === 10 || index === 8 || index === 11)
     {
-        var imagePath = "century_" + userSelect[6];
-        result.push(<img key='century' className='char' id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);
-    }
-    if (userSelect.length > 11) // 근로규모
-    {
-        var imagePath = "amount_" + userSelect[11];
-        result.push(<img key='amount' className='char' id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);
+        if (_userChosenData > 0 || prevIndex === undefined) 
+        {
+            var imagePath = questionData[index][1] + "_" + _userChosenData;
+            result.push(<img key='now' className='char' id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);
+        }
     }
     
-    if(userSelect.length > 1) // 성별
+    if(userSelect.length == 2) // 성별
     {
         var imagePath = "gender_" + userSelect[1];
+        result.push(<img key='gender' className='char' id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);
+    }
+
+    if (userSelect.length > 2) // 나이
+    {
+        var imagePath = "age_" + userSelect[2];
+        if(userSelect[1] == 1)
+        {
+            imagePath += "_1";
+        }
         result.push(<img key='gender' className='char' id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);
     }
     
@@ -107,34 +113,18 @@ function PageMainImage(prop)
         var imagePath = "disabled_" + userSelect[5];
         result.push(<img key='disabled' className='char' id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);
     }
-    
-    if (userSelect.length > 9) // 지출
-    {
-        var imagePath = "income_" + userSelect[9];
-        result.push(<img key='income' className='char' id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);
-    }
-    if (userSelect.length > 10) // 근로형태
-    {
-        var imagePath = "outcome_" + userSelect[10];
-        result.push(<img key='outcome' className='char' id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);
-    }
-    
-    if (userSelect.length > 13) // 학력
-    {
-        var imagePath = "grade_" + userSelect[13];
-        result.push(<img key='grade45' className='char' id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);
-    }
-    if (userSelect.length > 14) // 출신
-    {
-        var imagePath = "schoolRegion_" + userSelect[14];
-        result.push(<img key='choolRegion' className='char' id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);
-    }
 
-    var index = (prevIndex ?? []).length;
-    if(_userChosenData > 0 || prevIndex === undefined)
+
+    if (!(index === 5 || index === 10 || index === 8 || index === 11)) 
     {
-        var imagePath = questionData[index][1] + "_" + _userChosenData;
-        result.push(<img key='now' className='char' id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);
+        if (_userChosenData > 0 || prevIndex === undefined) {
+            var imagePath = questionData[index][1] + "_" + _userChosenData;
+            if ((index == 1 || index == 6) &&
+                userSelect[1] == 1) {
+                imagePath += "_1";
+            }
+            result.push(<img key='now' className='char' id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);
+        }
     }
     
     return (
