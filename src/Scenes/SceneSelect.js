@@ -216,12 +216,6 @@ function PageMainUserSelectBox(prop) {
     const { userSelect } = userSelectData();
     const result = [];
 
-    // for (let i = 1; i < userSelect.length; i++) {
-    //     if (i !== pageIndex + 1)
-    //         result.push(<button className='box_Choosed' key={i}>{userSelect[i] ?? 0}</button>);
-    //     else
-    //         result.push(<button className='box_Choosed' style={{ color: "red" }} key={i}>{userSelect[i] ?? 0}</button>);
-    // }
     return <div> {result} </div>
 }
 
@@ -238,9 +232,13 @@ function SetUserSelectData(prop) {
         if (_refreshUserSelectDataFlag) {
             //push SelectedNumber to userSelect
             var tempAry = [...userSelect, chosenIndex];
+            //if tempAry.length > pageindex, remove last element
+            while (tempAry.length > pageIndex + 1) {
+                tempAry.pop();
+            }
             setUserSelect(tempAry);
-            _userChosenData = 0;
-
+            _userChosenData = 0; 
+            console.log(tempAry)
             //move to next Scene
             if (pageIndex > _pageIndexMax)
             {

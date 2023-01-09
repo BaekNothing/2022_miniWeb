@@ -1,7 +1,7 @@
 import '../App.css'; 
 //import axios from "axios";
 import React, { useEffect } from 'react';
-import { textData, sceneData, pageData, userSelectData, mulitpliData, baseHigherData } from '../Data/AppVars';
+import { textData, sceneData, pageData, userSelectData, mulitpliData, baseHigherData, questionData } from '../Data/AppVars';
 import RenderLineChart from '../Data/LineChartDrawer';
 import RaderChart from '../Data/RaderChartDrawer';
 
@@ -24,7 +24,7 @@ function RenderResultPage(prop) {
 
             <ResulTitle />
             <ResultLevelImage rank={GetRank(mulitpliData, userSelect)} />
-            <ResultReport name={userName} text={textData[GetRank(mulitpliData, userSelect)]} />
+            <ResultReport name={userName} rank={GetRank(mulitpliData, userSelect)} text={textData[GetRank(mulitpliData, userSelect)]} />
             <Resultchart />
         </div>
     )
@@ -42,14 +42,37 @@ function ResulTitle()
     )
 }
 
-function ResultLevelImage(prop)
+function ResultLevelImage(prop) 
 {
+    const { userSelect } = userSelectData();
     const rank = prop.rank
+    var result = [];
+    
+    {
+        const i = 8;
+        const selectedNumber = userSelect[i];
+        if (selectedNumber > 0) {
+            const imageName = questionData[i][1];
+            const imagePath = imageName + "_" + selectedNumber;
+            result.push(<img key={i} className='char' id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);
+        }
+    }
+
+    for (var i = 1; i < 5; i++) {
+        const selectedNumber = userSelect[i];
+        if (selectedNumber <= 0)
+            continue;
+        const imageName = questionData[i][1];
+        const imagePath = imageName + "_" + selectedNumber;
+        result.push(<img key={i + 1} className='char' id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);
+    }
+
+
     return (
         <div>
-
-            <p> Level {rank}</p>
-            <img className='char' src={'./images/char/age_1.png'} alt="LevelImage" />
+            <div className='main-image'>
+                {result}
+            </div>
         </div>
     )
 }
@@ -58,10 +81,12 @@ function ResultReport(prop)
 {
     const name = prop.name
     const textData = prop.text
+    const rank = prop.rank
     return (
         <div>
             <hr/>
             <p>userName : {name}</p>
+            <p>rank : {rank}</p>
             <p>textData : {textData}</p>
         </div>
     )

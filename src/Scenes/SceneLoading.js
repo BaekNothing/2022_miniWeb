@@ -53,17 +53,95 @@ function SetTimer() {
         }
     }, [sec]);
 
-    const imageName = questionData[random][1];
-
     return (
         <div className="main-body">
-
-            <p>{random} 결과를 계산중입니다</p>
-            <img className='char' id='char_body' src={'./images/char/' + imageName + '_1.png'} alt='charBody' />
+            <p> 결과를 계산중입니다</p>
+            <DrawImage />
             
         </div>
     )
 
+
+
+    function DrawImage() 
+    {
+        var result = [];
+
+        //draw 5 8 10 11 first
+        {
+            const i = 5;
+            const randomNumber = Math.round(Math.random(0, 1) * 3) - 1;
+            if (randomNumber > 0) {
+                const imageName = questionData[i][1];
+                const imagePath = imageName + "_" + randomNumber;
+                result.push(<img key={i} className='char' id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);
+            }
+        }
+
+        {
+            const i = 8;
+            const randomNumber = Math.round(Math.random(0, 1) * 3) - 1;
+            if (randomNumber > 0) {
+                const imageName = questionData[i][1];
+                const imagePath = imageName + "_" + randomNumber;
+                result.push(<img key={i} className='char' id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);
+            }
+        }
+
+        // {
+        //     const i = 10;
+        //     const randomNumber = Math.round(Math.random(0, 1) * 3) - 1;
+        //     if (randomNumber > 0) {
+        //         const imageName = questionData[i][1];
+        //         const imagePath = imageName + "_" + randomNumber;
+        //         result.push(<img key={i} className='char' id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);
+        //     }
+        // }
+
+        {
+            const i = 11;
+            const randomNumber = Math.round(Math.random(0, 1) * 3) - 1;
+            if (randomNumber > 0)
+            {
+                const imageName = questionData[i][1];
+                const imagePath = imageName + "_" + randomNumber;
+                result.push(<img key={i} className='char' id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);    
+            }
+        }
+
+        {
+            const i = 0;
+            const randomNumber = Math.random(0, 1) > 0.5 ? 1 : 2;
+            if (randomNumber > 0) {
+                const imageName = questionData[i][1];
+                const imagePath = imageName + "_" + randomNumber;
+                result.push(<img key={i} className='char' id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);
+            }
+        }
+
+
+        for(var i = 1; i < 13; i++)
+        {
+            const randomNumber = Math.round(Math.random(0, 1) * 3) - 1;
+            if(randomNumber <= 0)
+                continue;
+            if (i == 5 || i == 8 || i == 10 || i == 11)
+                continue;
+            const imageName = questionData[i][1];
+            const imagePath = imageName + "_" + randomNumber;
+            result.push(<img key={i} className='char' id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);    
+        }
+
+
+        return (
+            <div>
+                <div className='main-image'>
+                    {result}
+                </div>
+                {/* <img src={'./images/' + image + '.png'} style={{ width: '480px' }} alt='' /> */}
+            </div>
+        )
+    }
 }
 
 export default RenderLoading;
