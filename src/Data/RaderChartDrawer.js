@@ -5,6 +5,7 @@ import { sceneData, pageData, userSelectData, baseHigherData, baseLowerData } fr
 
 const data = [
     {
+        // -10 ~ 15
         subject: '본질',
         A: 120,
         fullMark: 16, // -10 ~ 16

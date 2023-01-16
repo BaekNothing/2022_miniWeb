@@ -20,7 +20,6 @@ const flags = {
 
 function RenderSelectPage(prop) {
     const { pageIndex, setPageIndex, dataAry, prevIndex } = pageData();
-    console.log("pageIndex : " + pageIndex);
 
     return (
         <div className="main-body" key="setUserSelectData">
@@ -232,18 +231,19 @@ function SetUserSelectData(prop) {
         if (_refreshUserSelectDataFlag) {
             //push SelectedNumber to userSelect
             var tempAry = [...userSelect, chosenIndex];
+            if (tempAry.length == 1)
+            {
+                tempAry = [0, chosenIndex];
+            }
             //if tempAry.length > pageindex, remove last element
             while (tempAry.length > pageIndex + 1) {
                 tempAry.pop();
             }
             setUserSelect(tempAry);
             _userChosenData = 0; 
-            console.log(tempAry)
             //move to next Scene
             if (pageIndex > _pageIndexMax)
             {
-                console.log("userSelect : " + userSelect);
-                console.log("prevIndex : " + prevIndex);
                 setSceneIndex(sceneIndex + 1);
             }
 
@@ -263,7 +263,6 @@ function GetSelectPageData(prop) {
     useEffect(() => {
         if (prevPageIndex !== pageIndex) {
             var data = [...questionData]
-            console.log(questionData);
             var tempAry = [...dataAry];
             tempAry[0] = data[pageIndex ?? 0][0] ?? String(pageIndex ?? 0) + " noData";
             tempAry[1] = data[pageIndex ?? 0][1] ?? "noData";
@@ -281,7 +280,6 @@ function GetSelectPageData(prop) {
             tempAry[13] = data[pageIndex ?? 0][13] ?? "-";
             tempAry[14] = data[pageIndex ?? 0][14] ?? "-";
             setAry(tempAry);
-            console.log(tempAry);
         }
         prevPageIndex = pageIndex;
     }, [dataAry, pageIndex, setAry])

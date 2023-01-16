@@ -17,9 +17,7 @@ function RenderResultPage(prop) {
     return (
         <div className="main-body" key="introPage">
             <button onClick={() => {
-                sendData(userSelect, prevIndex)
-                setSceneIndex(0);
-                clearAlldata(setPageIndex, setUserSelect, setPrevIndex, SetUserName);
+                window.location.reload();
             }}> press to GoHome</button>
 
             <ResulTitle />
@@ -119,7 +117,7 @@ function GetRank(mulitpliData, userSelect)
     {
         if(userSelect[i] <= 0)
             continue;
-        result *= mulitpliData[i][userSelect[i] - 1];
+        result *= mulitpliData[i][userSelect[i + 1] - 1];
     }
     //remap [0.168 ~ 2.43] to [0 ~ 9]
     result = (result - 0.168) / (2.43 - 0.168) * 9;
@@ -127,15 +125,8 @@ function GetRank(mulitpliData, userSelect)
         result = 0;
     if(result > 9)
         result = 9;
-    console.log("result:" + result);
     return Math.round(result);
 }
 
-function clearAlldata(setPageIndex, setUserSelect, setPrevIndex, setUserName) {
-    setPageIndex(0);
-    setUserSelect([]);
-    setPrevIndex([]);
-    setUserName('');
-}
 
 export default RenderResultPage;
