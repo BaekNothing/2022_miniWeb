@@ -181,12 +181,12 @@
     width: 360px;
     height: 640px;
     background-color: #ebebec;
-    transform: translate(-54%, 0);
+    transform: translate(-50%, 0);
 }
 
 .loading_div{
     position: absolute;
-    width: 200px;
+    width: 210px;
     height: 105px;
     margin-top: 280px;
     transform: translate(50%, 0);

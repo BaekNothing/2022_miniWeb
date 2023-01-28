@@ -46,11 +46,11 @@ function SetTimer() {
 
     useEffect(() => {
         // 만약 타임 아웃이 발생했을 경우
-        // if (time.current <= 0) {
-        //     clearInterval(timerId.current);
-        //     setSceneIndex(3);
-        //     // dispatch event
-        // }
+        if (time.current <= 0) {
+            clearInterval(timerId.current);
+            setSceneIndex(3);
+            // dispatch event
+        }
     }, [sec]);
 
     return (
@@ -79,15 +79,15 @@ function SetTimer() {
         //     }
         // }
 
-        {
-            const i = 8;
-            const randomNumber = Math.round(Math.random(0, 1) * 3) - 1;
-            if (randomNumber > 0) {
-                const imageName = questionData[i][1];
-                const imagePath = imageName + "_" + randomNumber;
-                result.push(<img key={i} className='char' id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);
-            }
-        }
+        // {
+        //     const i = 8;
+        //     const randomNumber = Math.round(Math.random(0, 1) * 3) - 1;
+        //     if (randomNumber > 0) {
+        //         const imageName = questionData[i][1];
+        //         const imagePath = imageName + "_" + randomNumber;
+        //         result.push(<img key={i} className='char' id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);
+        //     }
+        // }
 
         // {
         //     const i = 10;
@@ -99,16 +99,16 @@ function SetTimer() {
         //     }
         // }
 
-        {
-            const i = 11;
-            const randomNumber = Math.round(Math.random(0, 1) * 3) - 1;
-            if (randomNumber > 0)
-            {
-                const imageName = questionData[i][1];
-                const imagePath = imageName + "_" + randomNumber;
-                result.push(<img key={i} className='char' id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);    
-            }
-        }
+        // {
+        //     const i = 11;
+        //     const randomNumber = Math.round(Math.random(0, 1) * 3) - 1;
+        //     if (randomNumber > 0)
+        //     {
+        //         const imageName = questionData[i][1];
+        //         const imagePath = imageName + "_" + randomNumber;
+        //         result.push(<img key={i} className='char' id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);    
+        //     }
+        // }
 
         {
             const i = 0;
@@ -126,7 +126,7 @@ function SetTimer() {
             const randomNumber = Math.round(Math.random(0, 1) * 3) - 1;
             if(randomNumber <= 0)
                 continue;
-            if (i == 5 || i == 8 || i == 10 || i == 11)
+            if (i == 5 || i == 7 || i == 8 || i == 10 || i == 11)
                 continue;
             const imageName = questionData[i][1];
             const imagePath = imageName + "_" + randomNumber;
