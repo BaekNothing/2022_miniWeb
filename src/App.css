@@ -1,11 +1,19 @@
 *{
-  scrollbar-width: none !important;
-  -ms-overflow-style: none;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none;
+    font-family: 'SUIT-Regular';
 }
 
 *::-webkit-scrollbar { 
-  display: none;
-  width: 0 !important;
+    display: none;
+    width: 0 !important;
+}
+
+@font-face {
+    font-family: 'SUIT-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
 }
 
 .App {
@@ -14,7 +22,7 @@
 
 .App-header {
   background-color: white;
-  min-height: 5vh;
+  height : 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,15 +32,18 @@
 }
 
 .body{
-    background-color: white;
+    background-color: #ebebec;
     min-height: 95vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 1vmin);
+    justify-content: top;
     text-align: center;
     color: black;
+
+    font-size: 18px;
+    font-weight: 700;
+    
 }
 
 
@@ -43,7 +54,7 @@
 }
 
 .main-body {
-    background-color: white;
+    background-color: #ebebec;
     display: inline-block;
     width: 420px;
     min-height: 600px;
@@ -52,6 +63,132 @@
     padding-bottom: 100px;
 
     overflow-x: hidden;
+    font-size: 18px;
+    font-weight: 700;
 }
 
+.title_image{
+    width: 280px;
+    height: 424px;
+    margin-top: 85px;
+    margin-bottom: 53px;
+}
 
+.title_btn{
+    width: 280px;
+    height: 42px;
+
+    border-radius: 5px;
+    border-color: #2F4FFD;
+    background-color: #2F4FFD;
+    border-width: 2px;
+    box-shadow: none !important;
+
+    font-size: 16px;
+    color: white;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.title_btn_white {
+    width: 276px;
+    height: 52px;
+
+    box-shadow: none !important;
+    border-radius: 0px;
+    border-color: #BEC0CB;
+    background-color: #ffffff;
+    border-width: 0.5px;
+    text-align: center;
+    
+    text-align: center;
+
+    font-size: 16px;
+    color: #828282;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.title_btn_sml{
+    width : 140px;
+    height : 42px;
+    margin-left : 140px;
+    margin-top : 18px;
+    border-radius: 0px;
+    border-color: none;
+    background-color: #ebebec;
+    border-width: 0px;
+    box-shadow: none !important;
+
+    font-size: 16px;
+    color: #828282;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.title_btn_blue_sml {
+    width: 140px;
+    height: 42px;
+    margin-left: 140px;
+    margin-top: 18px;
+    border-radius: 0px;
+    border-color: #2F4FFD;
+    background-color: #2F4FFD;
+    border-width: 0px;
+    box-shadow: none !important;
+
+    font-size: 16px;
+    color: #ffffff;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.call_image{
+    width: 125px;
+    height: 18px;
+    margin-top: 121px;
+    margin-bottom: 357px;
+}
+
+.call_image2 {
+    width: 125px;
+    height: 18px;
+    margin-top: 121px;
+    margin-bottom: 127px;
+}
+
+.talk_image {
+    display: inline-block;
+    width: 280px;
+    height: 105px;
+    margin-top: 0px;
+    margin-bottom: 105px;
+}
+
+.text_in_talkImage{
+    font-size: 16px;
+    color: #ffffff;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-align: center;
+
+    margin-top: -180px;
+}
+
+.loading_Bg{
+    position: absolute;
+    width: 360px;
+    height: 640px;
+    background-color: #ebebec;
+    transform: translate(-54%, 0);
+}
+
+.loading_div{
+    position: absolute;
+    width: 200px;
+    height: 105px;
+    margin-top: 280px;
+    transform: translate(50%, 0);
+
+}

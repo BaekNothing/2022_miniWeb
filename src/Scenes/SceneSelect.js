@@ -49,7 +49,7 @@ function PageProgressBar(prop){
 
     return(
         <div>
-            <progress className='w280' max={_pageIndexMax} value={pageIndex}>
+            <progress style={{ marginTop:"50px", marginBottom:"65px"}} className='w280' max={_pageIndexMax} value={pageIndex}>
 
             </progress>
         </div>
@@ -59,8 +59,8 @@ function PageProgressBar(prop){
 function PageQuestionTitle(prop){
     const question = prop.question;
     return (
-        <div>
-            <p> {question} </p>
+        <div className='questionText' style={{marginBottom:"45px"}}>
+            {question}
         </div>
     )
 }
@@ -72,7 +72,7 @@ function PageMainImage(prop)
     const { prevIndex } = pageData();
     var result = [];
     var index = (prevIndex ?? []).length;
-    if (index === 5 || index === 10 || index === 8 || index === 11)
+    if (index === 5 || index === 7 || index === 8 || index === 11)
     {
         if (_userChosenData > 0 || prevIndex === undefined) 
         {
@@ -80,6 +80,15 @@ function PageMainImage(prop)
             result.push(<img key='now' className='char' id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);
         }
     }
+
+
+    if (index === 10 && _userChosenData < 3) {
+        if (_userChosenData > 0 || prevIndex === undefined) {
+            var imagePath = questionData[index][1] + "_" + _userChosenData;
+            result.push(<img key='now' className='char' id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);
+        }
+    }
+
     
     if(userSelect.length == 2) // 성별
     {
@@ -114,7 +123,7 @@ function PageMainImage(prop)
     }
 
 
-    if (!(index === 5 || index === 10 || index === 8 || index === 11)) 
+    if (!(index === 5 || index === 7 || index === 8 || index === 10 || index === 11)) 
     {
         if (_userChosenData > 0 || prevIndex === undefined) {
             var imagePath = questionData[index][1] + "_" + _userChosenData;
@@ -122,9 +131,24 @@ function PageMainImage(prop)
                 userSelect[1] == 1) {
                 imagePath += "_1";
             }
+            if (index == 12 && (2 < _userChosenData && _userChosenData < 5) &&
+                userSelect[1] == 1)
+            {
+                imagePath += "_1";
+            }
             result.push(<img key='now' className='char' id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);
         }
     }
+
+
+    if (index === 10 && _userChosenData >= 3) { 
+        if (_userChosenData > 0 || prevIndex === undefined) {
+            var imagePath = questionData[index][1] + "_" + _userChosenData;
+            result.push(<img key='now' className='char' id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);
+        }
+    }
+
+
     
     return (
         <div>
@@ -139,7 +163,7 @@ function PageMainImage(prop)
 function PageMainQuestionBox(prop) {
     return (
         <div>
-            <div className='btns_box'>
+            <div className='btns_box' style={{marginTop:"40px"}}>
                 <PageMainButtonInput liIndex={1} />
                 <PageMainButtonInput liIndex={2} />
                 <PageMainButtonInput liIndex={3} />
@@ -180,6 +204,8 @@ function PageMainButtonInput(prop){
     )
 }
 
+var goNext = "다음으로 >"
+
 function NextButton() {
     const { dummy, SetDummy } = dummyData();
     const { pageIndex, prevIndex, setPrevIndex, setPageIndex, dataAry } = pageData();
@@ -189,7 +215,7 @@ function NextButton() {
     if (_userChosenData <= 0) return(
         <div>
             <div className='t16 m4 inline-block btn_selectable_half'> </div>
-            <button className='m4 inline-block btn_selectable_half'>다음으로</button>
+            <button className='m4 inline-block btn_selectable_half'>{goNext}</button>
         </div>
     ) 
         
@@ -205,7 +231,7 @@ function NextButton() {
                     dataAry[_userChosenData + 8] !== '-'
                         ? dataAry[_userChosenData + 8] * 1
                         : (pageIndex * 1) + 1);
-            }}>다음으로</button>
+            }}>{goNext}</button>
         </div>
     )
 }

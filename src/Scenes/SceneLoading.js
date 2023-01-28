@@ -46,18 +46,19 @@ function SetTimer() {
 
     useEffect(() => {
         // 만약 타임 아웃이 발생했을 경우
-        if (time.current <= 0) {
-            clearInterval(timerId.current);
-            setSceneIndex(3);
-            // dispatch event
-        }
+        // if (time.current <= 0) {
+        //     clearInterval(timerId.current);
+        //     setSceneIndex(3);
+        //     // dispatch event
+        // }
     }, [sec]);
 
     return (
         <div className="main-body">
-            <p> 결과를 계산중입니다</p>
-            <DrawImage />
-            
+            <img key='loading' className='loading_Bg' src={'./images/loading_png.png'} alt='charBody' />
+            <div className='loading_div'>
+                <DrawImage />
+            </div>
         </div>
     )
 
@@ -68,15 +69,15 @@ function SetTimer() {
         var result = [];
 
         //draw 5 8 10 11 first
-        {
-            const i = 5;
-            const randomNumber = Math.round(Math.random(0, 1) * 3) - 1;
-            if (randomNumber > 0) {
-                const imageName = questionData[i][1];
-                const imagePath = imageName + "_" + randomNumber;
-                result.push(<img key={i} className='char' id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);
-            }
-        }
+        // {
+        //     const i = 5;
+        //     const randomNumber = Math.round(Math.random(0, 1) * 3) - 1;
+        //     if (randomNumber > 0) {
+        //         const imageName = questionData[i][1];
+        //         const imagePath = imageName + "_" + randomNumber;
+        //         result.push(<img key={i} className='char' id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);
+        //     }
+        // }
 
         {
             const i = 8;
