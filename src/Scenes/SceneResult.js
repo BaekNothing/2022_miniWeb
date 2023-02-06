@@ -15,30 +15,72 @@ function RenderResultPage(prop) {
     }, [])
 
     return (
-        <div className="main-body" key="introPage">
-            <button onClick={() => {
+        <div className="main-body bg_blue" key="introPage">
+            {/* <button onClick={() => {
                 window.location.reload();
-            }}> press to GoHome</button>
+            }}> press to GoHome</button> */}
 
-            <ResulTitle />
+            <div className="result-top" style=
+            {
+                {
+                    "height":"44px",
+                    "font-family": "SUIT-Regular",
+                    "font-size": "28px",
+                    "font-weight": "200",
+                    "padding" : "50px 0px 0px 0px"
+                }
+            }>  TEST RESULT </div>
+            <hr />
+            
+            <div className="result-top" style=
+            {
+                {
+                    "position" : "absolute",
+                    "font-family": "SUIT-Regular",
+                    "font-size": "80px",
+                    "font-weight": "600",
+                    "padding" : "16px 0px 0px 28px",
+                }
+            }> LEVEL </div>
+
+            <div className="result-top" style=
+            {
+                {
+                    "position": "absolute",
+                    "font-family": "SUIT-Regular",
+                    "font-size": "160px",
+                    "font-weight": "600",
+                    "margin": "-16px 0px 30px 300px",
+                }
+            }> {GetRank(mulitpliData, userSelect)} </div>
+            
+            <div className='circle' style={
+                {
+                    "position": "absolute",
+                    "margin": "128px 0px 0px 30px",
+                    "padding": "0px 0px 0px 0px",
+                    "width": "360px",
+                    "height": "360px",
+                    "border-radius": "50%",
+                    "background-color": "white",
+                }
+            }> </div>
+            
             <ResultLevelImage rank={GetRank(mulitpliData, userSelect)} />
-            <ResultReport name={userName} rank={GetRank(mulitpliData, userSelect)} text={textData[GetRank(mulitpliData, userSelect)]} />
-            <Resultchart />
+
+            <div className='body_contents' style={{
+                "margin": "0px 0px 0px 0px",
+                "padding": "0px 28px 0px 28px",
+            }}>
+
+                
+                <ResultReport name={userName} rank={GetRank(mulitpliData, userSelect)} text={textData[GetRank(mulitpliData, userSelect)]} />
+                <Resultchart />
+            </div>
         </div>
     )
 }
 
-
-function ResulTitle()
-{
-    return (
-        <div >  
-            <hr/>
-                <p>No. 275A-64</p>
-            <hr/>
-        </div>
-    )
-}
 
 function ResultLevelImage(prop) 
 {
@@ -50,9 +92,16 @@ function ResultLevelImage(prop)
         const i = 8;
         const selectedNumber = userSelect[i];
         if (selectedNumber > 0) {
-            const imageName = questionData[i][1];
+            const imageName = questionData[i - 1][1];
             const imagePath = imageName + "_" + selectedNumber;
-            result.push(<img key={i} className='char' id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);
+            result.push(<img key={i} className='char'
+                style={
+                    {
+                        "width": "320px",
+                        "height": "320px"
+                    }
+                }
+                id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);
         }
     }
 
@@ -60,15 +109,24 @@ function ResultLevelImage(prop)
         const selectedNumber = userSelect[i];
         if (selectedNumber <= 0)
             continue;
-        const imageName = questionData[i][1];
+        const imageName = questionData[i - 1][1];
         const imagePath = imageName + "_" + selectedNumber;
-        result.push(<img key={i + 1} className='char' id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);
+        result.push(<img key={i + 1} className='char'
+            style={
+                {
+                    "width": "320px",
+                    "height": "320px"
+                }
+            }
+            id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);
     }
 
 
     return (
         <div>
-            <div className='main-image'>
+            <div className='main-image' style={
+                {"margin": "160px 0px 170px 0px"}
+            }>
                 {result}
             </div>
         </div>
@@ -83,9 +141,76 @@ function ResultReport(prop)
     return (
         <div>
             <hr/>
-            <p>userName : {name}</p>
-            <p>rank : {rank}</p>
-            <p>textData : {textData}</p>
+            <p style={{
+                "text-align": "left",
+                "font-family": "SUIT-Thin",
+                "font-size": "36px",
+                "font-weight": "600",
+                "margin": "-4px 0px 0px 0px",
+            }}>NAME : {name}</p>
+            <hr/>
+            <div style={{
+                "background-color": "white",
+                "border-radius": "0px 60px 0px 0px",
+                "margin": "28px 0px 0px 0px",
+                "padding": "4px 20px 20px 20px",
+                "color": "black",
+            }}>
+                <div style={{
+                    "background-color": "#2F4FFD",
+                    "text-align": "center",
+                    "color": "white",
+                    "font-family": "SUIT-Regular",
+                    "font-size": "32px",
+                    "height": "48px",
+                    "width": "52px",
+                    "padding": "4px 0px 0px 0px",
+                    "border-radius": "50%",
+                    "margin": "12px 0px 0px 0px",
+                }}> A </div>
+                
+                <p
+                    style={{
+                        "color": "#2F4FFD",
+                        "text-align": "left",
+                        "font-family": "SUIT-Bold",
+                        "font-size": "24px",
+                        "font-weight": "600",
+                        "margin": "20px 0px 0px 0px"
+                    }}>
+                        <span style={{
+                            "padding": "0px 0px 0px 0px",
+                        }}> 인간정보 </span>
+                        <span style={{ "color": "white" }}> 
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        </span>
+                        <span style={{
+                            "font-family": "SUIT-Thin",
+                        }}> Human Facts </span>
+                </p>
+
+                <hr style={{
+                    "margin": "12px 0px 0px 0px",
+                    "border-color": "#2F4FFD",
+                }} />
+                <p style={{
+                    "text-align": "left",
+                    "font-family": "SUIT-Bold",
+                    "font-size": "24px",
+                    "color": "#2F4FFD",
+                }}>
+                    10명 중 &nbsp;&nbsp; : &nbsp;&nbsp; 3명
+                </p>
+                <p style={{
+                    "text-align": "left",
+                    "font-family": "SUIT-Thin",
+                    "font-size": "16px",
+                    "line-height": "24px",
+                    "font-weight": "600",
+                    "margin": "20px 0px 0px 0px",
+                }}>{textData}</p>
+            </div>
+            
         </div>
     )
 }

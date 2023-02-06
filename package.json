@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^13.5.0",
     "css-selector": "^0.1.0",
     "csv-parser": "^3.0.0",
+    "http-proxy-middleware": "^2.0.6",
     "mz": "^2.7.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
@@ -24,7 +25,6 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:8080",
   "eslintConfig": {
     "extends": [
       "react-app",
