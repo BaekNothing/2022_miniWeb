@@ -52,7 +52,7 @@ function RenderResultPage(prop) {
                     "font-weight": "600",
                     "margin": "-16px 0px 30px 300px",
                 }
-            }> {GetRank(mulitpliData, userSelect)} </div>
+            }> {GetRank(mulitpliData, userSelect) + 1} </div>
             
             <div className='circle' style={
                 {
