@@ -24,9 +24,9 @@ function RenderResultPage(prop) {
             {
                 {
                     "height":"32px",
-                    "font-family": "SUIT-Regular",
-                    "font-size": "20px",
-                    "font-weight": "200",
+                    "fontFamily": "SUIT-Regular",
+                    "fontSize": "20px",
+                    "fontWeight": "200",
                     "padding" : "50px 0px 0px 0px"
                 }
             }>  TEST RESULT </div>
@@ -36,9 +36,9 @@ function RenderResultPage(prop) {
             {
                 {
                     "position" : "absolute",
-                    "font-family": "SUIT-Regular",
-                    "font-size": "64px",
-                    "font-weight": "600",
+                    "fontFamily": "SUIT-Regular",
+                    "fontSize": "64px",
+                    "fontWeight": "600",
                     "padding" : "12px 0px 0px 28px",
                 }
             }> LEVEL </div>
@@ -47,9 +47,9 @@ function RenderResultPage(prop) {
             {
                 {
                     "position": "absolute",
-                    "font-family": "SUIT-Regular",
-                    "font-size": "132px",
-                    "font-weight": "400",
+                    "fontFamily": "SUIT-Regular",
+                    "fontSize": "132px",
+                    "fontWeight": "400",
                     "margin": "-16px 0px 0px 250px",
                 }
             }> {GetRank(mulitpliData, userSelect) + 1} </div>
@@ -61,8 +61,8 @@ function RenderResultPage(prop) {
                     "padding": "0px 0px 0px 0px",
                     "width": "320px",
                     "height": "320px",
-                    "border-radius": "50%",
-                    "background-color": "white",
+                    "borderRadius": "50%",
+                    "backgroundColor": "white",
                 }
             }> </div>
             
@@ -76,8 +76,8 @@ function RenderResultPage(prop) {
             </div>
             <div className='body_contents' style={{
                 "width": "380px !important",
-                "background-color": "white",
-                "border-radius": "0px 30px 0px 0px",
+                "backgroundColor": "white",
+                "borderRadius": "0px 30px 0px 0px",
                 "margin": "20px 0px 0px 0px",
                 "color": "black",
             }}>
@@ -85,8 +85,8 @@ function RenderResultPage(prop) {
             </div>
             <div className='body_contents' style={{
                 "width" : "380",
-                "background-color": "white",
-                "border-radius": "0px 30px 0px 0px",
+                "backgroundColor": "white",
+                "borderRadius": "0px 30px 0px 0px",
                 "margin": "20px 0px 0px 0px",
                 "padding": "4px 24px 24px 24px",
                 "color": "black",
@@ -151,80 +151,80 @@ function ResultLevelImage(prop)
 
 function ResultReport(prop)
 {
-    const name = prop.name
+    const name = prop?.name ?? ""
     const textData = prop.text
     const rank = prop.rank
     return (
         <div>
             <hr/>
             <p style={{
-                "text-align": "left",
-                "font-family": "SUIT-Thin",
-                "font-size": "28px",
-                "font-weight": "600",
+                "textAlign": "left",
+                "fontFamily": "SUIT-Thin",
+                "fontSize": "28px",
+                "fontWeight": "600",
                 "margin": "-4px 0px 0px 0px",
             }}>NAME : {name}</p>
             <hr/>
             <div style={{
-                "background-color": "white",
-                "border-radius": "0px 30px 0px 0px",
+                "backgroundColor": "white",
+                "borderRadius": "0px 30px 0px 0px",
                 "margin": "20px 0px 0px 0px",
                 "padding": "4px 24px 24px 24px",
                 "color": "black",
             }}>
                 <div style={{
-                    "background-color": "#2F4FFD",
-                    "text-align": "center",
+                    "backgroundColor": "#2F4FFD",
+                    "textAlign": "center",
                     "color": "white",
-                    "font-family": "SUIT-Regular",
-                    "font-size": "32px",
+                    "fontFamily": "SUIT-Regular",
+                    "fontSize": "32px",
                     "height": "46px",
                     "width": "48px",
                     "padding": "2px 0px 0px 0px",
-                    "border-radius": "50%",
+                    "borderRadius": "50%",
                     "margin": "12px 0px 0px 0px",
                 }}> A </div>
                 
                 <p
                     style={{
                         "color": "#2F4FFD",
-                        "text-align": "left",
-                        "font-size": "20px",
+                        "textAlign": "left",
+                        "fontSize": "20px",
                         "margin": "20px 0px 0px 0px"
                     }}>
                         <span style={{
-                            "font-family": "SUIT-Regular",
-                            "font-weight": "600",
+                            "fontFamily": "SUIT-Regular",
+                            "fontWeight": "600",
                             "padding": "0px 0px 0px 0px",
                         }}> 인간정보 </span>
                         <span style={{ "color": "white" }}> 
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
                         </span>
                         <span style={{
-                            "font-family": "SUIT-Thin",
+                            "fontFamily": "SUIT-Thin",
                         }}> Human Facts </span>
                 </p>
 
                 <hr style={{
                     "margin": "12px 0px 0px 0px",
-                    "border-color": "#2F4FFD",
+                    "borderColor": "#2F4FFD",
                     "opacity": "0.3"
                 }} />
                 <p style={{
-                    "text-align": "left",
-                    "font-family": "SUIT-Bold",
-                    "font-size": "20px",
+                    "textAlign": "left",
+                    "fontFamily": "SUIT-Bold",
+                    "fontSize": "20px",
                     "color": "#2F4FFD",
                     "margin": "16px 0px 0px 0px",
                 }}>
                     10명 중 &nbsp;&nbsp; : &nbsp;&nbsp; 3명
                 </p>
                 <p style={{
-                    "text-align": "left",
-                    "font-family": "SUIT-Thin",
-                    "font-size": "14px",
-                    "line-height": "24px",
-                    "font-weight": "600",
+                    "textAlign": "left",
+                    "fontFamily": "SUIT-Thin",
+                    "fontSize": "14px",
+                    "lineHeight": "24px",
+                    "fontWeight": "600",
                     "margin": "12px 0px 0px 0px",
                 }}>{textData}</p>
             </div>

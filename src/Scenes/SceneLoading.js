@@ -54,8 +54,49 @@ function SetTimer() {
     }, [sec]);
 
     return (
-        <div className="main-body">
-            <img key='loading' className='loading_Bg' src={'./images/loading_png.png'} alt='charBody' />
+        <div className="main-body bg_blue" style={{
+            "height": "95vh",
+        }}>
+            {/* <img key='loading' style={{"opacity": "0.5",}}  className='loading_Bg' src={'./images/loading_png.png'} alt='charBody' /> */}
+            <p style={{
+                "marginTop": "128px",
+                "textAlign": "center",
+                "fontFamily": "SUIT-Regular",
+                "fontSize": "44px",
+                "color": "white",
+            }} >YOU ARE</p>
+            <p style={{
+                "marginTop": "-52px",
+                "textAlign": "center",
+                "fontFamily": "SUIT-Regular",
+                "fontSize": "44px",
+                "color": "white",
+            }} >HERE</p>
+            <p style={{
+                "marginTop": "-38px",
+                "textAlign": "center",
+                "fontFamily": "SUIT-Regular",
+                "fontSize": "44px",
+                "color": "white",
+            }} >|</p>
+            <p style={{
+                "marginTop": "-88px",
+                "textAlign": "center",
+                "fontFamily": "SUIT-Regular",
+                "fontSize": "44px",
+                "color": "white",
+            }} >↓</p>
+            <div style={{
+                "position": "absolute",
+                "margin" : "-48px 0px 0px 90px",
+                "borderRadius": "50%",
+                "backgroundColor": "white",
+                "width": "200px",
+                "height": "200px",
+            }} >
+
+            </div>
+
             <div className='loading_div'>
                 <DrawImage />
             </div>
