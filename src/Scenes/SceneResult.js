@@ -36,10 +36,10 @@ function RenderResultPage(prop) {
             {
                 {
                     "position" : "absolute",
-                    "fontFamily": "SUIT-Regular",
+                    "fontFamily": "SUIT-Thin",
                     "fontSize": "64px",
                     "fontWeight": "600",
-                    "padding" : "12px 0px 0px 28px",
+                    "padding" : "8px 0px 0px 28px",
                 }
             }> LEVEL </div>
 
@@ -50,7 +50,7 @@ function RenderResultPage(prop) {
                     "fontFamily": "SUIT-Regular",
                     "fontSize": "132px",
                     "fontWeight": "400",
-                    "margin": "-16px 0px 0px 250px",
+                    "margin": "-16px 0px 0px 260px",
                 }
             }> {GetRank(mulitpliData, userSelect) + 1} </div>
             
