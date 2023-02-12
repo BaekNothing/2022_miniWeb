@@ -75,22 +75,100 @@ function RenderResultPage(prop) {
                 <ResultReport name={userName} rank={GetRank(mulitpliData, userSelect)} text={textData[GetRank(mulitpliData, userSelect)]} />
             </div>
             <div className='body_contents' style={{
-                "width": "380px !important",
                 "backgroundColor": "white",
                 "borderRadius": "0px 30px 0px 0px",
-                "margin": "20px 0px 0px 0px",
+                "margin": "20px 28px 0px 28px",
+                "padding" : "10px 20px 20px 20px",
+                "textAlign": "center",
                 "color": "black",
             }}>
+                <div style={{
+                    "backgroundColor": "#2F4FFD",
+                    "textAlign": "center",
+                    "color": "white",
+                    "fontFamily": "SUIT-Regular",
+                    "fontSize": "32px",
+                    "height": "46px",
+                    "width": "48px",
+                    "padding": "2px 0px 0px 0px",
+                    "borderRadius": "50%",
+                    "margin": "12px 0px 0px 0px",
+                }}> B </div>
+
+                <p
+                    style={{
+                        "color": "#2F4FFD",
+                        "textAlign": "left",
+                        "fontSize": "20px",
+                        "margin": "20px 0px 0px 0px"
+                    }}>
+                    <span style={{
+                        "fontFamily": "SUIT-Regular",
+                        "fontWeight": "600",
+                        "padding": "0px 0px 0px 0px",
+                    }}> 능력치 </span>
+                    <span style={{ "color": "white" }}>
+                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </span>
+                    <span style={{
+                        "fontFamily": "SUIT-Thin",
+                    }}> Power </span>
+                </p>
+
+                <hr style={{
+                    "margin": "12px 0px 0px 0px",
+                    "borderColor": "#2F4FFD",
+                    "opacity": "0.3"
+                }} />
                 <RaderChart />
             </div>
             <div className='body_contents' style={{
-                "width" : "380",
                 "backgroundColor": "white",
                 "borderRadius": "0px 30px 0px 0px",
-                "margin": "20px 0px 0px 0px",
-                "padding": "4px 24px 24px 24px",
+                "margin": "20px 28px 100px 28px",
+                "padding": "10px 20px 20px 20px",
+                "textAlign": "center",
                 "color": "black",
             }}>
+                <div style={{
+                    "backgroundColor": "#2F4FFD",
+                    "textAlign": "center",
+                    "color": "white",
+                    "fontFamily": "SUIT-Regular",
+                    "fontSize": "32px",
+                    "height": "46px",
+                    "width": "48px",
+                    "padding": "2px 0px 0px 0px",
+                    "borderRadius": "50%",
+                    "margin": "12px 0px 0px 0px",
+                }}> C </div>
+
+                <p
+                    style={{
+                        "color": "#2F4FFD",
+                        "textAlign": "left",
+                        "fontSize": "20px",
+                        "margin": "20px 0px 0px 0px"
+                    }}>
+                    <span style={{
+                        "fontFamily": "SUIT-Regular",
+                        "fontWeight": "600",
+                        "padding": "0px 0px 0px 0px",
+                    }}> 인생그래프 </span>
+                    <span style={{ "color": "white" }}>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </span>
+                    <span style={{
+                        "fontFamily": "SUIT-Thin",
+                    }}> Life Graph </span>
+                </p>
+
+                <hr style={{
+                    "margin": "12px 0px 0px 0px",
+                    "borderColor": "#2F4FFD",
+                    "opacity": "0.3"
+                }} />
+
                 <RenderLineChart />
             </div>
         </div>
@@ -229,18 +307,6 @@ function ResultReport(prop)
                 }}>{textData}</p>
             </div>
             
-        </div>
-    )
-}
-
-function Resultchart(){
-    return(
-        <div>
-            <hr />            
-            <RaderChart />
-            <hr />
-            <RenderLineChart />
-            <hr />
         </div>
     )
 }
