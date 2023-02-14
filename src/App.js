@@ -13,7 +13,7 @@ function App() {
         <header className="App-header">
               
         </header>
-        <div className='body'> 
+        <div className='body' ondragstart='return false'> 
             <PageRender></PageRender>
         </div>
     </div>

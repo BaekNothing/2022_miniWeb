@@ -297,18 +297,42 @@ function ResultReport(prop)
                 }}>
                     10명 중 &nbsp;&nbsp; : &nbsp;&nbsp; 3명
                 </p>
-                <p style={{
-                    "textAlign": "left",
-                    "fontFamily": "SUIT-Thin",
-                    "fontSize": "14px",
-                    "lineHeight": "24px",
-                    "fontWeight": "600",
-                    "margin": "12px 0px 0px 0px",
-                }}>{textData}</p>
+                <SetText text={textData} />
             </div>
             
         </div>
     )
+}
+
+function SetText(prop)
+{
+    const textData = prop.text
+    const splitText = textData.split("\n");
+    var result = [];
+    result.push(<p key={0} style={{
+        "textAlign": "left",
+        "fontFamily": "SUIT-Bold",
+        "fontSize": "18px",
+        "lineHeight": "26px",
+        "fontWeight": "600",
+        "margin": "0px 0px 12px 0px",
+    }}>{splitText[0]}</p>);
+
+
+    for (let i = 1; i < splitText.length; i++) 
+    {
+        result.push(<p key={i} style={{
+            "textAlign": "left",
+            "fontFamily": "SUIT-Thin",
+            "fontSize": "14px",
+            "lineHeight": "24px",
+            "fontWeight": "600",
+            "margin": "0px 0px 0px 0px",
+        }}>{splitText[i]}</p>);
+    }
+    return <div style={{
+        "margin": "12px 0px 0px 0px",
+    }}>{result}</div>
 }
 
 
