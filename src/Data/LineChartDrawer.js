@@ -1,6 +1,6 @@
 import { BarChart, LineChart, Line, CartesianGrid, Legend, XAxis, YAxis, Tooltip, Bar} from 'recharts';
 import React, { useEffect } from 'react';
-import { sceneData, pageData, userSelectData, baseHigherData, baseLowerData, mulitpliData } from './AppVars';
+import { sceneData, pageData, userSelectData, baseHigherData, baseLowerData, mulitpliData, GetMultiplier } from './AppVars';
 
 const _name = [
     "10대",
@@ -12,107 +12,11 @@ const _name = [
 ]
 
 
-// function RenderLineChart() {
-//     const { userSelect } = userSelectData();
-//     const { prevIndex } = pageData();
-
-//     const originData = userSelect[0] === 0 ? baseHigherData : baseLowerData;
-//     const mulitplier = GetMultplier(userSelect);
-//     const newList = [];
-
-//     for (let i = 0; i < originData.length; i++) {
-//         newList.push({
-//             name: _name[i],
-//             base: originData[i],
-//             state: originData[i] * mulitplier,
-//             amt: mulitplier
-//         });
-//     }
-
-//     return (
-//         <LineChart 
-//             width={500}
-//             height={300}
-//             margin={{ top: 30, left: -30 }} 
-//             data={newList}>
-//             <XAxis dataKey="name" fontSize={12} />
-//             <YAxis fontSize={12} /> 
-//             <Tooltip />
-//             <Legend />
-//             <CartesianGrid strokeDasharray="3 3" />
-//             <Line dataKey="base" stroke="#8884d8" />
-//             <Line dataKey="state" stroke="#82ca9d" label={CustomLabel} />
-//         </LineChart>
-//     )
-// }
-
-
 const CustomLabel = ({ x, y, stroke, value }) => (
     <text x={x} y={y} dy={-4} fill={stroke} fontSize={10} textAnchor="middle">
         {Math.round(value)}
     </text>
 );
-
-function GetMultplier(userSelect)
-{
-    var result = 1;
-    for (let i = 0; i < userSelect.length - 1; i++) 
-    {
-        if(userSelect[i] <= 0)
-            continue;
-        result *= mulitpliData[i][userSelect[i] - 1];
-        //console.log("No." + i + ":" + userSelect[i] + " is "+ mulitpliData[i][userSelect[i]]);
-    }
-    //remap [0.168 ~ 2.43] to [0.3 ~ 3]
-    result = (result - 0.168) / (2.43 - 0.168) * (3 - 0.3) + 0.3;
-    console.log("result:" + result);
-    return result;
-}
-
-// const data = [
-//     {
-//         name: 'Page A',
-//         uv: 4000,
-//         pv: 2400,
-//         amt: 2400,
-//     },
-//     {
-//         name: 'Page B',
-//         uv: 3000,
-//         pv: 1398,
-//         amt: 2210,
-//     },
-//     {
-//         name: 'Page C',
-//         uv: 2000,
-//         pv: 9800,
-//         amt: 2290,
-//     },
-//     {
-//         name: 'Page D',
-//         uv: 2780,
-//         pv: 3908,
-//         amt: 2000,
-//     },
-//     {
-//         name: 'Page E',
-//         uv: 1890,
-//         pv: 4800,
-//         amt: 2181,
-//     },
-//     {
-//         name: 'Page F',
-//         uv: 2390,
-//         pv: 3800,
-//         amt: 2500,
-//     },
-//     {
-//         name: 'Page G',
-//         uv: 3490,
-//         pv: 4300,
-//         amt: 2100,
-//     },
-// ];
 
 function RenderLineChart() 
 {
@@ -121,7 +25,7 @@ function RenderLineChart()
     const { prevIndex } = pageData();
 
     const originData = userSelect[0] === 0 ? baseHigherData : baseLowerData;
-    const mulitplier = GetMultplier(userSelect);
+    const mulitplier = GetMultiplier(userSelect) * (1.7) + 0.3;
     const data = [];
 
     for (let i = 0; i < originData.length; i++) {

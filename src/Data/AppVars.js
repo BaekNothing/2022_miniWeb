@@ -1,4 +1,4 @@
-import create from 'zustand';
+import {create} from 'zustand';
 
 
 const dummyData = create((set) => ({
@@ -56,22 +56,65 @@ const questionData = [
 ]
 
 const mulitpliData = [
-    [0.75, 1, 1, 1, 1, 1], // 성별 여 남 x
-    [1, 1, 1, 1, 1, 1], // 나이 10대 20대 30대 40대 50대 60대 이상
-    [1, 0.8, 1, 1, 1, 1], // 국적 한국인 외국인
-    [0.85, 1, 1, 1, 1, 1], // 퀴어 o x
-    [0.45, 1, 1, 1, 1, 1], // 장애 o x
-    [1.12, 1, 1, 1, 1, 1], // 수도권 o x
-    [1.15, 1, 1, 1, 1, 1], // 결혼 o x
-    [1, 1, 1, 1, 1, 1], // 불로소득 많음 적음 없음
-    [1, 1, 1, 1, 1, 1], // 고정지출 많음 적음 없음
-    [1.3, 1, 1, 1, 1, 1], // 근로방식 정규직 비정규직 무직
-    [1, 1, 1, 1, 1, 1], // 근로 규모 대기업 중소기업 자영업 프리랜서 무직
-    [1.36, 1.08, 1, 0.79, 0.79, 1], // 최종학력 해외석/박사 석/박사 학사 의무교육 해당사항없음
-    [1.07, 1, 0.93, 1, 1, 1], // 교육 장소 서울 수도권 비수도권 
-    [1, 1, 1, 1, 1, 1], // 결과
-    [1, 1, 1, 1, 1, 1]
+    [48.12, 60, 54.06, 0, 0, 0], // 성별 여 남 x
+    [50, 70, 65, 60, 60, 40], // 나이 10대 20대 30대 40대 50대 60대 이상
+    [50, 37.5, 0, 0, 0, 0], // 국적 한국인 외국인
+    [35, 50, 0, 0, 0, 0], // 퀴어 o x
+    [35, 70, 0, 0, 0, 0], // 장애 o x
+    [20, 17.6, 0, 0, 0, 0], // 수도권 o x
+    [17.06, 20, 0, 0, 0, 0], // 결혼 o x
+    [30, 28, 18, 0, 0, 0], // 불로소득 많음 적음 없음
+    [10, 20, 30, 0, 0, 0], // 고정지출 많음 적음 없음
+    [10, 6, 3, 0, 0, 0], // 근로방식 정규직 비정규직 무직
+    [10, 5, 5, 5, 2.5, 0], // 근로 규모 대기업 중소기업 자영업 프리랜서 무직
+    [40, 21.2, 13.41, 10.09, 10, 0], // 최종학력 해외석/박사 석/박사 학사 의무교육 해당사항없음
+    [40, 30.8, 28.8, 28.8, 0, 0], // 교육 장소 서울 수도권 비수도권 
+    [0, 0, 0, 0, 0, 0], // 결과
+    [0, 0, 0, 0, 0, 0]
 ]
+
+function GetMultiplier(userSelect) {
+    var result = 1;
+
+    for (let i = 1; i < userSelect.length; i++) {
+        console.log("index[" + i + "] : " + (userSelect[i] - 1 ) + "multiple : " + mulitpliData[i - 1][userSelect[i] - 1]);
+        if (userSelect[i] <= 0)
+            continue;
+        result += mulitpliData[i - 1][userSelect[i] - 1];
+    }
+    var max = GetMaxValue();
+    var min = GetMinValue();
+    const afterResult = (result - min) / (max - min);
+    console.log("result:" + result + " max:" + max + " min:" + min + " afterResult:" + afterResult);
+    return afterResult;
+}
+
+function GetMaxValue(){
+    var result = 0;
+    for (let i = 0; i < mulitpliData.length; i++) {
+        var max = 0;
+        for (let j = 0; j < mulitpliData[i].length; j++) {
+            if (max < mulitpliData[i][j])
+                max = mulitpliData[i][j];
+        }
+        result += max;
+    }
+    return result;
+}
+
+function GetMinValue() {
+    var result = 0;
+    for (let i = 0; i < mulitpliData.length; i++) {
+        var min = 100;
+        for (let j = 0; j < mulitpliData[i].length; j++) {
+            if (min > mulitpliData[i][j] && mulitpliData[i][j] > 1)
+                min = mulitpliData[i][j];
+        }
+        result += min < 100 ? min : 0;
+    }
+    return result;
+}
+
 
 const baseHigherData = [
     102,
@@ -211,4 +254,4 @@ const textData =
     text_10
 ]
 
-export {textData, dummyData, sceneData, pageData, userSelectData, questionData, baseHigherData, baseLowerData, mulitpliData}
+export { textData, dummyData, sceneData, pageData, userSelectData, questionData, baseHigherData, baseLowerData, mulitpliData, GetMultiplier}

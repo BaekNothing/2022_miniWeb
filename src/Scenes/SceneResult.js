@@ -1,7 +1,7 @@
 import '../App.css'; 
 //import axios from "axios";
 import React, { useEffect } from 'react';
-import { textData, sceneData, pageData, userSelectData, mulitpliData, baseHigherData, questionData } from '../Data/AppVars';
+import { textData, sceneData, pageData, userSelectData, mulitpliData, baseHigherData, questionData, GetMultiplier } from '../Data/AppVars';
 import RenderLineChart from '../Data/LineChartDrawer';
 import RaderChart from '../Data/RaderChartDrawer';
 
@@ -295,7 +295,7 @@ function ResultReport(prop)
                     "color": "#2F4FFD",
                     "margin": "16px 0px 0px 0px",
                 }}>
-                    10명 중 &nbsp;&nbsp; : &nbsp;&nbsp; 3명
+                    10명 중 &nbsp;&nbsp; : &nbsp;&nbsp; {10 - rank}위
                 </p>
                 <SetText text={textData} />
             </div>
@@ -345,15 +345,7 @@ function sendData(userSelect, prevIndex){
 
 function GetRank(mulitpliData, userSelect)
 {
-    var result = 1;
-    for (let i = 0; i < userSelect.length - 1; i++) 
-    {
-        if(userSelect[i] <= 0)
-            continue;
-        result *= mulitpliData[i][userSelect[i + 1] - 1];
-    }
-    //remap [0.168 ~ 2.43] to [0 ~ 9]
-    result = (result - 0.168) / (2.43 - 0.168) * 9;
+    var result = Math.round(GetMultiplier(userSelect) * 10);
     if(result < 0)
         result = 0;
     if(result > 9)
