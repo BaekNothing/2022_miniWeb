@@ -103,6 +103,10 @@ function PageMainImage(prop)
         {
             imagePath += "_1";
         }
+        else if (userSelect[1] == 3)
+        {
+            imagePath += "_2";
+        }
         result.push(<img key='gender' className='char' id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);
     }
     
@@ -130,6 +134,10 @@ function PageMainImage(prop)
             if ((index == 1 || index == 6) &&
                 userSelect[1] == 1) {
                 imagePath += "_1";
+            }
+            if ((index == 1) &&
+                userSelect[1] == 3) {
+                imagePath += "_2";
             }
             if (index == 12 && (2 < _userChosenData && _userChosenData < 5) &&
                 userSelect[1] == 1)

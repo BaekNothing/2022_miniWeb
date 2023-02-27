@@ -199,7 +199,28 @@ function ResultLevelImage(prop)
         }
     }
 
-    for (var i = 2; i < 5; i++) {
+    {
+        const i = 2;
+        const selectedNumber = userSelect[i];
+        if (selectedNumber > 0) {
+            var imageName = questionData[i - 1][1];
+            var imagePath = imageName + "_" + selectedNumber;
+            if(userSelect[1] === 1)
+                imagePath += "_1";
+            else if(userSelect[1] === 3)
+                imagePath += "_2";
+            result.push(<img key={i} className='char'
+                style={
+                    {
+                        "height": "280px",
+                        "width": "auto",
+                    }
+                }
+                id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);
+        }
+    }
+
+    for (var i = 3; i < 5; i++) {
         const selectedNumber = userSelect[i];
         if (selectedNumber <= 0)
             continue;
