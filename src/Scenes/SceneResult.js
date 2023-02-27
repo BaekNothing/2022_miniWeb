@@ -283,6 +283,12 @@ function ResultReport(prop)
                     "borderRadius": "50%",
                     "margin": "12px 0px 0px 0px",
                 }}> A </div>
+
+                <img src={'./images/result/' + rank + (userSelectData[1] == 1 ? "_1" : "") + '.png'} alt='charBody' style={{
+                    "width": "240px",
+                    "height": "240px",
+                    "margin": "0px 0px 0px 0px",
+                }} />
                 
                 <p
                     style={{
