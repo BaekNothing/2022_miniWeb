@@ -1,7 +1,7 @@
 import '../App.css';
 import './SceneSelect.css';
 import React, { useEffect } from 'react';
-import { dummyData, sceneData, pageData, userSelectData, questionData } from '../Data/AppVars';
+import { dummyData, sceneData, pageData, userSelectData, questionData, descData } from '../Data/AppVars';
 
 var _refreshUserSelectDataFlag = true;
 var _userChosenData = 0;
@@ -33,7 +33,10 @@ function RenderSelectPage(prop) {
             </div>
             <PageProgressBar />
             <PageQuestionTitle question={dataAry[2]} />
+            <MessageBoxButton pageIndex={pageIndex} />
+            <MessageBoxPopup pageIndex={pageIndex} />
             <PageMainImage />
+
             <PageMainQuestionBox userData={_userChosenData === 0 ? 0 : 1} />
 
         </div>
@@ -41,6 +44,39 @@ function RenderSelectPage(prop) {
 }
 
 // *************** PAGE COMPONENTS ***************
+
+function MessageBoxButton(prop){
+
+    if (descData[prop.pageIndex] == undefined || descData[prop.pageIndex] == null)
+        return null;
+    else 
+    {
+        return(
+            <div className='messageBox_Button'>
+                <a className='messageBox_Link' href="#open">{descData[prop.pageIndex][0]}</a>
+            </div>
+        );
+    }
+}
+
+function MessageBoxPopup(prop){
+
+    if(descData[prop.pageIndex] == undefined || descData[prop.pageIndex] == null)
+        return null;
+    else
+    {
+        return (
+            <div class="messageBox_Popup" id="open">
+                <div>
+                    <p><a href="#close">닫기</a></p>
+                    <p>{descData[prop.pageIndex][1]}</p>
+                </div>
+            </div>
+        );
+    } 
+
+
+}
 
 
 function PageProgressBar(prop){

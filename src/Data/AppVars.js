@@ -35,6 +35,28 @@ const userSelectData = create((set) => ({
 }
 ))
 
+const descData = [
+    null,
+    null,
+    null,
+    ["퀴어가 뭐야?", "퀴어는 성적 성별을 포함한 성적 신체적 특성을 자신의 성적 성별과 다르게 인식하고 표현하는 사람을 말합니다."],
+    ["장애의 기준이 뭐야?", "장애는 정신적, 신체적, 지적, 사회적, 환경적 요인으로 인해 일상생활에 지장을 주는 것을 말합니다."],
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+]
+
+
 const questionData = [
     ["q0", "gender", "성별이 어떻게 돼 ?", "여", "남", "선택하지 않을래", "noData", "noData", "noData", "-", "-", "-", "-", "-", "-"],
     ["q1", "age", "나이는 어떻개 돼 ?", "0~19세", "20~29세", "30~39세", "40~49세", "50~59세", "60세 이상", "-", "-", "-", "-", "-", "-"],
@@ -254,4 +276,4 @@ const textData =
     text_10
 ]
 
-export { textData, dummyData, sceneData, pageData, userSelectData, questionData, baseHigherData, baseLowerData, mulitpliData, GetMultiplier}
+export { textData, dummyData, sceneData, pageData, userSelectData, questionData, baseHigherData, baseLowerData, mulitpliData, descData, GetMultiplier}
