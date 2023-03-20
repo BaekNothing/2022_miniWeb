@@ -310,7 +310,7 @@ function SetUserSelectData(prop) {
         if (_refreshUserSelectDataFlag) {
             //push SelectedNumber to userSelect
             var tempAry = [...userSelect, chosenIndex];
-            if (tempAry.length == 1)
+            if (tempAry.length === 1)
             {
                 tempAry = [0, chosenIndex];
             }
