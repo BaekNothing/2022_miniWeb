@@ -52,7 +52,16 @@ function MessageBoxButton(prop){
     else 
     {
         return(
-            <div className='messageBox_Button'>
+            <div className='messageBox_Button' style={{ fontFamily:'SUIT-Regular', fontSize:"15px"}}>
+                <div style={{
+                    display:"inline-block",
+                    backgroundColor:"#2F4FFD",
+                    color:"white",
+                    borderRadius:"50%",  
+                    width:"20px",
+                    height:"20px",
+                    marginRight:"5px"
+                    }}> ? </div>
                 <a className='messageBox_Link' href="#open">{descData[prop.pageIndex][0]}</a>
             </div>
         );
