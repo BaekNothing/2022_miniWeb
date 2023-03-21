@@ -4,7 +4,6 @@ import React, { useEffect } from 'react';
 import { textData, sceneData, pageData, userSelectData, mulitpliData, baseHigherData, questionData, GetMultiplier } from '../Data/AppVars';
 import RenderLineChart from '../Data/LineChartDrawer';
 import RaderChart from '../Data/RaderChartDrawer';
-
 function RenderResultPage(prop) {
     const { setPageIndex, setPrevIndex, prevIndex} = pageData();
     const { setUserSelect, userSelect, SetUserName, userName } = userSelectData();

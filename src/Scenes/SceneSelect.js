@@ -38,7 +38,6 @@ function RenderSelectPage(prop) {
             <PageMainImage />
 
             <PageMainQuestionBox userData={_userChosenData === 0 ? 0 : 1} />
-
         </div>
     )
 }

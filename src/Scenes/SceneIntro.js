@@ -1,6 +1,8 @@
 import '../App.css';
 import React, { useEffect } from 'react';
 import { dummyData, sceneData, pageData, userSelectData } from '../Data/AppVars';
+import ReCAPTCHA from "react-google-recaptcha";
+
 
 var _startFlag = 0; 
 
@@ -23,12 +25,28 @@ function RenderIntroPage(prop) {
     if(_startFlag === 0)
     {
         return (
-            <div className="main-body" key="introPage">
+            <div className="main-body bg_blue" style={{
+                "minHeight": "95vh",
+            }} key="introPage">
                 <img key='introTitle' className='title_image' id='char_body' src={'./images/title_png.png'} alt='charBody' />
-                <button className='title_btn' onClick={() => {
+                {/* <button className='title_btn' style={{
+                    backgroundColor: 'white',
+                    color: '#000000',
+                }} onClick={() => {
                     _startFlag = 1;
                     SetDummy(1);
-                }}> 시작하기</button>
+                }}> 시작하기</button> */}
+
+                <ReCAPTCHA
+                style={{
+                    "position": "absolute",
+                    "left": "50%",
+                    "transform": "translateX(-50%)",
+                }}
+                sitekey='6Le7uh0lAAAAAAGXbIKjYMaDhmwRQHfz642eDicS' onChange={() => {
+                    _startFlag = 1;
+                    SetDummy(1);
+                }} />
             </div>
         )
     }
@@ -41,6 +59,7 @@ function RenderIntroPage(prop) {
                     _startFlag = 2;
                     SetDummy(1);
                 }}> 내 위치 알아보기</button>
+
             </div>
         )
     }

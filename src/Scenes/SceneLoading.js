@@ -2,7 +2,6 @@
 import React, { useEffect, useState, setState, useRef } from 'react';
 import { sceneData, pageData, userSelectData, questionData, dummyData } from '../Data/AppVars';
 
-
 function RenderLoading(prop) {
     const { setPageIndex, setPrevIndex, prevIndex } = pageData();
     const { setUserSelect, userSelect, SetUserName } = userSelectData();

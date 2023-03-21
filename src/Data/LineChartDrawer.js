@@ -31,8 +31,8 @@ function RenderLineChart()
     for (let i = 0; i < originData.length; i++) {
         data.push({
             name: _name[i],
-            default: originData[i],
-            You: Math.round((originData[i] * mulitplier)),
+            표준소득: originData[i],
+            예상소득: Math.round((originData[i] * mulitplier)),
             amt: mulitplier
         });
     }
@@ -55,8 +55,8 @@ function RenderLineChart()
             <YAxis fontSize={12} dataKey="name" type="category" />
             <Tooltip />
             <Legend align='right'  />
-            <Bar dataKey="default" fill="#8884d8" opacity={0.3} />
-            <Bar dataKey="You" fill="#2F4FFD" />
+            <Bar dataKey="표준소득" fill="#8884d8" opacity={0.3} />
+            <Bar dataKey="예상소득" fill="#2F4FFD" />
         </BarChart>
     );
 }

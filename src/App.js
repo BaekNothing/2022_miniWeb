@@ -6,6 +6,7 @@ import RenderIntroPage from './Scenes/SceneIntro';
 import RenderSelectPage from './Scenes/SceneSelect';
 import RenderResultPage from './Scenes/SceneResult';
 import RenderLoading from './Scenes/SceneLoading';
+import Footer from './Scenes/SceneFooter';
 
 function App() {
   return (
@@ -20,12 +21,7 @@ function App() {
         }> 
             <PageRender></PageRender>
         </div>
-        <div className='footer'>
-            <div className='footer-text'>
-                  <p>© 2023 All rights reserved. Team WaiWai</p>
-                  <a target='_blank' href='https://www.notion.so/kimteainvoyagerx/5c1dc2cb4f96431eabeb9964b6899baf?pvs=4'>Why We Make This?</a>
-            </div>
-        </div>
+        <Footer />
     </div>
   );
 }
