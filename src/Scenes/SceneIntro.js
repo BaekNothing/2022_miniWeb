@@ -29,24 +29,24 @@ function RenderIntroPage(prop) {
                 "minHeight": "95vh",
             }} key="introPage">
                 <img key='introTitle' className='title_image' id='char_body' src={'./images/title_png.png'} alt='charBody' />
-                <button className='title_btn' style={{
+                {/* <button className='title_btn' style={{
                     backgroundColor: 'white',
                     color: '#000000',
                 }} onClick={() => {
                     _startFlag = 1;
                     SetDummy(1);
-                }}> 시작하기</button>
-{/* 
+                }}> 시작하기</button> */}
+
                 <ReCAPTCHA
                 style={{
                     "position": "absolute",
                     "left": "50%",
                     "transform": "translateX(-50%)",
                 }}
-                sitekey='6Le7uh0lAAAAAAGXbIKjYMaDhmwRQHfz642eDicS' onChange={() => {
+                    sitekey='6LcXtyElAAAAAMo8iXp1p714gfQNt--0HqnTsVos' onChange={() => {
                     _startFlag = 1;
                     SetDummy(1);
-                }} /> */}
+                }} />
             </div>
         )
     }
