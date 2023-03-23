@@ -10,9 +10,10 @@ function handleSubmit(event) {
     event.preventDefault();
 }
 
+const commonWidth = '380px';
 
 function RenderIntroPage(prop) {
-    const { dummy, SetDummy } = dummyData();
+    const { SetDummy } = dummyData();
     const { setPageIndex } = pageData();
     const { setUserSelect, SetUserName, userName } = userSelectData();
     const { sceneIndex, setSceneIndex } = sceneData();
@@ -28,7 +29,10 @@ function RenderIntroPage(prop) {
             <div className="main-body bg_blue" style={{
                 "minHeight": "95vh",
             }} key="introPage">
-                <img key='introTitle' className='title_image' id='char_body' src={'./images/title_png.png'} alt='charBody' />
+                {/* <img key='introTitle' style={{
+                    opacity: 0.3,
+                }} className='title_image' id='char_body' src={'./images/title_png.png'} alt='charBody' /> */}
+                <IntroTitle />
                 {/* <button className='title_btn' style={{
                     backgroundColor: 'white',
                     color: '#000000',
@@ -39,9 +43,10 @@ function RenderIntroPage(prop) {
 
                 <ReCAPTCHA
                 style={{
-                    "position": "absolute",
-                    "left": "50%",
-                    "transform": "translateX(-50%)",
+                    position: "absolute",
+                    top: '500px',
+                    left: "50%",
+                    transform: "translateX(-50%)",
                 }}
                     sitekey='6LewAyYlAAAAAHhamUVCNTeUeJU3vwiUQ9PBkJrC' onChange={() => {
                     _startFlag = 1;
@@ -108,6 +113,60 @@ function RenderIntroPage(prop) {
         )
     }
     
+}
+
+// *************** IntroTitle ***************
+
+function IntroTitle() {
+    return (
+        <div>
+            <IntroTitleTitle />
+            <IntroTitleImage />
+        </div>
+    )
+}
+
+function IntroTitleTitle() {
+    return(
+        <div>
+            <div style={{
+                position: 'absolute',
+                top: '76px',
+                width: commonWidth,
+                fontSize: '54px',
+                lineHeight: '56px'
+            }}> 인생 난이도<br />진단 테스트 </div>
+            <div style={{
+                position: 'absolute',
+                fontFamily: 'SUIT-Thin',
+                top: '176px',
+                width: commonWidth,
+                fontSize: '16px',
+                lineHeight: '56px'
+            }}> 한국에서 나의 생존 계급은 몇급일까? </div>
+        </div>
+    )
+}
+
+function IntroTitleImage(){
+    return (
+        <div> 
+            <img 
+                key='introTitle' 
+                className='title_image' 
+                id='char_body' 
+                style={{
+                    position: 'absolute',
+                    top: '160px',
+                    width:'240px',
+                    height:'194px',
+
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                }}
+                src={'./images/title_img.png'} alt='charBody' />
+        </div>
+    )
 }
 
 // *************** ACTION ***************
