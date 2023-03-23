@@ -43,7 +43,7 @@ function RenderIntroPage(prop) {
                     "left": "50%",
                     "transform": "translateX(-50%)",
                 }}
-                    sitekey='6LcXtyElAAAAAMo8iXp1p714gfQNt--0HqnTsVos' onChange={() => {
+                    sitekey='6LewAyYlAAAAAHhamUVCNTeUeJU3vwiUQ9PBkJrC' onChange={() => {
                     _startFlag = 1;
                     SetDummy(1);
                 }} />
