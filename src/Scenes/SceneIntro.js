@@ -27,7 +27,7 @@ function RenderIntroPage(prop) {
     {
         return (
             <div className="main-body bg_blue" style={{
-                "minHeight": "95vh",
+                minHeight: '900px'
             }} key="introPage">
                 {/* <img key='introTitle' style={{
                     opacity: 0.3,
@@ -58,7 +58,9 @@ function RenderIntroPage(prop) {
     else if (_startFlag === 1)
     {
         return (
-            <div className="main-body" key="introPage">
+            <div className="main-body" style={{
+                minHeight: '900px'
+            }} key="introPage">
                 {/* <img key='introTitle' style={{opacity: 0.3}} 
                 className='title_image' id='char_body' src={'./images/intro_png.png'} alt='charBody' />                 */}
                 <DescTitle />
@@ -80,7 +82,9 @@ function RenderIntroPage(prop) {
     else if (_startFlag === 2)
     {
         return (
-            <div className="main-body" key="introPage">
+            <div className="main-body" style={{
+                minHeight: '900px'
+            }} key="introPage">
                 {/* <img key='introTitle' className='call_image' id='char_body' src={'./images/call_png.png'} alt='charBody' /> */}
                 <div
                     style={{
@@ -119,7 +123,9 @@ function RenderIntroPage(prop) {
     else
     {
         return (
-            <div className="main-body" key="introPage">
+            <div className="main-body" style={{
+                minHeight: '900px'
+            }} key="introPage">
                 <img key='introTitle' className='call_image2' id='char_body' src={'./images/call_png.png'} alt='charBody' />
                 <p/>
                 <div className='talk_image' id='char_body'>
@@ -142,6 +148,8 @@ function RenderIntroPage(prop) {
 }
 
 // *************** IntroTitle ***************
+
+
 
 function IntroTitle() {
     return (

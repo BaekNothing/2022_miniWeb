@@ -22,7 +22,9 @@ function RenderSelectPage(prop) {
     const { pageIndex, setPageIndex, dataAry, prevIndex } = pageData();
 
     return (
-        <div className="main-body" key="setUserSelectData">
+        <div className="main-body" style={{
+            minHeight: '900px'
+        }} key="setUserSelectData">
             <div className='main-SelectedHud'>
                 <PageMainUserSelectBox setPageIndex={setPageIndex} />
             </div>
@@ -59,7 +61,7 @@ function MessageBoxButton(prop){
                     borderRadius:"50%",  
                     width:"20px",
                     height:"20px",
-                    marginRight:"5px"
+                    marginRight:"5px",
                     }}> ? </div>
                 <a className='messageBox_Link' href="#open">{descData[prop.pageIndex][0]}</a>
             </div>
@@ -241,8 +243,8 @@ function PageMainButtonInput(prop){
     if (dataAry[liIndex + 2] === " noData" || dataAry[liIndex + 2] === "noData")
         return <div className='invisible'> </div>;
     return (
-        <div className='t16 m4 inline-block btn_selectable'>
-            <button className='bg_white btn_selectable'
+        <div className='m4 inline-block btn_selectable t16'>
+            <button className='bg_white btn_selectable t16'
                 style={ liIndex === _userChosenData
                     ? { background: "#2F4FFD", color: "white", border: "white" }
                     : { background: "white", color: "black" } }
@@ -267,7 +269,7 @@ function NextButton() {
     if (_userChosenData <= 0) return(
         <div>
             <div className='t16 m4 inline-block btn_selectable_half'> </div>
-            <button className='m4 inline-block btn_selectable_half'>{goNext}</button>
+            <button className='t16 m4 inline-block btn_selectable_half'>{goNext}</button>
         </div>
     ) 
         
@@ -275,7 +277,7 @@ function NextButton() {
     return (
         <div>
             <div className='t16 m4 inline-block btn_selectable_half'> </div>
-            <button className='m4 inline-block btn_selectable_half bg_blue' onClick={() => {
+            <button className='t16 m4 inline-block btn_selectable_half bg_blue' onClick={() => {
                 SetUserSelectDataFlag(flags.refresh, _userChosenData);
 
                 setPrevIndex([...prevIndex ?? [], pageIndex]);

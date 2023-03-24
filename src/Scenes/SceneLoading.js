@@ -15,7 +15,9 @@ function RenderLoading(prop) {
     }, [])
 
     return (
-        <div className="main-body" key="setUserSelectData">
+        <div className="main-body" style={{
+            minHeight: '900px'
+        }} key="setUserSelectData">
             <SetTimer />
         </div>
     )
@@ -54,7 +56,7 @@ function SetTimer() {
 
     return (
         <div className="main-body bg_blue" style={{
-            "height": "95vh",
+            minHeight: '800px'
         }}>
             {/* <img key='loading' style={{"opacity": "0.5",}}  className='loading_Bg' src={'./images/loading_png.png'} alt='charBody' /> */}
             <p style={{
