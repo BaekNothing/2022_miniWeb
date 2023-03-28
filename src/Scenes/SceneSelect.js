@@ -4,10 +4,15 @@ import React, { useEffect } from 'react';
 import { dummyData, sceneData, pageData, userSelectData, questionData, descData } from '../Data/AppVars';
 
 var _refreshUserSelectDataFlag = true;
+var _removeUserSelectDataFlag = false;
 var _userChosenData = 0;
 function SetUserSelectDataFlag(flag, data) {
     _refreshUserSelectDataFlag = flag;
     _userChosenData = data;
+}
+
+function RemoveUserSelectDataFlag(flag) {
+    _removeUserSelectDataFlag = flag;
 }
 
 const flags = {
@@ -31,6 +36,7 @@ function RenderSelectPage(prop) {
 
             <div className='Action'>
                 <SetUserSelectData/>
+                <RemoveUserSelectData/>
                 <GetSelectPageData pageIndex={pageIndex} />
             </div>
             <PageProgressBar />
@@ -76,7 +82,7 @@ function MessageBoxPopup(prop){
     else
     {
         return (
-            <div class="messageBox_Popup" id="open">
+            <div className="messageBox_Popup" id="open">
                 <div>
                     <p><a href="#close">닫기</a></p>
                     <p>{descData[prop.pageIndex][1]}</p>
@@ -258,6 +264,7 @@ function PageMainButtonInput(prop){
     )
 }
 
+var goPrev = "< 이전으로"
 var goNext = "다음으로 >"
 
 function NextButton() {
@@ -266,17 +273,31 @@ function NextButton() {
     const { sceneIndex, setSceneIndex } = sceneData();
     const { userSelect, setUserSelect } = userSelectData();
 
+
+    
     if (_userChosenData <= 0) return(
         <div>
-            <div className='t16 m4 inline-block btn_selectable_half'> </div>
+            <button className='t16 m4 inline-block btn_selectable_half bg_blue' style={
+                userSelect.length > 1 ? { marginRight: "10px" } : { marginRight: "10px", visibility: "hidden" }
+            } onClick={() => {
+                RemoveUserSelectDataFlag(flags.refresh);
+                var tempAry = prevIndex.slice(0, prevIndex.length - 1);
+                setPrevIndex(tempAry);
+                setPageIndex(pageIndex * 1 - 1);
+            }}>{goPrev}</button>
             <button className='t16 m4 inline-block btn_selectable_half'>{goNext}</button>
         </div>
     ) 
-        
-
     return (
         <div>
-            <div className='t16 m4 inline-block btn_selectable_half'> </div>
+            <button className='t16 m4 inline-block mr40 btn_selectable_half bg_blue' style={
+                userSelect.length > 1 ? { marginRight: "10px" } : { marginRight: "10px", visibility: "hidden" }
+            } onClick={() => {
+                RemoveUserSelectDataFlag(flags.refresh);
+                var tempAry = prevIndex.slice(0, prevIndex.length - 1);
+                setPrevIndex(tempAry);
+                setPageIndex(pageIndex * 1 - 1);
+             }}>{goPrev}</button>
             <button className='t16 m4 inline-block btn_selectable_half bg_blue' onClick={() => {
                 SetUserSelectDataFlag(flags.refresh, _userChosenData);
 
@@ -328,8 +349,27 @@ function SetUserSelectData(prop) {
             }
 
             _refreshUserSelectDataFlag = false;
+            console.log("addUserSelectData : " + tempAry);
         }
     }, [userSelect, pageIndex, prevIndex, setUserSelect, sceneIndex, setSceneIndex, chosenIndex])
+    return <div className='invisible'> </div>;
+}
+
+function RemoveUserSelectData(prop) {
+    const { pageIndex, prevIndex } = pageData();
+    const { userSelect, setUserSelect } = userSelectData();
+    const { sceneIndex, setSceneIndex } = sceneData();
+
+    useEffect(() => {
+        if (_removeUserSelectDataFlag) {
+            var tempAry = [...userSelect];
+            tempAry.pop();
+            setUserSelect(tempAry);
+            _removeUserSelectDataFlag = false;
+
+            console.log("removeUserSelectData : " + tempAry);
+        }
+    }, [userSelect, pageIndex, prevIndex, setUserSelect, sceneIndex, setSceneIndex])
     return <div className='invisible'> </div>;
 }
 

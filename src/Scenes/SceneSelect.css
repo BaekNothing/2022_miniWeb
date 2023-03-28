@@ -70,7 +70,7 @@
 .btns_box
 {
     display: inline-block;
-    width: 400px;
+    width: 310px;
     text-align: center;
 }
 
@@ -85,7 +85,6 @@
 .btn_selectable
 {
     width: 310px;
-    margin-left:-20px;
     height : 40px;
     border-radius: 5px;
     border-color: lightgray;
@@ -95,7 +94,7 @@
 
 .btn_selectable_half
 {
-    width: 140px;
+    width: 150px;
     height : 40px;
     border-radius: 5px;
     border-color: lightgray;
@@ -141,7 +140,8 @@
 
 
 .m4{
-    margin: 4px;
+    margin-top: 4px;
+    margin-bottom: 4px;
 }
 
 .t16{

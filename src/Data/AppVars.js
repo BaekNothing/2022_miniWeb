@@ -15,9 +15,9 @@ const sceneData = create((set) => ({
 
 const pageData = create((set) => ({
     previndex: [],
-    setPrevIndex: (prevIndex) => set(() => { return { prevIndex } }),
+    setPrevIndex: (prevIndex) => set(() => { console.log("prevIndex : " + prevIndex); return { prevIndex } }),
     pageIndex: 0,
-    setPageIndex: (pageIndex) => set(() => { return { pageIndex } }),
+    setPageIndex: (pageIndex) => set(() => { console.log("pageIndex : " + pageIndex); return { pageIndex } }),
     dataAry: ['name', 'image', 'qusetion',
         'answer1', 'answer2', 'answer3', 'answer4', 'answer5', 'answer6',
         'm1', 'm2', 'm3', 'm4', 'm5', 'm6'],
