@@ -277,7 +277,7 @@ function NextButton() {
     
     if (_userChosenData <= 0) return(
         <div>
-            <button className='t16 m4 inline-block btn_selectable_half bg_blue' style={
+            <button className='t16 m4 inline-block btn_selectable_half' style={
                 userSelect.length > 1 ? { marginRight: "10px" } : { marginRight: "10px", visibility: "hidden" }
             } onClick={() => {
                 RemoveUserSelectDataFlag(flags.refresh);
@@ -290,7 +290,7 @@ function NextButton() {
     ) 
     return (
         <div>
-            <button className='t16 m4 inline-block mr40 btn_selectable_half bg_blue' style={
+            <button className='t16 m4 inline-block mr40 btn_selectable_half' style={
                 userSelect.length > 1 ? { marginRight: "10px" } : { marginRight: "10px", visibility: "hidden" }
             } onClick={() => {
                 RemoveUserSelectDataFlag(flags.refresh);

@@ -92,7 +92,7 @@ function RenderIntroPage(prop) {
                         top:'120px',
                         width: commonWidth,
                     }}
-                >   어떻게 불러줄까?
+                >   이름이 뭐야?
 
                 </div>
                 
@@ -126,25 +126,31 @@ function RenderIntroPage(prop) {
             <div className="main-body" style={{
                 minHeight: '900px'
             }} key="introPage">
-                <img key='introTitle' className='call_image2' id='char_body' src={'./images/call_png.png'} alt='charBody' />
-                <p/>
+                <div
+                    style={{
+                        position: "absolute",
+                        top: '120px',
+                        width: commonWidth,
+                    }}
+                >   이름이 뭐야?
+
+                </div>
+                <p style={{marginTop:'300px'}} />
                 <div className='talk_image' id='char_body'>
                     <img key='introtalk' className='talk_image' id='char_body' src={'./images/call_talk_bubble.png'} alt='charBody' />
                     <p className='text_in_talkImage'>{userName}님, 안녕하세요!</p>
                 </div>
                 <form onSubmit={handleSubmit}>
                     <input
-                        style={{ marginTop: '70px'}} 
+                        style={{ borderRadius:'5px', marginTop: '70px'}} 
                         type="submit" value="다음으로 >" onClick={()=>{
                             setSceneIndex(sceneIndex + 1);
                             clearAlldata(setPageIndex, setUserSelect);
                     }} className='title_btn_blue_sml' />
                 </form>
-                
             </div>
         )
     }
-    
 }
 
 // *************** IntroTitle ***************
