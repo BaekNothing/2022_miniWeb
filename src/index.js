@@ -18,14 +18,13 @@ function Metatags(){
         <head>
             <meta charSet="utf-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <meta name="description" content="내 인생은 몇 등급일까? 나의 자본 계급 측정 테스트" />
             <meta name="author" content="4D1C3H" />
             <link rel="icon" href="favicon.ico" />
-            <meta property="og:url" content="https://lifesohard.com" />
-            <meta property="og:title" content="인생 난이도 테스트" />
-            <meta property="og:type" content="website" />
-            <meta property="og:image" content="link.jpg" />
-            <meta property="og:description" content="내 인생은 몇 등급일까? 나의 자본 계급 측정 테스트" />
+            <meta name="url" property="og:url" content="https://whylifesohard.com/" />
+            <meta name="title" property="og:title" content="인생 난이도 테스트" />
+            <meta name="type" property="og:type" content="website" />
+            <meta name="image" property="og:image" content="https://whylifesohard.com/link.jpg" />
+            <meta name="description" property="og:description" content="내 인생은 몇 등급일까? 나의 자본 계급 측정 테스트" />
         </head>
     );
 }
