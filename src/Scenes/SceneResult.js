@@ -119,6 +119,17 @@ function RenderResultPage(prop) {
                     "borderColor": "#2F4FFD",
                     "opacity": "0.3"
                 }} />
+                <p style={{
+                    "textAlign": "left",
+                    "fontFamily": "SUIT-Regular",
+                    "fontSize": "12px",
+                    "lineHeight": "18px",
+                    "fontWeight": "400",
+                    "margin": "12px 12px 12px 0px",
+                }}>
+                    험난한 인생을 잘 싸울 수 있을까? <br />
+                    나의 경쟁력과 능력치 레벨을 측정한 값입니다.
+                </p>
                 <RaderChart />
             </div>
             <div className='body_contents' style={{
@@ -168,6 +179,18 @@ function RenderResultPage(prop) {
                     "opacity": "0.3"
                 }} />
 
+                <p style={{
+                    "textAlign": "left",
+                    "fontFamily": "SUIT-Regular",
+                    "fontSize": "12px",
+                    "lineHeight": "18px",
+                    "fontWeight": "400",
+                    "margin": "12px 12px 12px 0px",
+                }}>
+                    내 인생의 소득 최고점은 언제일까? <br/>
+                    평균 소득과 대비하여 나의 미래 소득 예측 값입니다.
+                </p>
+
                 <RenderLineChart />
             </div>
         </div>
@@ -182,7 +205,7 @@ function ResultLevelImage(prop)
     var result = [];
     
     {
-        const i = 8;
+        const i = 7;
         const selectedNumber = userSelect[i];
         if (selectedNumber > 0) {
             const imageName = questionData[i - 1][1];
@@ -190,8 +213,8 @@ function ResultLevelImage(prop)
             result.push(<img key={i} className='char'
                 style={
                     {
-                        "width": "280px",
-                        "height": "280px"
+                        "height": "280px",
+                        "width": "auto"
                     }
                 }
                 id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);
@@ -229,7 +252,7 @@ function ResultLevelImage(prop)
             style={
                 {
                     "width": "280px",
-                    "height": "280px"
+                    "height": "auto"
                 }
             }
             id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);

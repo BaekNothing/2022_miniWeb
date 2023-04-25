@@ -124,7 +124,7 @@ function PageMainImage(prop)
     const { prevIndex } = pageData();
     var result = [];
     var index = (prevIndex ?? []).length;
-    if (index === 5 || index === 7 || index === 8 || index === 11)
+    if (index === 5 || index === 7 || index === 10)
     {
         if (_userChosenData > 0 || prevIndex === undefined) 
         {
@@ -134,7 +134,7 @@ function PageMainImage(prop)
     }
 
 
-    if (index === 10 && _userChosenData < 3) {
+    if (index === 9 && _userChosenData < 3) {
         if (_userChosenData > 0 || prevIndex === undefined) {
             var imagePath = questionData[index][1] + "_" + _userChosenData;
             result.push(<img key='now' className='char' id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);
@@ -179,7 +179,7 @@ function PageMainImage(prop)
     }
 
 
-    if (!(index === 5 || index === 7 || index === 8 || index === 10 || index === 11)) 
+    if (!(index === 5 || index === 7 || index === 9 || index === 10)) 
     {
         if (_userChosenData > 0 || prevIndex === undefined) {
             var imagePath = questionData[index][1] + "_" + _userChosenData;
@@ -191,7 +191,7 @@ function PageMainImage(prop)
                 userSelect[1] == 3) {
                 imagePath += "_2";
             }
-            if (index == 12 && (2 < _userChosenData && _userChosenData < 5) &&
+            if (index == 11 && (2 < _userChosenData && _userChosenData < 5) &&
                 userSelect[1] == 1)
             {
                 imagePath += "_1";
@@ -201,7 +201,7 @@ function PageMainImage(prop)
     }
 
 
-    if (index === 10 && _userChosenData >= 3) { 
+    if (index === 9 && _userChosenData >= 3) { 
         if (_userChosenData > 0 || prevIndex === undefined) {
             var imagePath = questionData[index][1] + "_" + _userChosenData;
             result.push(<img key='now' className='char' id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);
