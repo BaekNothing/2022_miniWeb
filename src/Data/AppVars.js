@@ -1,5 +1,6 @@
 import {create} from 'zustand';
 
+// do npx serve -s build -l 80
 
 const dummyData = create((set) => ({
     dummy: 0,
@@ -71,7 +72,7 @@ const questionData = [
     ["q10", "payment", "연봉이 어떻게 돼 ?", "8000이상", "5000이상", "3000이상", "3000미만", "noData", "noData", "-", "-", "-", "-", "-", "-"],
     ["q11", "grade", "마지막으로 졸업한 학교가 어디야?", "석/박사 이상", "대학교", "고등학교", "의무교육", "해당사항 없음", "noData", "-", "-", "-", "-", "-", "-"],
     ["q12", "schoolRegion", "교육은 어디에서 받았어?", "서울", "수도권", "비 수도권", "noData", "noData", "noData", "-", "-", "-", "-", "-", "-"],
-    ["q13", "parents", "재정지원을 받아?", "드리는 중", "독립됨", "받는 중", "noData", "noData", "noData", "-", "-", "-", "-", "-", "-"],
+    ["q13", "parents", "재정지원을 받아?", "받는 중", "독립됨", "드리는 중", "noData", "noData", "noData", "-", "-", "-", "-", "-", "-"],
     ["q14", "result", "자 이제 결과를 볼까", "결과보기", "noData", "noData", "noData", "noData", "noData", "-", "-", "-", "-", "-", "-", "-"],
     ["last", "temp", "this is temp Question 7", "noData", "noData", "noData", "noData", "noData", "noData", "-", "-", "-", "-", "-", "-"],
     ["end", "temp", "this is temp Question 8", "noData", "noData", "noData", "noData", "noData", "noData", "-", "-", "-", "-", "-", "-"]

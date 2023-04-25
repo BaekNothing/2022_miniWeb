@@ -227,7 +227,7 @@ function SetData(userSelect)
             //data[dicType["건강"]].결과 += 0;
             break;
     }
-    switch (userSelect[8]) { // 불로소득
+    switch (userSelect[8]) { // 저축
         case 1: // 많음
             data[dicType["본질"]].결과 += +2;
             //data[dicType["직장"]].결과 += 0;
@@ -250,30 +250,7 @@ function SetData(userSelect)
             data[dicType["건강"]].결과 += 0;
             break;
     }
-    switch (userSelect[9]) { // 고정지출
-        case 1: // 많음
-            //data[dicType["본질"]].결과 += 1;
-            //data[dicType["직장"]].결과 += 1;
-            data[dicType["재력"]].결과 += -1;
-            //data[dicType["교육"]].결과 += 1;
-            //data[dicType["건강"]].결과 += 1;
-            break;
-        case 2: // 적음
-            //data[dicType["본질"]].결과 += 1;
-            //data[dicType["직장"]].결과 += 1;
-            data[dicType["재력"]].결과 += 0;
-            //data[dicType["교육"]].결과 += 1;
-            //data[dicType["건강"]].결과 += 1;
-            break;
-        case 3: // 없음
-            //data[dicType["본질"]].결과 += 1;
-            //data[dicType["직장"]].결과 += 1;
-            data[dicType["재력"]].결과 += +1;
-            //data[dicType["교육"]].결과 += 1;
-            //data[dicType["건강"]].결과 += 1;
-            break;
-    }
-    switch (userSelect[10]) { // 근로방식
+    switch (userSelect[9]) { // 근로방식
         case 1: // 정규직
             data[dicType["본질"]].결과 += +2;
             data[dicType["직장"]].결과 += +2;
@@ -296,7 +273,7 @@ function SetData(userSelect)
             data[dicType["건강"]].결과 += 0;
             break;
     }
-    switch (userSelect[11]) { // 근로 규모
+    switch (userSelect[10]) { // 근로 규모
         case 1: // 대기업
             data[dicType["본질"]].결과 += +2;
             data[dicType["직장"]].결과 += +2;
@@ -333,7 +310,7 @@ function SetData(userSelect)
             data[dicType["건강"]].결과 += 0;
             break;
     }
-    switch (userSelect[12]) { // 연봉
+    switch (userSelect[11]) { // 연봉
         case 1: // 8000이상
             //data[dicType["본질"]].결과 += +2;
             data[dicType["직장"]].결과 += +2;
@@ -363,7 +340,7 @@ function SetData(userSelect)
             //data[dicType["건강"]].결과 += 1;
             break;
     }
-    switch (userSelect[13]) { // 학력
+    switch (userSelect[12]) { // 학력
         case 1: // 석사 이상
             //data[dicType["본질"]].결과 += 1;
             data[dicType["직장"]].결과 += +2;
@@ -400,7 +377,7 @@ function SetData(userSelect)
             //data[dicType["건강"]].결과 += 1;
             break;
     }
-    switch (userSelect[14]) { // 교육 장소
+    switch (userSelect[13]) { // 교육 장소
         case 1: // 서울
             data[dicType["본질"]].결과 += +2;
             data[dicType["직장"]].결과 += +2;
@@ -416,6 +393,29 @@ function SetData(userSelect)
             //data[dicType["건강"]].결과 += 1;
             break;
         case 3: // 비 수도권
+            data[dicType["본질"]].결과 += -1;
+            data[dicType["직장"]].결과 += -2;
+            data[dicType["재력"]].결과 += -2;
+            data[dicType["교육"]].결과 += -2;
+            //data[dicType["건강"]].결과 += 1;
+            break;
+    }
+    switch (userSelect[13]) { // 부모 지원
+        case 1: // 받음
+            data[dicType["본질"]].결과 += +2;
+            data[dicType["직장"]].결과 += +2;
+            data[dicType["재력"]].결과 += +2;
+            data[dicType["교육"]].결과 += +2;
+            //data[dicType["건강"]].결과 += 1;
+            break;
+        case 2: // 분리
+            data[dicType["본질"]].결과 += +1;
+            data[dicType["직장"]].결과 += +1;
+            data[dicType["재력"]].결과 += +1;
+            data[dicType["교육"]].결과 += +1;
+            //data[dicType["건강"]].결과 += 1;
+            break;
+        case 3: // 드림
             data[dicType["본질"]].결과 += -1;
             data[dicType["직장"]].결과 += -2;
             data[dicType["재력"]].결과 += -2;
