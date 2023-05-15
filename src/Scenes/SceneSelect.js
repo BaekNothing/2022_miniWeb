@@ -220,7 +220,11 @@ function PageMainImage(prop)
     )
 }
 
-function PageMainQuestionBox(prop) {
+function PageMainQuestionBox(prop) 
+{
+    const { dummy } = dummyData();
+
+    console.log("PageMainQuestionBox" + _userChosenData);
     return (
         <div>
             <div className='btns_box' style={{marginTop:"40px"}}>
@@ -277,30 +281,39 @@ function NextButton() {
     
     if (_userChosenData <= 0) return(
         <div>
-            <button className='t16 m4 inline-block btn_selectable_half' style={
+            <button className='t16 m4 inline-block btn_prev' style={
                 userSelect.length > 1 ? { marginRight: "10px" } : { marginRight: "10px", visibility: "hidden" }
-            } onClick={() => {
-                RemoveUserSelectDataFlag(flags.refresh);
-                var tempAry = prevIndex.slice(0, prevIndex.length - 1);
-                setPrevIndex(tempAry);
-                setPageIndex(pageIndex * 1 - 1);
-            }}>{goPrev}</button>
+            } onClick={async () => 
+                {
+                    const last = userSelect[userSelect.length - 1];
+                    console.log(userSelect + "last : " + last);
+                    _userChosenData = last;
+                    var tempAry = prevIndex.slice(0, prevIndex.length - 1);
+
+                    await RemoveUserSelectDataFlag(flags.refresh);
+                    await setPrevIndex(tempAry);
+                    await setPageIndex(pageIndex * 1 - 1);
+                }
+            }>{goPrev}</button>
             <button className='t16 m4 inline-block btn_selectable_half'>{goNext}</button>
         </div>
     ) 
     return (
         <div>
-            <button className='t16 m4 inline-block mr40 btn_selectable_half' style={
+            <button className='t16 m4 inline-block mr40 btn_prev' style={
                 userSelect.length > 1 ? { marginRight: "10px" } : { marginRight: "10px", visibility: "hidden" }
-            } onClick={() => {
-                RemoveUserSelectDataFlag(flags.refresh);
+            } onClick={async () => {
+                const last = userSelect[userSelect.length - 1];
+                console.log(userSelect + "last : " + last);
+                _userChosenData = last;
                 var tempAry = prevIndex.slice(0, prevIndex.length - 1);
-                setPrevIndex(tempAry);
-                setPageIndex(pageIndex * 1 - 1);
+
+                await RemoveUserSelectDataFlag(flags.refresh);
+                await setPrevIndex(tempAry);
+                await setPageIndex(pageIndex * 1 - 1);
              }}>{goPrev}</button>
             <button className='t16 m4 inline-block btn_selectable_half bg_blue' onClick={() => {
                 SetUserSelectDataFlag(flags.refresh, _userChosenData);
-
                 setPrevIndex([...prevIndex ?? [], pageIndex]);
                 setPageIndex(
                     dataAry[_userChosenData + 8] !== '-'

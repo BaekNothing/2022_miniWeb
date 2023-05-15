@@ -97,7 +97,21 @@
     width: 150px;
     height : 40px;
     border-radius: 5px;
-    border-color: lightgray;
+    /* border-color: lightgray; */
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.btn_prev
+{
+    width: 150px;
+    height: 40px;
+    border-radius: 5px;
+    text-align: left;
+    font-family: SUIT-Regular;
+    
+    background-color: none;
     border: none !important;
     outline: none !important;
     box-shadow: none !important;
