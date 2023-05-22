@@ -59,7 +59,7 @@ function MessageBoxButton(prop){
     else 
     {
         return(
-            <div className='messageBox_Button' style={{ fontFamily:'SUIT-Regular', fontSize:"15px"}}>
+            <div className='messageBox_Button'  style={{ fontFamily:'SUIT-Regular', fontSize:"15px"}}>
                 <div style={{
                     display:"inline-block",
                     backgroundColor:"#2F4FFD",
@@ -68,7 +68,7 @@ function MessageBoxButton(prop){
                     width:"20px",
                     height:"20px",
                     marginRight:"5px",
-                    }}> ? </div>
+                }}> <a href="#open" style={{ fontFamily: 'SUIT-Regular', fontSize: "15px", color: "#ffffff" }}> ? </a> </div>
                 <a className='messageBox_Link' href="#open">{descData[prop.pageIndex][0]}</a>
             </div>
         );
@@ -83,9 +83,13 @@ function MessageBoxPopup(prop){
     {
         return (
             <div className="messageBox_Popup" id="open">
-                <div>
-                    <p><a href="#close">닫기</a></p>
-                    <p>{descData[prop.pageIndex][1]}</p>
+                <div style={{ height: "280px" }}>
+                    <div style={{position: 'absolute', marginTop:"10px", width:"300px", height:"240px"}} >
+                        <p>{descData[prop.pageIndex][1]}</p>
+                    </div>                    
+                    <div style={{ position:'absolute', height: "40px", width: "240px", marginLeft: "30px", marginTop: "200px", background: "#2F4FFD" }}> 
+                        <a style={{ lineHeight: "40px", display:"inline-block", margin: "10", color: "#ffffff" }} href="#close">닫기</a>
+                    </div>
                 </div>
             </div>
         );
@@ -124,6 +128,13 @@ function PageMainImage(prop)
     const { prevIndex } = pageData();
     var result = [];
     var index = (prevIndex ?? []).length;
+
+
+    if (userSelect.length > 6) {
+        var imagePath = questionData[5][1] + "_" + userSelect[6];
+        result.push(<img key='index5' className='char' id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);
+    }
+
     if (index === 5 || index === 7 || index === 10)
     {
         if (_userChosenData > 0 || prevIndex === undefined) 
@@ -132,7 +143,6 @@ function PageMainImage(prop)
             result.push(<img key='now' className='char' id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);
         }
     }
-
 
     if (index === 9 && _userChosenData < 3) {
         if (_userChosenData > 0 || prevIndex === undefined) {

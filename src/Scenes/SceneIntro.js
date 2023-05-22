@@ -100,8 +100,7 @@ function RenderIntroPage(prop) {
                     style={{
                         position: "absolute",
                         width: commonWidth,
-                        top: "500px"
-
+                        top: "500px",
                     }}
                 >
                     <input className='title_btn_white' id="name" type="text" name="name" placeholder="5자 이내로 입력해줘" />
@@ -140,9 +139,11 @@ function RenderIntroPage(prop) {
                     <img key='introtalk' className='talk_image' id='char_body' src={'./images/call_talk_bubble.png'} alt='charBody' />
                     <p className='text_in_talkImage'>{userName}님, 안녕하세요!</p>
                 </div>
+                
                 <form onSubmit={handleSubmit}>
                     <input
-                        style={{ borderRadius:'5px', marginTop: '70px'}} 
+                        style={{
+                            width: "130px", borderRadius:'5px', marginTop: '70px'}} 
                         type="submit" value="다음으로 >" onClick={()=>{
                             setSceneIndex(sceneIndex + 1);
                             clearAlldata(setPageIndex, setUserSelect);
@@ -153,6 +154,7 @@ function RenderIntroPage(prop) {
     }
 }
 
+var txtPrev = "< 이전으로"
 // *************** IntroTitle ***************
 
 
