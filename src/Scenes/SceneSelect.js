@@ -135,7 +135,7 @@ function PageMainImage(prop)
         result.push(<img key='index5' className='char' id='char_body' src={'./images/char/' + imagePath + '.png'} alt='charBody' />);
     }
 
-    if (index === 5 || index === 7 || index === 10)
+    if (index === 5 || index === 7 || index === 10 || index === 12 || index === 13)
     {
         if (_userChosenData > 0 || prevIndex === undefined) 
         {
@@ -189,7 +189,7 @@ function PageMainImage(prop)
     }
 
 
-    if (!(index === 5 || index === 7 || index === 9 || index === 10)) 
+    if (!(index === 5 || index === 7 || index === 9 || index === 10 || index === 12 || index === 13)) 
     {
         if (_userChosenData > 0 || prevIndex === undefined) {
             var imagePath = questionData[index][1] + "_" + _userChosenData;

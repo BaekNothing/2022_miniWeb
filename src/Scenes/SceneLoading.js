@@ -168,7 +168,7 @@ function SetTimer() {
             const randomNumber = Math.round(Math.random(0, 1) * 3) - 1;
             if(randomNumber <= 0)
                 continue;
-            if (i == 5 || i == 7 || i == 9 || i == 10)
+            if (i == 5 || i == 7 || i == 9 || i == 10 || i === 12 || i === 13)
                 continue;
             const imageName = questionData[i][1];
             const imagePath = imageName + "_" + randomNumber;
