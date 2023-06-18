@@ -33,15 +33,19 @@ function RenderIntroPage(prop) {
                     opacity: 0.3,
                 }} className='title_image' id='char_body' src={'./images/title_png.png'} alt='charBody' /> */}
                 <IntroTitle />
-                {/* <button className='title_btn' style={{
+                <button className='title_btn' style={{
                     backgroundColor: 'white',
                     color: '#000000',
+                    position: "absolute",
+                    top: '480px',
+                    left: "50%",
+                    transform: "translateX(-50%)",
                 }} onClick={() => {
                     _startFlag = 1;
                     SetDummy(1);
-                }}> 시작하기</button> */}
+                }}> 시작하기</button>
 
-                <ReCAPTCHA
+                {/* <ReCAPTCHA
                 style={{
                     position: "absolute",
                     top: '480px',
@@ -51,7 +55,7 @@ function RenderIntroPage(prop) {
                     sitekey='6LewAyYlAAAAAHhamUVCNTeUeJU3vwiUQ9PBkJrC' onChange={() => {
                     _startFlag = 1;
                     SetDummy(1);
-                }} />
+                }} /> */}
             </div>
         )
     }
