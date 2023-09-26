@@ -8,7 +8,6 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",
-    "css-selector": "^0.1.0",
     "css-tool": "^0.0.2",
     "csv-parser": "^3.0.0",
     "http-proxy-middleware": "^2.0.6",
