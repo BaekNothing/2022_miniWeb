@@ -13,7 +13,7 @@
     "http-proxy-middleware": "^2.0.6",
     "jquery": "^3.7.1",
     "mz": "^2.7.0",
-    "npm": "^9.4.2",
+    "npm": "^10.7.0",
     "postcss": "^8.4.31",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
